@@ -1,0 +1,24 @@
+    <div class="shiplisting-boats-object">
+        <div class="shiplisting-object-image">
+            <a href="/{linked_detail_view}/{boat_id}/"><img src="{pictures-0-val}" /></a>
+        </div>
+        <div class="shiplisting-object-details">
+            <h3 class="shiplisting-object-title"><a href="/{linked_detail_view}/{boat_id}/">{boat_data-general_data-boat_model-val}</a></h3>
+            <div class="shiplisting-object-detail">
+                {object_detail_first}
+            </div>
+            <div class="shiplisting-object-detail">
+                {object_detail_second}
+            </div>
+            <div class="shiplisting-object-detail">
+                {i18n_boat-engine_data-engine}: <span class="shiplisting-object-value">{engine_details}</span>
+            </div>
+            <div class="shiplisting-object-detail">
+                {i18n_boat-sale_data-location}: {doubleValue(sale_data-location-attr-country,sale_data-location-val,", ")}
+            </div>
+            <div class="shiplisting-object-price">
+                {i18n_boat-sale_data-price-price}: <span class="shiplisting-object-price-value">{price_details}</span>
+            </div>
+        </div>
+    </div>
+    <!-- TODO -->

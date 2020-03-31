@@ -1,0 +1,1320 @@
+<div class="shiplisting-generator-wrapper">
+    <div class="shiplisting-generator-headline">
+        <h1>YACHT<span>INO</span> GENERATOR</h1>
+        <small>It's easy to reach your target with a little help.</small>
+    </div>
+    <div class="shiplisting-generator-content generator-only">
+        <div class="shiplisting-generator-preloader">
+            <img src="/wp-content/plugins/shiplisting/admin/images/detail-view-icon.png" />
+            <img src="/wp-content/plugins/shiplisting/admin/images/detail-view-icon-over.png" />
+            <img src="/wp-content/plugins/shiplisting/admin/images/list-view-icon.png" />
+            <img src="/wp-content/plugins/shiplisting/admin/images/list-view-icon-over.png" />
+            <img src="/wp-content/plugins/shiplisting/admin/images/tag-add.png" />
+            <img src="/wp-content/plugins/shiplisting/admin/images/tag-add-over.png" />
+            <img src="/wp-content/plugins/shiplisting/admin/images/tag-remove.png" />
+            <img src="/wp-content/plugins/shiplisting/admin/images/tag-remove-over.png" />
+            <img src="/wp-content/plugins/shiplisting/admin/images/yachtall-logo.png" />
+            <img src="/wp-content/plugins/shiplisting/admin/images/yachtall-logo_hover.png" />
+            <img src="/wp-content/plugins/shiplisting/admin/images/happycharter-logo.png" />
+            <img src="/wp-content/plugins/shiplisting/admin/images/happycharter-logo_hover.png" />
+        </div>
+        <div class="shiplisting-generator">
+            <div class="shiplisting-generator-blocker">
+                <div class="shiplisting-generator-loader">
+                    <div class="spinner-loader">
+                        <div class="double-bounce1"></div>
+                        <div class="double-bounce2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="shiplisting-generator-progressbar">
+                <div class="shiplisting-generator-progressbar-label">1 / 3</div>
+                <div class="shiplisting-generator-progressbar-value"></div>
+            </div>
+            <div class="shiplisting-generator-step-content" id="generator-step-1">
+                <div class="shiplisting-step-heading">
+                    <h2>Introduction</h2>
+                </div>
+                <div class="shiplisting-step-content">
+                    Welcome to the new <span style="font-weight: 600;">Yacht<span style="color: #f59e00">ino</span> Generator</span>!<br>
+                    <br>
+                    This generator is to be of used of simplify generating your own personal pages with dynamic templates, filters and routes.<br>
+                    Through the Filter-System it is possible to decide, which data our <span style="font-weight: 600;">Yacht<span style="color: #f59e00">ino</span></span> API responses.<br>
+                    Which Variables are for what and how you sort specific to your personal use, will be easily explained in the next few steps.<br>
+                    <br>
+                    The Route-System processes all data's from our API and is used for creating layout and presentation for our customer dynamic.<br>
+                    We're going to start with the decide of route type. Are you ready?
+                </div>
+                <div class="shiplisting-step-bottom">
+                    <a class="shiplisting-step-next" href="javascript:void(0);">Start »</a>
+                </div>
+            </div>
+            <div class="shiplisting-generator-step-content" id="generator-step-source-choose" data-callback="sourcechoose_callback" data-nextstep-id="generator-step-2" data-backstep-id="generator-step-1">
+                <div class="shiplisting-step-heading">
+                    <h2>Choose of data source</h2>
+                </div>
+                <div class="shiplisting-step-content">
+                    <div class="shiplisting-alert-info">
+                        <h3>Choosing of data source between providers</h3>
+                        <div class="shiplisting-step-chooser-row">
+                            <div class="shiplisting-step-chooser-left">
+                                <b>Yachtall</b>, the international boat market on the internet offers you new and used sailboats, powerboats and more. Sell your preowned boats through our portal for boats for sale. Or use our yacht supply to buy your future own boat very cheap. Boats at a bargain price or luxury yachts - versatile offers of used boats for sale at <b>Yachtall</b>. A lot of information to the used yachts for sale and the pictures make it easy for you to choose the right yacht or boat!
+                            </div>
+                            <div class="shiplisting-step-chooser-right">
+                                <b>Happycharter</b> is the international internet portal for yacht charter, boat rental and boats for rent worldwide. In our data base are sailboats, powerboats and catamarans from various providers - the offer of charter yachts is so concentrated on one place. A charter customer needs not to search on thousands of web sites, he finds the suitable boat for his boating holiday with us. And if you want to book and rent the yacht you found here? You can contact the boat owner directly.
+                                Yacht charter and boat rental is easy with <b>Happycharter</b>!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shiplisting-step-chooser">
+                        <div class="shiplisting-step-chooser-row">
+                            <div class="shiplisting-step-chooser-left text-center">
+                                <div class="yachtall-logo-icon"></div>
+                            </div>
+                            <div class="shiplisting-step-chooser-right text-center">
+                                <div class="happycharter-logo-icon"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    var logo_yachtall = jQuery('#generator-step-source-choose div.shiplisting-step-chooser-left .yachtall-logo-icon');
+                    var content_yachtall = jQuery('#generator-step-source-choose div.shiplisting-step-chooser-left');
+
+                    var logo_happycharter = jQuery('#generator-step-source-choose div.shiplisting-step-chooser-right .happycharter-logo-icon');
+                    var content_happycharter = jQuery('#generator-step-source-choose div.shiplisting-step-chooser-right');
+                    var next_button = null;
+
+                    function sourcechoose_callback() {
+                        next_button = jQuery('#generator-step-source-choose a.shiplisting-step-next');
+                        next_button.text('Wait for decide..');
+                        next_button.addClass('disabled');
+
+                        if (logo_yachtall.hasClass('active')) {
+                            logo_yachtall.removeClass('active');
+                        }
+                        if (logo_happycharter.hasClass('active')) {
+                            logo_happycharter.removeClass('active');
+                        }
+
+                        content_yachtall.on('click', function(e) {
+                            next_button.text('Choose of yachtall route type »');
+                            next_button.removeClass('disabled');
+
+                            if (!logo_yachtall.hasClass('active')) {
+                                logo_yachtall.addClass('active');
+                            }
+                            if (logo_happycharter.hasClass('active')) {
+                                logo_happycharter.removeClass('active');
+                            }
+
+                            formSource = 0;
+                        });
+
+                        content_happycharter.on('click', function(e) {
+                            next_button.text('Choose of happycharter route type »');
+                            next_button.removeClass('disabled');
+
+                            if (!logo_happycharter.hasClass('active')) {
+                                logo_happycharter.addClass('active');
+                            }
+                            if (logo_yachtall.hasClass('active')) {
+                                logo_yachtall.removeClass('active');
+                            }
+
+                            formSource = 1;
+                        });
+
+                        ajax_blocker_toggle(false);
+                    }
+                </script>
+                <div class="shiplisting-step-bottom">
+                    <a class="shiplisting-step-back" href="javascript:void(0);">« Back to Introduction</a>
+                    <a class="shiplisting-step-next" href="javascript:void(0);">Wait for decide..</a>
+                </div>
+            </div>
+            <div class="shiplisting-generator-step-content" id="generator-step-2" data-callback="step_2_callback" data-nextstep-id="generator-step-3" data-backstep-id="generator-step-source-choose">
+                <div class="shiplisting-step-heading">
+                    <h2>Choose of route type</h2>
+                </div>
+                <div class="shiplisting-step-content">
+                    <div class="shiplisting-step-content-info">
+                        <h2>We're starting with choosing type of our route</h2>
+                        The type of route is required for decisive what our customers get's as layout.
+                    </div>
+                    <div class="shiplisting-step-chooser">
+                        <div class="shiplisting-step-chooser-row">
+                            <div class="shiplisting-step-chooser-left">
+                                <div class="detail-view-icon"></div>
+                            </div>
+                            <div class="shiplisting-step-chooser-right">
+                                <div class="list-view-icon grey"></div>
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-chooser-row">
+                            <div class="shiplisting-step-chooser-left">
+                                <div class="detail icon-descr">Detail - View</div>
+                            </div>
+                            <div class="shiplisting-step-chooser-right">
+                                <div class="list icon-descr">List - View</div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            var detail_view = jQuery('#generator-step-2 div.shiplisting-step-chooser-row div.detail-view-icon');
+                            var detail_view_desc = jQuery('#generator-step-2 div.shiplisting-step-chooser-row div.detail.icon-descr');
+                            var list_view = jQuery('#generator-step-2 div.shiplisting-step-chooser-row div.list-view-icon');
+                            var list_view_desc = jQuery('#generator-step-2 div.shiplisting-step-chooser-row div.list.icon-descr');
+                            var next_button = null;
+
+                            detail_view.on('click', function(e) {
+                                e.preventDefault();
+
+                                if (jQuery(this).hasClass('active') === false) {
+                                    jQuery(this).addClass('active');
+
+                                    if (detail_view_desc.hasClass('active') === false)
+                                        detail_view_desc.addClass('active');
+
+                                    if (list_view.hasClass('active')) {
+                                        list_view.removeClass('active');
+                                        list_view_desc.removeClass('active');
+                                    }
+
+                                    if (next_button !== null) {
+                                        next_button.text('Configure Detail - View »');
+                                        next_button.removeClass('disabled');
+                                        jQuery('#generator-step-2').attr('data-nextstep-id', 'generator-step-3-1');
+                                    }
+                                }
+                            });
+
+                            list_view.on('click', function(e) {
+                                e.preventDefault();
+
+                                if (jQuery(this).hasClass('grey')) {
+                                    alert('At first you need to setup an detail view, because its needed to be linked in your list view.');
+                                    return;
+                                }
+
+                                if (jQuery(this).hasClass('active') === false) {
+                                    jQuery(this).addClass('active');
+
+                                    if (list_view_desc.hasClass('active') === false)
+                                        list_view_desc.addClass('active');
+
+                                    if (detail_view.hasClass('active')) {
+                                        detail_view.removeClass('active');
+                                        detail_view_desc.removeClass('active');
+                                    }
+
+                                    if (next_button !== null) {
+                                        next_button.text('Configure List - View »');
+                                        next_button.removeClass('disabled');
+                                        jQuery('#generator-step-2').attr('data-nextstep-id', 'generator-step-3');
+                                    }
+                                }
+                            });
+
+                            function step_2_callback() {
+                                if (!list_view.hasClass('grey'))
+                                    list_view.addClass('grey');
+
+                                next_button = jQuery('#generator-step-2 div.shiplisting-step-bottom').find('a.shiplisting-step-next');
+                                next_button.text('Wait for decide..');
+                                next_button.addClass('disabled');
+
+                                // check if detail view is present
+                                var imgObj = jQuery('#generator-step-2 div.list-view-icon');
+                                jQuery.ajax({
+                                    type: 'POST',
+                                    url: ajaxurl,
+                                    data: {
+                                        action: 'shiplisting_get_detail_views',
+                                        'source': formSource
+                                    },
+                                    success: function (data) {
+                                        if (data === '{}') {
+                                            if (!list_view.hasClass('grey'))
+                                                list_view.addClass('grey');
+                                        } else {
+                                            list_view.removeClass('grey');
+                                        }
+                                        ajax_blocker_toggle(false);
+                                    },
+                                    error: function(XMLHttpRequest) {
+                                        console.log(XMLHttpRequest);
+                                    }
+                                });
+
+                                detail_view.removeClass('active');
+                                detail_view_desc.removeClass('active');
+                                list_view.removeClass('active');
+                                list_view_desc.removeClass('active');
+                                if (list_view.hasClass('grey'))
+                                    list_view.addClass('grey');
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div class="shiplisting-step-bottom">
+                    <a class="shiplisting-step-back" href="javascript:void(0);">« Back to choose of data source</a>
+                    <a class="shiplisting-step-next" href="javascript:void(0);">Wait for decide..</a>
+                </div>
+            </div>
+            <div class="shiplisting-generator-step-content shiplisting-generator-step-content-else" id="generator-step-3-1" data-callback="detail_add_callback" data-nextstep-id="generator-step-4">
+                <div class="shiplisting-step-heading">
+                    <h2>Detail - View</h2>
+                </div>
+                <div class="shiplisting-step-content">
+                    <div class="shiplisting-step-form">
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Name:</span>
+                                <small class="shiplisting-form-cell-label-help">The name of detail view be of use identification and doesn't contain any special- or blank chars.</small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <input type="text" class="shiplisting-form-cell-value-input" id="detail_name" name="detail_name" />
+                                <div class="shiplisting-form-cell-value-loading text-input">
+                                    <img src="/wp-admin/images/loading.gif" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Page - Title:</span>
+                                <small class="shiplisting-form-cell-label-help">The title of page, which the customer will see in layout.</small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <input type="text" class="shiplisting-form-cell-value-input" id="detail_title" name="detail_title" />
+                                <div class="shiplisting-form-cell-value-placert">
+                                    <button type="button" class="">Insert Placeholder</button>
+                                    <div class="shiplisting-modal-placert">
+                                        <div class="modal-placert-left">
+                                            <div class="arrow"></div>
+                                        </div>
+                                        <div class="modal-placert-right">
+                                            <h3>Insert Placeholder <div class="close">X</div></h3>
+                                            <div class="modal-placert-right-content">
+                                                <a href="javascript:void(0);" class="placert-cat" placert-content="placert-general_data">
+                                                    general_data
+                                                </a>
+                                                <div class="placert-cat-content" id="placert-general_data"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Page - Language:</span>
+                                <small class="shiplisting-form-cell-label-help">
+                                    The language explains itself, sets the language which comes from our API.
+                                </small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <select id="detail_language"></select>
+                                <div class="shiplisting-form-cell-value-loading">
+                                    <img src="/wp-admin/images/loading.gif" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Page - Path:</span>
+                                <small class="shiplisting-form-cell-label-help">
+                                    The path is for our customers to reach our detail laylout.
+                                </small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <span class="value-helper">{{domain_name}}/</span><input type="text" class="shiplisting-form-cell-value-input" id="detail_path" name="detail_path" /><span class="value-helper">/57/</span>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        var next_button = jQuery('#generator-step-3-1 div.shiplisting-step-bottom').find('a.shiplisting-step-next');
+
+                        var detail_name = jQuery('#generator-step-3-1 #detail_name');
+                        var detail_title = jQuery('#generator-step-3-1 #detail_title');
+                        var detail_path = jQuery('#generator-step-3-1 #detail_path');
+                        var placert = jQuery('#generator-step-3-1 div.shiplisting-form-cell-value-placert button');
+                        var detail_language = jQuery('#generator-step-3-1 #detail_language');
+
+                        detail_name.on('keyup change', function(e){
+                            if (/^[a-zA-Z0-9_-]+$/.test(jQuery(this).val()) === false || jQuery(this).val().length <= 0) {
+                                jQuery(this).addClass('has-error');
+                            } else {
+                                jQuery(this).removeClass('has-error');
+                                get_route_exists(jQuery(this).val(), detail_name);
+                            }
+                            checkFormStep31();
+                        });
+
+                        detail_title.on('keyup change', function(e){
+                            if (jQuery(this).val().length <= 0) {
+                                jQuery(this).addClass('has-error');
+                            } else {
+                                jQuery(this).removeClass('has-error');
+                            }
+                            checkFormStep31();
+                        });
+
+                        detail_path.on('keyup change', function(e){
+                            if (/^[a-zA-Z0-9_-]+$/.test(jQuery(this).val()) === false || jQuery(this).val().length <= 0) {
+                                jQuery(this).addClass('has-error');
+                            } else {
+                                jQuery(this).removeClass('has-error');
+                                get_path_exists(jQuery(this).val(), detail_path, 'detail');
+                            }
+                            checkFormStep31();
+                        });
+
+                        placert.on('click', function(e) {
+                            e.preventDefault( );
+
+                            var modal = jQuery('#generator-step-3-1 div.shiplisting-modal-placert');
+                            if (modal !== undefined) {
+                                modal.animate({width:'toggle'},250, function() {
+                                    var modal_right = modal.find('div.modal-placert-right');
+                                    if (modal_right !== undefined) {
+                                        var modal_close = modal_right.find('h3 > .close');
+                                        if (modal_close !== undefined) {
+                                            modal_close.on('click', function() {
+                                                modal.slideUp(250);
+                                            });
+
+                                            jQuery(document).click(function() {
+                                                modal.slideUp(250);
+                                            });
+
+                                            modal.click(function(event) {
+                                                event.stopPropagation( );
+                                            });
+
+                                            placert.click(function(event) {
+                                                event.stopPropagation( );
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                        });
+
+                        function checkFormStep31() {
+                            if (jQuery('#generator-step-3-1 .has-error').length === 0) {
+                                if (detail_name.val().length > 0 && detail_title.val().length > 0 && detail_path.val().length > 0) {
+                                    next_button.removeClass('disabled');
+                                }
+                            } else {
+                                next_button.addClass('disabled');
+                            }
+                        }
+
+                        function detail_add_callback() {
+                            check_for_loading();
+
+                            next_button = jQuery('#generator-step-3-1 div.shiplisting-step-bottom').find('a.shiplisting-step-next');
+                            next_button.addClass('disabled');
+
+                            // reset form
+                            formData = [];
+                            detail_name.val("");
+                            detail_title.val("");
+                            detail_path.val("");
+
+                            jQuery('#generator-step-4').attr('data-backstep-id', 'generator-step-3-1');
+
+                            // init title placeholders
+                            get_title_placeholders(formSource, jQuery('#generator-step-3-1 div.shiplisting-modal-placert div.placert-cat-content#placert-general_data'));
+
+                            // init api languages
+                            get_api_languages(formSource, detail_language, 'detail');
+
+                            next_button.click(function(e){
+                                if(jQuery('#generator-step-3-1 .has-error').length === 0) {
+                                    formData.push({'detail_name': detail_name.val(), 'detail_title': detail_title.val(), 'detail_path': detail_path.val(), 'detail_language': detail_language.val()});
+                                }
+                            });
+
+                            formType = 0;
+                        }
+                    </script>
+                </div>
+                <div class="shiplisting-step-bottom">
+                    <a class="shiplisting-step-back" href="javascript:void(0);">« Back to choose of Route Type</a>
+                    <a class="shiplisting-step-next" href="javascript:void(0);">Check & Save »</a>
+                </div>
+            </div>
+            <div class="shiplisting-generator-step-content" id="generator-step-3" data-backstep-id="generator-step-2" data-callback="listview_callback">
+                <div class="shiplisting-step-heading">
+                    <h2>List - View</h2>
+                </div>
+                <div class="shiplisting-step-content">
+                    <div class="shiplisting-step-form">
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Name:</span>
+                                <small class="shiplisting-form-cell-label-help">The name of list view be of use identification and doesn't contain any special- or blank chars.</small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <input type="text" class="shiplisting-form-cell-value-input" id="list_name" name="list_name" />
+                                <div class="shiplisting-form-cell-value-loading text-input">
+                                    <img src="/wp-admin/images/loading.gif" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Page - Title:</span>
+                                <small class="shiplisting-form-cell-label-help">The title of page, which the customer will see in layout.</small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <input type="text" class="shiplisting-form-cell-value-input" id="list_title" name="list_title" />
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Page - Path:</span>
+                                <small class="shiplisting-form-cell-label-help">
+                                    The path is for our customers to reach our detail laylout.
+                                </small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <span class="value-helper">{{domain_name}}/</span><input type="text" class="shiplisting-form-cell-value-input" id="list_path" name="list_path" /><span class="value-helper">/</span>
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Page - Language:</span>
+                                <small class="shiplisting-form-cell-label-help">
+                                    The language explains itself, sets the language which comes from our API.
+                                </small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <select id="list_language"></select>
+                                <div class="shiplisting-form-cell-value-loading">
+                                    <img src="/wp-admin/images/loading.gif" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Hits per page:</span>
+                                <small class="shiplisting-form-cell-label-help">Hits per page is self-explanatory, defines a boat count by page.</small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <input type="number" class="shiplisting-form-cell-value-input" id="list_hitsbypage" name="list_hitsbypage" value="25" />
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Enable Advanced Filtering:</span>
+                                <small class="shiplisting-form-cell-label-help">Enable or disable of advanced sidebar filtering in layout.</small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <select id="list_advanced_filtering">
+                                    <option value="0">Deactivated</option>
+                                    <option value="1">Activated</option>
+                                </select>
+                                <div class="shiplisting-form-cell-value-loading">
+                                    <img src="/wp-admin/images/loading.gif" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-form-row advanced_filtering" style="display: none;">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Show/Hide Advanced Filtering Options:</span>
+                                <small class="shiplisting-form-cell-label-help">The show/hide function releases controlling which options will be shown in layout.</small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <div class="shiplisting-form-adv-filtering-header">
+                                    <div class="shiplisting-form-adv-filtering-header-cell">
+                                        <a href="javascript:void(0);" class="shiplisting-form-adv-filtering-header-check-all">Uncheck all</a>
+                                    </div>
+                                </div>
+                                <div class="shiplisting-form-adv-filtering-content">
+                                    <div class="shiplisting-form-adv-filtering-cell">
+                                        <input type="checkbox" name="adv_filter_quicksearch" id="adv_filter_quicksearch" value="" />
+                                        <label for="adv_filter_quicksearch">Quick Search</label>
+                                    </div>
+                                    <div class="shiplisting-form-adv-filtering-cell">
+                                        <input type="checkbox" name="adv_filter_btcid" id="adv_filter_btcid" value="" />
+                                        <label for="adv_filter_btcid">Boat type</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label">
+                                <span>Filter - Fields:</span>
+                                <small class="shiplisting-form-cell-label-help">
+                                    The filter fields are important to decide, which data our API responses.<br>
+                                    <font style="font-weight: 600">Zum Beispiel:</font> Just wanna see your sailboats?<br>
+                                    Use Variable "<font style="font-weight: 600">Bootsart</font>" with the value "<font style="font-weight: 600">Segelboote</font>".
+                                </small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <div class="shiplisting-form-cell-variable-row">
+                                    <div class="shiplisting-variable-key">
+                                        <select id="shiplisting-vars-key" name="shiplisting-vars-key">
+                                            <option value="-1">(None)</option>
+                                        </select>
+                                    </div>
+                                    <div class="shiplisting-variable-value">
+                                        <select id="shiplisting-vars-val" name="shiplisting-vars-val">
+
+                                        </select>
+                                        <input type="text" id="shiplisting-vars-val-text" name="shiplisting-vars-val-text">
+                                    </div>
+                                    <div class="shiplisting-variable-add">
+                                        <a href="javascript:void(0);"><span class="tag-add"></span> <span class="tag-add-desc">Add</span></a>
+                                    </div>
+                                </div>
+                                <div class="shiplisting-form-cell-variable-result"></div>
+                            </div>
+                        </div>
+                        <div class="shiplisting-step-form-row">
+                            <div class="shiplisting-form-cell-label required">
+                                <span>Linked Detail View:</span>
+                                <small class="shiplisting-form-cell-label-help">Choose the detail view, which is linked in the frontend layout on our list view.</small>
+                            </div>
+                            <div class="shiplisting-form-cell-value">
+                                <select id="list_linked_detail_view" name="list_linked_detail_view">
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        var next_button = jQuery('#generator-step-3 div.shiplisting-step-bottom').find('a.shiplisting-step-next');
+                        var list_name = jQuery('#generator-step-3 #list_name');
+                        var list_title = jQuery('#generator-step-3 #list_title');
+                        var list_path = jQuery('#generator-step-3 #list_path');
+                        var list_hitsbypage = jQuery('#generator-step-3 #list_hitsbypage');
+                        var list_advanced_filtering = jQuery('#generator-step-3 #list_advanced_filtering');
+                        var block_advanced_filtering = jQuery('#generator-step-3 .shiplisting-step-form-row.advanced_filtering');
+                        var block_advanced_filtering_value = jQuery('#generator-step-3 .shiplisting-step-form-row.advanced_filtering .shiplisting-form-cell-value .shiplisting-form-adv-filtering-content');
+                        var link_advanced_filtering_toggler = jQuery('#generator-step-3 .shiplisting-step-form-row.advanced_filtering .shiplisting-form-adv-filtering-header-check-all');
+                        var list_linked_detail_view = jQuery('#generator-step-3 #list_linked_detail_view');
+                        var list_language = jQuery('#generator-step-3 #list_language');
+
+                        list_name.on('keyup change', function(e){
+                            if (/^[a-zA-Z0-9_-]+$/.test(jQuery(this).val()) === false || jQuery(this).val().length <= 0) {
+                                jQuery(this).addClass('has-error');
+                            } else {
+                                jQuery(this).removeClass('has-error');
+                                get_route_exists(jQuery(this).val(), list_name);
+                            }
+                            checkFormStep3();
+                        });
+
+                        list_title.on('keyup change', function(e){
+                            if (jQuery(this).val().length <= 0) {
+                                jQuery(this).addClass('has-error');
+                            } else {
+                                jQuery(this).removeClass('has-error');
+                            }
+                            checkFormStep3();
+                        });
+
+                        list_path.on('keyup change', function(e){
+                            if (/^[a-zA-Z0-9_-]+$/.test(jQuery(this).val()) === false || jQuery(this).val().length <= 0) {
+                                jQuery(this).addClass('has-error');
+                            } else {
+                                jQuery(this).removeClass('has-error');
+                                get_path_exists(jQuery(this).val(), list_path, 'list');
+                            }
+                            checkFormStep3();
+                        });
+
+                        list_hitsbypage.on('keyup change', function(e){
+                            if (jQuery(this).val().length <= 0 || jQuery(this).val() <= 0) {
+                                jQuery(this).addClass('has-error');
+                            } else {
+                                jQuery(this).removeClass('has-error');
+                            }
+                            checkFormStep3();
+                        });
+
+                        list_linked_detail_view.on('change', function(e){
+                            if (jQuery(this).val() === 0 || jQuery(this).val() === null) {
+                                jQuery(this).addClass('has-error');
+                            } else {
+                                jQuery(this).removeClass('has-error');
+                            }
+                            checkFormStep3();
+                        });
+
+                        list_advanced_filtering.on('change', function(e){
+                            if (jQuery(this).val() === "0") {
+                                block_advanced_filtering.slideUp(200, function(){
+                                    updateOddEvenFormStep3();
+                                    jQuery('#generator-step-3 .shiplisting-step-form-row.advanced_filtering .shiplisting-form-adv-filtering-content div').remove();
+                                });
+                            } else {
+                                updateAdvancedFilteringOptionsStep3(function(){
+                                    block_advanced_filtering.slideDown(200, function(){
+                                        updateOddEvenFormStep3();
+                                    });
+                                });
+                            }
+                        });
+
+                        link_advanced_filtering_toggler.on('click', function(e){
+                            var boxes = jQuery('#generator-step-3 .shiplisting-step-form-row.advanced_filtering .shiplisting-form-adv-filtering-content input:checkbox');
+                            if (jQuery(this).text() === "Check all") {
+                                boxes.prop('checked', 'checked');
+                                link_advanced_filtering_toggler.text('Uncheck all');
+                            } else {
+                                boxes.removeProp('checked');
+                                link_advanced_filtering_toggler.text('Check all');
+                            }
+                        });
+
+                        function checkFormStep3() {
+                            if (jQuery('#generator-step-3 .has-error').length === 0) {
+                                if (list_name.val().length > 0 && list_title.val().length > 0 && list_path.val().length > 0) {
+                                    next_button.removeClass('disabled');
+                                }
+                            } else {
+                                next_button.addClass('disabled');
+                            }
+                        }
+
+                        function updateOddEvenFormStep3() {
+                            jQuery('#generator-step-3 .shiplisting-step-form div.shiplisting-step-form-row:visible:odd').css('background', '#EDEDED');
+                            jQuery('#generator-step-3 .shiplisting-step-form div.shiplisting-step-form-row:visible:even').css('background', '#FFFFFF');
+                        }
+
+                        function advFilter_prepareTmpl(name, value) {
+                            return '<div class="shiplisting-form-adv-filtering-cell">\n' +
+                                '<input type="checkbox" name="adv_filter_'+value+'" id="adv_filter_'+value+'" value="1" />' +
+                                '<label for="adv_filter_'+value+'">'+name+'</label>' +
+                                '</div>';
+                        }
+
+                        function updateAdvancedFilteringOptionsStep3(callback) {
+                            var content = jQuery('#generator-step-3 .shiplisting-step-form-row.advanced_filtering .shiplisting-form-adv-filtering-content');
+                            var loading_img = list_advanced_filtering.parent().find('div.shiplisting-form-cell-value-loading');
+                            loading_img.css('display','inline-block');
+
+                            jQuery.ajax({
+                                type: 'POST',
+                                url: ajaxurl,
+                                data: {
+                                    action: 'shiplisting_advanced_filters',
+                                    'source': formSource,
+                                    'search': 1
+                                },
+                                success: function (data, textStatus, XMLHttpRequest) {
+                                    filterVars = JSON.parse(data);
+                                    content.find('div').remove();
+                                    if (filterVars['fields'].length > 0) {
+                                        jQuery.each(filterVars['fields'], function (key, option) {
+                                            content.append(advFilter_prepareTmpl(option['name'], option['variable']));
+                                        });
+                                        content.find('input:checkbox').prop('checked', 'checked');
+
+                                        loading_img.css('display', 'none');
+
+                                        if (callback !== undefined && callback !== null)
+                                            callback();
+                                    }
+                                },
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    loading_img.css('display','none');
+                                    alert(errorThrown);
+                                    console.log(XMLHttpRequest);
+                                }
+                            });
+                        }
+
+                        function update_standard_filtering_options_step3(callback) {
+                            jQuery.ajax({
+                                type: 'POST',
+                                url: ajaxurl,
+                                data: {
+                                    action: 'shiplisting_advanced_filters',
+                                    'source': formSource,
+                                    'search': 0
+                                },
+                                success: function (data, textStatus, XMLHttpRequest) {
+                                    filterVars = JSON.parse(data);
+                                    if (filterVars['fields'].length > 0) {
+                                        jQuery('#shiplisting-vars-key option:not(:first-child)').remove();
+                                        jQuery.each(filterVars['fields'], function(key, option) {
+                                            var o = new Option(option['name'], option['variable']);
+                                            jQuery(o).html(option['name']);
+                                            jQuery('#shiplisting-vars-key').append(o);
+                                        });
+
+                                        jQuery('#shiplisting-vars-key').on('change', function(e){
+                                            var v = jQuery(this).val();
+                                            jQuery('#shiplisting-vars-val option').remove();
+
+                                            if (v == "-1") {
+                                                jQuery('#shiplisting-vars-val').hide();
+                                                jQuery('#shiplisting-vars-val-text').hide();
+                                                jQuery('div.shiplisting-variable-add a').hide();
+                                            }
+
+                                            jQuery.each(filterVars['fields'], function(key, option) {
+                                                if (option['variable'] === v) {
+                                                    if (option['options'] !== undefined) {
+                                                        jQuery('#shiplisting-vars-val-text').hide();
+                                                        jQuery('#shiplisting-vars-val-text').val("");
+                                                        jQuery('#shiplisting-vars-val').show();
+                                                        jQuery.each(option['options'], function (key, value) {
+                                                            var o = new Option(value['name'], value['id']);
+                                                            jQuery(o).html(value['name']);
+                                                            jQuery('#shiplisting-vars-val').append(o);
+                                                        });
+                                                    } else {
+                                                        jQuery('#shiplisting-vars-val').hide();
+                                                        jQuery('#shiplisting-vars-val-text').show();
+                                                    }
+                                                    jQuery('div.shiplisting-variable-add a').show();
+                                                }
+
+                                            });
+                                        });
+
+                                        if (callback !== undefined && callback !== null)
+                                            callback();
+                                    }
+                                },
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    loading_img.css('display','none');
+                                    //alert(errorThrown);
+                                    console.log(XMLHttpRequest);
+                                }
+                            });
+                        }
+
+                        String.prototype.trunc =
+                            function( n, useWordBoundary ){
+                                if (this.length <= n) { return this; }
+                                var subString = this.substr(0, n-1);
+                                return (useWordBoundary
+                                    ? subString.substr(0, subString.lastIndexOf(' '))
+                                    : subString) + "&hellip;";
+                            };
+
+                        function update_linked_list_view_options_step3(callback) {
+                            var selectObj = jQuery('#generator-step-3 #list_linked_detail_view');
+                            selectObj.find('option').remove();
+
+                            jQuery.ajax({
+                                type: 'POST',
+                                url: ajaxurl,
+                                data: {
+                                    action: 'shiplisting_get_detail_views',
+                                    'source': formSource
+                                },
+                                success: function (data) {
+                                    var tmp = JSON.parse(data);
+                                    jQuery.each(tmp, function(key, route) {
+                                        var title_builder = route['title'];
+                                        title_builder = title_builder.trunc(35, true);
+                                        title_builder += ' ('+route['path']+')';
+
+                                        var o = new Option(title_builder, route['id']);
+                                        jQuery(o).html(title_builder);
+                                        selectObj.append(o);
+                                    });
+
+                                    if (callback !== undefined && callback != null)
+                                        callback();
+                                },
+                                error: function(XMLHttpRequest) {
+                                    console.log(XMLHttpRequest);
+                                }
+                            });
+                        }
+
+                        function listview_callback() {
+                            check_for_loading();
+
+                            next_button = jQuery('#generator-step-3 div.shiplisting-step-bottom').find('a.shiplisting-step-next');
+                            next_button.addClass('disabled');
+
+                            // reset form
+                            formData = [];
+                            list_name.val("");
+                            list_title.val("");
+                            list_path.val("");
+                            list_hitsbypage.val("25");
+                            list_advanced_filtering.val("0");
+                            block_advanced_filtering.hide();
+                            block_advanced_filtering_value.find('div.shiplisting-form-adv-filtering-cell').remove();
+
+                            // load initial fields
+                            update_standard_filtering_options_step3(null);
+                            update_linked_list_view_options_step3(null);
+
+                            updateOddEvenFormStep3();
+
+                            // init api languages
+                            get_api_languages(formSource, list_language, 'list');
+
+                            jQuery('.shiplisting-form-cell-variable-result').html("");
+                            jQuery('#generator-step-4').attr('data-backstep-id', 'generator-step-3');
+
+                            next_button.click(function(e){
+                                var adv_filtering_options = [];
+                                if (list_advanced_filtering.val() === "1") {
+                                    jQuery.each(block_advanced_filtering_value.find('input:checkbox'), function(key, checkbox) {
+                                        if (jQuery(this).prop('checked')) {
+                                            adv_filtering_options.push(jQuery(this)[0].id);
+                                        }
+                                    });
+                                }
+
+                                formData.push({'list_name': list_name.val(), 'list_title': list_title.val(), 'list_path': list_path.val(), 'list_hitsbypage':list_hitsbypage.val(), 'list_advanced_filtering':list_advanced_filtering.val(), 'list_advanced_filtering_options':adv_filtering_options, 'list_linked_detail_view':list_linked_detail_view.val(), 'list_language':list_language.val()});
+                            });
+
+                            formType = 1;
+                        }
+                    </script>
+                </div>
+                <div class="shiplisting-step-bottom">
+                    <a class="shiplisting-step-back" href="javascript:void(0);">« Back to choose of Route Type</a>
+                    <a class="shiplisting-step-next" href="javascript:void(0);">Check & Save »</a>
+                </div>
+            </div>
+            <div class="shiplisting-generator-step-content" id="generator-step-4" data-callback="generator_finish">
+                <div class="shiplisting-step-heading">
+                    <h2>Check & Saving</h2>
+                </div>
+                <div class="shiplisting-step-content">
+                    <div class="shiplisting-step-finish">
+                        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                        <br>
+                        <span class="shiplisting-step-result">You're page is in checking and will be created shortly..</span>
+                    </div>
+                    <script type="text/javascript">
+                        function generator_finish() {
+                            ajax_blocker_toggle(false);
+
+                            jQuery.post(window.location, {
+                                'formSource' : formSource,
+                                'formData' : formData,
+                                'formFilters': formFilters,
+                                'formType': formType
+                            }, function(data) {
+                                if (formType == 0) {
+                                    jQuery('.shiplisting-step-result').html('You\'re page was successfully added.<br><a href="{{domain_name}}/'+formData[0]['detail_path']+'/57/" target="_blank">{{domain_name}}/'+formData[0]['detail_path']+'/57/</a>');
+                                } else if(formType == 1) {
+                                    jQuery('.shiplisting-step-result').html('You\'re page was successfully added.<br><a href="{{domain_name}}/'+formData[0]['list_path']+'/" target="_blank">{{domain_name}}/'+formData[0]['list_path']+'/</a>');
+                                }
+                                jQuery('.lds-ellipsis').hide();
+                                jQuery('#generator-step-4 div.shiplisting-step-bottom').find('a.shiplisting-step-next').removeClass('disabled');
+                            }).fail(function(error) {
+                                alert(error);
+                                console.log(jQuery(this));
+                            });
+
+                            jQuery('a.shiplisting-step-next').on('click', function() {
+                                window.location.reload( );
+                            });
+                        }
+                    </script>
+                </div>
+                <div class="shiplisting-step-bottom">
+                    <a class="shiplisting-step-next" href="javascript:void(0);">Finish!</a>
+                </div>
+            </div>
+        </div>
+        <div class="shiplisting-helper">
+            <div class="shiplisting-helper-box">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var formSource = 0;
+    var formData = [];
+    var formFilters = [];
+    var formType = 0;
+
+    var countSteps = jQuery('div.shiplisting-generator div.shiplisting-generator-step-content:not(.shiplisting-generator-step-content-else)').length;
+    var currentStep = -1;
+    var currentStepContent = jQuery('div.shiplisting-generator-step-content:visible');
+    if (countSteps > 0) {
+        currentStep = jQuery('div.shiplisting-generator-step-content:visible').index()-1;
+        var progressBar = jQuery('div.shiplisting-generator div.shiplisting-generator-progressbar');
+        if (progressBar !== undefined) {
+            var progressBarLabel = jQuery('div.shiplisting-generator-progressbar div.shiplisting-generator-progressbar-label');
+            if (progressBarLabel !== undefined) {
+                progressBarLabel.text(currentStep + " / " + countSteps);
+            }
+
+            var progressBarValue = jQuery('div.shiplisting-generator-progressbar div.shiplisting-generator-progressbar-value');
+            if (progressBarValue !== undefined) {
+                progressBarValue.css('width', (100 / countSteps) * currentStep + '%');
+            }
+            updateButtons(currentStep, countSteps);
+        }
+    }
+
+    jQuery('a.shiplisting-step-next').on('click', function(e) {
+        e.preventDefault();
+
+        if (jQuery(this).hasClass('disabled'))
+            return;
+
+        var nextStep = parseInt(currentStep)+1;
+        if (nextStep <= countSteps) {
+            progressBarLabel.text(nextStep + " / " + countSteps);
+            currentStep = nextStep;
+
+            var nextStepContent = null;
+            if (currentStepContent.attr('data-nextstep-id') !== undefined) {
+                if (jQuery('#' + currentStepContent.attr('data-nextstep-id')) !== undefined) {
+                    var data_nextstep_id = jQuery('#' + currentStepContent.attr('data-nextstep-id'));
+                    if (data_nextstep_id.length > 0) {
+                        nextStepContent = data_nextstep_id;
+                    } else {
+                        nextStepContent = currentStepContent.next();
+                    }
+                } else {
+                    nextStepContent = currentStepContent.next();
+                }
+            } else {
+                nextStepContent = currentStepContent.next();
+            }
+
+            var nextStepContentCallback = (nextStepContent.attr('data-callback') !== undefined) ? nextStepContent.attr('data-callback') : null;
+            progressBarValue.animate({ width: (100 / countSteps) * currentStep + '%' });
+            updateButtons(currentStep, countSteps);
+            currentStepContent.slideUp(400, function() {
+                nextStepContent.slideDown(400, function() {
+                    currentStepContent = nextStepContent;
+
+                    if (nextStepContentCallback) {
+                        var callbackFunc = window[nextStepContentCallback];
+                        if (typeof callbackFunc === "function") {
+                            ajax_blocker_toggle(true);
+                            callbackFunc();
+                        }
+                    }
+                });
+            });
+        }
+    });
+
+    jQuery('a.shiplisting-step-back').on('click', function(e) {
+        e.preventDefault();
+
+        var backStep = parseInt(currentStep)-1;
+        if (backStep >= 1) {
+            progressBarLabel.text(backStep + " / " + countSteps);
+            currentStep = backStep;
+
+            var backStepContent = null;
+            if (currentStepContent.attr('data-backstep-id') !== undefined) {
+                if (jQuery('#' + currentStepContent.attr('data-backstep-id')) !== undefined) {
+                    var data_nextstep_id = jQuery('#' + currentStepContent.attr('data-backstep-id'));
+                    if (data_nextstep_id.length > 0) {
+                        backStepContent = data_nextstep_id;
+                    } else {
+                        backStepContent = currentStepContent.prev();
+                    }
+                } else {
+                    backStepContent = currentStepContent.prev();
+                }
+            } else {
+                backStepContent = currentStepContent.prev();
+            }
+
+            var backStepContentCallback = (backStepContent.attr('data-callback') !== undefined) ? backStepContent.attr('data-callback') : null;
+            progressBarValue.animate({ width: (100 / countSteps) * currentStep + '%' });
+            updateButtons(currentStep, countSteps);
+            currentStepContent.slideUp(400, function() {
+                backStepContent.slideDown(400, function() {
+                    currentStepContent = backStepContent;
+
+                    if (backStepContentCallback) {
+                        var callbackFunc = window[backStepContentCallback];
+                        if (typeof callbackFunc === "function") {
+                            ajax_blocker_toggle(true);
+                            callbackFunc();
+                        }
+                    }
+                });
+            });
+        }
+    });
+
+    function updateButtons(currentStep, countSteps) {
+        if (currentStep === 1) {
+            jQuery('a.shiplisting-step-back').addClass('disabled');
+        }
+        else if (currentStep === countSteps) {
+            jQuery('a.shiplisting-step-next').addClass('disabled');
+        } else {
+            if (jQuery('a.shiplisting-step-back').hasClass('disabled')) {
+                jQuery('a.shiplisting-step-back').removeClass('disabled');
+            }
+            if (jQuery('a.shiplisting-step-next').hasClass('disabled')) {
+                jQuery('a.shiplisting-step-next').removeClass('disabled');
+            }
+        }
+    }
+
+    jQuery('div.shiplisting-variable-add a').on('click', function(e) {
+        e.preventDefault();
+
+        var keyVal = jQuery('#shiplisting-vars-key').val();
+        var val = jQuery('#shiplisting-vars-val option:selected').val();
+        var val_text = jQuery('#shiplisting-vars-val-text').val();
+
+        if (keyVal) {
+            formFilters.push({[keyVal]: ((val) ? val : val_text)});
+        }
+
+        jQuery('#shiplisting-vars-key').val("-1");
+        jQuery('#shiplisting-vars-key').trigger('change');
+
+        jQuery('div.shiplisting-form-cell-variable-result').append('<div class="shiplisting-result-row"><div class="shiplisting-form-cell-variable-result-key">'+keyVal+'</div><div class="shiplisting-form-cell-variable-result-value">'+((val) ? val : val_text)+'</div><div class="shiplisting-form-cell-variable-result-options"><a href="javascript:void(0);"><span class="tag-remove"></span> <span class="tag-remove-desc">Remove</span></a></div></div>');
+        jQuery('div.shiplisting-form-cell-variable-result-options a').on('click', function(e) {
+            e.preventDefault();
+
+            jQuery.each(formFilters, function(filterKey, filterVal) {
+                if(Object.keys(filterVal)[0] === keyVal) {
+                    formFilters = arrayRemove(formFilters, Object.keys(filterVal)[0]);
+                }
+            });
+
+            jQuery(this).parent().parent().remove();
+        });
+    });
+
+    function arrayRemove(arr, value) {
+        var returnArray = [];
+        jQuery.each(arr, function(arrKey, arrVal){
+            if(Object.keys(arrVal)[0] !== value) {
+                returnArray.push({[Object.keys(arrVal)[0]]: Object.values(arrVal)[0]});
+            }
+        });
+        return returnArray;
+    }
+
+    function get_api_languages(formSource, selectObj, type) {
+        var loading_gif = selectObj.parent().find('div.shiplisting-form-cell-value-loading');
+        if (selectObj !== undefined) {
+            selectObj.find('option').remove();
+        }
+
+        let possibilites = new Array();
+        possibilites['pagename'] = jQuery('#'+type+'_name');
+        possibilites['title'] = jQuery('#'+type+'_title');
+        possibilites['urlpath'] = jQuery('#'+type+'_path');
+
+        jQuery.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'shiplisting_get_api_langues',
+                'source': formSource,
+                'type': type
+            },
+            beforeSend: function() {
+                if (loading_gif !== undefined) {
+                    loading_gif.css('display', 'inline');
+                }
+            },
+            success: function (data, textStatus, XMLHttpRequest) {
+                var tmp = JSON.parse(data);
+                jQuery.each(tmp['languages'], function(key, option) {
+                    var o = null;
+                    if (option['id'] === 'en')
+                        o = new Option(option['name'], option['id'], true, true);
+                    else
+                        o = new Option(option['name'], option['id']);
+
+                    jQuery(o).html(option['name']);
+                    selectObj.append(o);
+                });
+
+                if (tmp['placeholders'] !== undefined) {
+                    jQuery.each(tmp['placeholders'], function(key, placeholder) {
+                        var input_obj = possibilites[key];
+                        if (input_obj === undefined) {
+                            return;
+                        }
+
+                        var place_type = placeholder['type'];
+                        var place_value = placeholder['val'];
+                        if (place_type === 'defaultvalue') {
+                            input_obj.val(place_value);
+                            input_obj.trigger('change');
+                        } else if (place_type === 'placeholder') {
+                            input_obj.attr('placeholder', place_value);
+                        }
+                    });
+                }
+
+                if (loading_gif !== undefined) {
+                    loading_gif.hide();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+                console.log(XMLHttpRequest);
+            }
+        });
+    }
+
+    function get_route_exists(route_name, dom_object) {
+        var loading_gif = dom_object.parent().find('div.shiplisting-form-cell-value-loading');
+
+        jQuery.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'shiplisting_route_exists',
+                'route_name': route_name
+            },
+            beforeSend: function() {
+                if (loading_gif !== undefined) {
+                    loading_gif.css('display', 'inline');
+                }
+            },
+            success: function (data, textStatus, XMLHttpRequest) {
+                if (loading_gif !== undefined) {
+                    loading_gif.hide();
+                }
+
+                data = parseInt(data);
+                if (data !== 0) {
+                    dom_object.addClass('has-error');
+                    return true;
+                } else {
+                    dom_object.removeClass('has-error');
+                    return false;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+                console.log(XMLHttpRequest);
+                return false;
+            }
+        });
+    }
+
+    function get_title_placeholders(formSource, dom_object) {
+        jQuery.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'shiplisting_get_api_title_placeholders',
+                'source': formSource
+            },
+            success: function (data, textStatus, XMLHttpRequest) {
+                data = JSON.parse(data);
+                jQuery.each(data['fields'], function(key, placeholder){
+                    dom_object.append('<a href="javascript:void(0);" class="placert-link">'+placeholder+'</a>');
+                });
+
+                jQuery('#generator-step-3-1 div.modal-placert-right-content a.placert-cat').on('click', function(e){
+                    e.preventDefault();
+
+                    var all_content = jQuery('div.placert-cat-content:visible');
+                    var cat_active = jQuery('div.modal-placert-right-content a.placert-cat.active');
+                    if (jQuery(this).attr('placert-content') !== undefined) {
+                        var content = jQuery('div#' + jQuery(this).attr('placert-content'));
+                        if (content.is(':visible')) {
+                            cat_active.removeClass('active');
+                            content.slideUp(250);
+                        } else {
+                            cat_active.removeClass('active');
+                            all_content.slideUp(250);
+                            content.slideDown(250);
+                            jQuery(this).addClass('active');
+                        }
+                    }
+                });
+
+                jQuery('#generator-step-3-1 div.modal-placert-right-content a.placert-link').on('click', function() {
+                    var currentVal = jQuery(this).parents().eq(6).find('input');
+                    currentVal.val(currentVal.val() + "{" + jQuery(this).text() + "}");
+                    currentVal.trigger('change');
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+                console.log(XMLHttpRequest);
+                return false;
+            }
+        });
+    }
+
+    function get_path_exists(path, dom_object, type) {
+        var loading_gif = dom_object.parent().find('div.shiplisting-form-cell-value-loading');
+
+        jQuery.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                action: 'shiplisting_path_exists',
+                'path': path,
+                'type': type
+            },
+            beforeSend: function() {
+                if (loading_gif !== undefined) {
+                    loading_gif.css('display', 'inline');
+                }
+            },
+            success: function (data, textStatus, XMLHttpRequest) {
+                if (loading_gif !== undefined) {
+                    loading_gif.hide();
+                }
+
+                data = parseInt(data);
+                if (data !== 0) {
+                    dom_object.addClass('has-error');
+                    return true;
+                } else {
+                    dom_object.removeClass('has-error');
+                    return false;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+                console.log(XMLHttpRequest);
+                return false;
+            }
+        });
+    }
+
+    function ajax_blocker_toggle(show=false) {
+        var generator = jQuery('div.shiplisting-generator');
+        var generator_blocker = jQuery('div.shiplisting-generator div.shiplisting-generator-blocker');
+        if (generator !== undefined && generator_blocker !== undefined) {
+            if (generator_blocker.height() === 0 && show) {
+                generator_blocker.animate({'height': generator.height()+24}, 'fast', function() {
+                    generator_blocker.find('div.spinner-loader').fadeIn();
+                });
+            } else {
+                generator_blocker.animate({'height': 0}, 'fast', function() {
+                    generator_blocker.find('div.spinner-loader').fadeOut();
+                });
+            }
+        }
+    }
+
+    function check_for_loading() {
+        var tmp = window.setInterval(function(){
+            var current_content = jQuery('div.shiplisting-generator-step-content:visible');
+            if (current_content !== undefined) {
+                var current_loader = current_content.find('div.shiplisting-form-cell-value-loading:visible');
+                if (current_loader === undefined || current_loader.length === 0) {
+                    ajax_blocker_toggle(false);
+                    clearInterval(tmp);
+                }
+            }
+        }, 50);
+    }
+</script>

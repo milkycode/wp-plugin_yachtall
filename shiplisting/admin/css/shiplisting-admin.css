@@ -1,0 +1,1198 @@
+/**
+ * Yachtall Shiplisting WordPress Plugin.
+ * @author      Stefan Meyer <stefan@milkycode.com>
+ * @category    Milkycode
+ * @package     shiplisting
+ * @copyright   Copyright (c) 2019 milkycode GmbH (https://www.milkycode.com)
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Barlow:300,400,500,600,700&display=swap');
+
+div.shiplisting-admin-wrapper {
+    margin-right: 20px !important;
+}
+
+div.shiplisting-admin-wrapper, div.shiplisting-admin-wrapper div {
+    margin: 0;
+    padding: 0;
+}
+
+div.shiplisting-admin-wrapper div.shiplisting-filter-wrapper {
+    width: 100%;
+}
+
+div.shiplisting-filter-wrapper div.shiplisting-filter-heading {
+    width: 100%;
+    display: flex;
+    margin-bottom: 3px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #ccc;
+}
+
+div.shiplisting-filter-wrapper div.shiplisting-filter-heading div.shiplisting-filter-header {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+div.shiplisting-filter-heading div.shiplisting-filter-header.id, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.id {
+    width: 30px;
+    font-weight: bold;
+}
+
+div.shiplisting-filter-heading div.shiplisting-filter-header.name, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.name {
+    width: 10%;
+}
+
+div.shiplisting-filter-heading div.shiplisting-filter-header.filter-fields, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.filter-fields {
+    width: 20%;
+}
+
+div.shiplisting-filter-heading div.shiplisting-filter-header.added, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.added {
+    width: 15%;
+}
+
+div.shiplisting-filter-heading div.shiplisting-filter-header.options, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.options {
+    width: 10%;
+}
+
+div.shiplisting-filter-heading div.shiplisting-filter-header.path, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.path {
+    width: 10%;
+}
+
+div.shiplisting-filter-heading div.shiplisting-filter-header.variables, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.variables {
+    width: 10%;
+}
+
+div.shiplisting-filter-heading div.shiplisting-filter-header.arguments, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.arguments {
+    width: 10%;
+}
+
+div.shiplisting-filter-heading div.shiplisting-filter-header.title, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.title {
+    width: 10%;
+}
+
+div.shiplisting-filter-heading div.shiplisting-filter-header.callback, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.callback {
+    width: 10%;
+}
+
+div.shiplisting-filter-wrapper div.shiplisting-filter-content {
+    width: 100%;
+}
+
+div.shiplisting-filter-content div.shiplisting-filter-row {
+    width: 100%;
+    display: flex;
+}
+
+div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter {
+    margin-right: 5px;
+}
+
+div.shiplisting-filter-add-wrapper {
+    width: 50%;
+    float: left;
+    margin-top: 100px !important;
+}
+
+div.shiplisting-filter-add-wrapper div.shiplisting-filter-add-cell {
+    width: 100%;
+    display: flex;
+}
+
+div.shiplisting-filter-add-wrapper div.shiplisting-filter-add-cell div.shiplisting-filter-add-label {
+    width: 25%;
+}
+
+div.shiplisting-filter-add-wrapper div.shiplisting-filter-add-cell div.shiplisting-filter-add-input {
+    width: 75%;
+}
+
+div.shiplisting-filter-add-wrapper div.shiplisting-filter-add-cell div.shiplisting-filter-add-input input {
+    width: 100%;
+}
+
+div.shiplisting-filter-add-input div.shiplisting-filter-creator {
+    width: 100%;
+}
+
+div.shiplisting-filter-creator div.creator-cell {
+    width: 100%;
+    display: flex;
+}
+
+div.shiplisting-filter-creator div.creator-cell-name {
+    width: 30%;
+}
+
+div.shiplisting-filter-creator div.creator-cell-value {
+    width: 30%;
+    margin-left: 8px;
+}
+
+div.shiplisting-filter-creator div.creator-cell-options {
+    width: 40%;
+    margin-left: 8px;
+    margin-top: 3px;
+}
+
+div.shiplisting-filter-creator a.creator-cell-add {
+    padding: 5px;
+}
+
+div.shiplisting-filter-add-wrapper a.shiplisting-filter-add-button {
+    margin-top: 10px;
+    float: left;
+}
+
+/* GENERATOR */
+div.shiplisting-generator-wrapper {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    float: left;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-left: -20px;
+
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+}
+
+div.shiplisting-generator-wrapper div {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+div.shiplisting-generator-wrapper div.shiplisting-generator-headline {
+    text-align: center;
+    width: calc(65% - 50px);
+    margin-left: 20px;
+}
+
+div.shiplisting-generator-wrapper div.shiplisting-generator-headline h1 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 5px;
+    color: #808080;
+    text-shadow: 1px 1px 1px #000;
+    text-transform: lowercase;
+}
+
+div.shiplisting-generator-headline h1 span {
+    color: #f59e00;
+}
+
+div.shiplisting-generator-wrapper div.shiplisting-generator-headline h1:before,
+div.shiplisting-generator-wrapper div.shiplisting-generator-headline h1:after {
+    font-size: 19px;
+    color: #0073aa;
+}
+
+div.shiplisting-generator-wrapper div.shiplisting-generator-headline h1:before {
+    content: '« ';
+    text-shadow: none;
+}
+
+div.shiplisting-generator-wrapper div.shiplisting-generator-headline h1:after {
+    content: ' »';
+    text-shadow: none;
+}
+
+div.shiplisting-generator-wrapper div.shiplisting-generator-headline small {
+    font-size: 14px;
+    color: #4d4d4d;
+    text-transform: lowercase;
+}
+
+div.shiplisting-generator-wrapper div.shiplisting-generator-content {
+    padding: 20px;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    display: flex;
+}
+
+div.shiplisting-generator-wrapper div.shiplisting-generator-content.generator-only .shiplisting-helper {
+    display: none;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator-preloader {
+    display: none;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator-preloader img {
+    width: 0;
+    height: 0;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator,
+div.shiplisting-generator-content div.shiplisting-helper {
+    height: 100%;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator div.shiplisting-generator-blocker {
+    position: absolute;
+    width: calc(65% - 69px);
+    height: 0;
+    background-color: #2b2b2b;
+    opacity: 0.55;
+    margin-top: -18px;
+    margin-left: -6px;
+    transition: all 50ms ease-in-out;
+    z-index: 10000;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator {
+    width: calc(65% - 42px);
+    flex: 0 0 calc(65% - 42px);
+    float: left;
+    margin-right: 30px;
+    border: 1px solid #e3e3e3;
+    background-color: #fff;
+    padding: 6px;
+    padding-top: 18px;
+}
+
+div.shiplisting-generator div.shiplisting-generator-progressbar {
+    padding: 6px;
+    width: calc(100% - 36px);
+    float: left;
+    position: relative;
+    border: 1px solid #e3e3e3;
+    background-color: #f6f6f6;
+    margin-left: 12px;
+    margin-right: 12px;
+    border-radius: 2px;
+}
+
+div.shiplisting-generator div.shiplisting-generator-progressbar div.shiplisting-generator-progressbar-label {
+    font-size: 14px;
+    width: calc(100% - 14px);
+    text-align: center;
+    position: absolute;
+    height: calc(25px - 3px);
+    color: #fff;
+    z-index: 10;
+    padding-top: 2px;
+    text-shadow: 1px 1px 1px #000;
+    border: 1px solid #dedede;
+    border-radius: 2px;
+}
+
+div.shiplisting-generator div.shiplisting-generator-progressbar div.shiplisting-generator-progressbar-value {
+    background-color: #248afd;
+    height: 25px;
+    opacity: 0.7;
+    z-index: 9;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator div.shiplisting-generator-step-content {
+    float: left;
+    width: calc(100%);
+    display: none;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator div.shiplisting-generator-step-content {
+    border-left: 0;
+    border-right: 0;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-next:active,
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-back:active,
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-next:focus,
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-back:focus {
+    outline: 0;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-next {
+    color: #248afd;
+    text-decoration: none;
+    padding: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin: 3px;
+    display: inline-block;
+    transition: all 0.5s ease;
+    border: 1px solid #248afd;
+    background-color: transparent;
+    border-radius: 0.1875rem;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-next:hover {
+    background-color: #248afd;
+    color: #fff;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-back {
+    background-color: transparent;
+    color: #282f3a;
+    text-decoration: none;
+    padding: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin: 3px;
+    display: inline-block;
+    transition: all 0.5s ease;
+    border-radius: 0.1875rem;
+    border: 1px solid #282f3a;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-back:hover {
+    background-color: #282f3a;
+    color: #fff;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-back.disabled,
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-next.disabled {
+    background-color: transparent;
+    color: #a3a4a5;
+    cursor: not-allowed;
+    border-color: #a3a4a5;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-back.disabled:hover,
+div.shiplisting-generator-content div.shiplisting-generator a.shiplisting-step-next.disabled:hover {
+    background-color: #a3a4a5;
+    text-shadow: none;
+    color: #212529;
+}
+
+div.shiplisting-generator-content div.shiplisting-generator div.shiplisting-generator-step-content#generator-step-1 {
+    display: block;
+}
+
+div.shiplisting-generator-step-content div.shiplisting-step-heading {
+    width: 100%;
+}
+
+div.shiplisting-generator-step-content div.shiplisting-step-heading h2 {
+    padding: 12px;
+    font-size: 14px;
+    margin: 0;
+    color: #000;
+    font-weight: 500;
+}
+
+div.shiplisting-generator-step-content div.shiplisting-step-heading h2:before {
+
+}
+
+div.shiplisting-generator-step-content div.shiplisting-step-heading h2:after {
+
+}
+
+div.shiplisting-generator-step-content div.shiplisting-step-content {
+    width: calc(100% - 24px);
+    margin-top: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 12px;
+}
+
+div.shiplisting-step-content div.shiplisting-step-content-info {
+    width: 100%;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+div.shiplisting-step-content div.shiplisting-step-content-info h2 {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}
+
+div.shiplisting-step-content div.shiplisting-step-chooser {
+    display: block;
+}
+
+div.shiplisting-step-chooser div.detail-view-icon,
+div.shiplisting-step-chooser div.list-view-icon {
+    width: 64px;
+    height: 64px;
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 3px;
+}
+
+div.shiplisting-step-chooser div.icon-descr {
+    display: inline-block;
+    font-weight: 400;
+}
+
+div.shiplisting-step-chooser div.icon-descr.active {
+    font-weight: 600;
+}
+
+div.shiplisting-step-chooser div.detail-view-icon {
+    background: url('/wp-content/plugins/shiplisting/admin/images/detail-view-icon.png');
+    float: right;
+    margin-right: 2px;
+}
+
+div.shiplisting-step-chooser div.detail-view-icon:hover,
+div.shiplisting-step-chooser div.detail-view-icon.active {
+    background: url('/wp-content/plugins/shiplisting/admin/images/detail-view-icon-over.png');
+}
+
+div.shiplisting-step-chooser div.list-view-icon {
+    background: url('/wp-content/plugins/shiplisting/admin/images/list-view-icon.png');
+    float: left;
+    margin-left: -2px;
+}
+
+div.shiplisting-step-chooser div.list-view-icon:hover,
+div.shiplisting-step-chooser div.list-view-icon.active {
+    background: url('/wp-content/plugins/shiplisting/admin/images/list-view-icon-over.png');
+}
+
+div.shiplisting-step-chooser div.list-view-icon.grey {
+    background: url('/wp-content/plugins/shiplisting/admin/images/list-view-icon-grey.png');
+    cursor: initial;
+}
+
+div.shiplisting-step-chooser div.yachtall-logo-icon,
+div.shiplisting-step-chooser div.happycharter-logo-icon {
+    width: 200px;
+    height: 65px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+div.shiplisting-step-chooser div.yachtall-logo-icon {
+    background: url('/wp-content/plugins/shiplisting/admin/images/yachtall-logo_hover.png');
+}
+
+div.shiplisting-step-chooser div.yachtall-logo-icon:hover,
+div.shiplisting-step-chooser div.yachtall-logo-icon.active {
+    background: url('/wp-content/plugins/shiplisting/admin/images/yachtall-logo.png');
+}
+
+div.shiplisting-step-chooser div.happycharter-logo-icon {
+    background: url('/wp-content/plugins/shiplisting/admin/images/happycharter-logo_hover.png');
+}
+
+div.shiplisting-step-chooser div.happycharter-logo-icon:hover,
+div.shiplisting-step-chooser div.happycharter-logo-icon.active {
+    background: url('/wp-content/plugins/shiplisting/admin/images/happycharter-logo.png');
+}
+
+div.shiplisting-step-content div.shiplisting-alert-info {
+    background-color: #248afd;
+    padding: 12px 12px;
+    width: calc(100% - 22px);
+    color: #fff;
+    margin-bottom: 35px;
+}
+
+div.shiplisting-step-content div.shiplisting-alert-info h3 {
+    font-weight: 500;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+div.shiplisting-step-chooser div.shiplisting-step-chooser-row, div.shiplisting-alert-info div.shiplisting-step-chooser-row {
+    width: 100%;
+    display: flex;
+}
+
+div.shiplisting-alert-info div.shiplisting-step-chooser-row {
+    margin-left: 12px;
+    margin-right: 12px;
+    width: calc(100% - 24px);
+}
+
+div.shiplisting-step-chooser div.shiplisting-step-chooser-row:last-of-type {
+    margin-bottom: 35px;
+}
+
+div.shiplisting-step-chooser div.shiplisting-step-chooser-left, div.shiplisting-alert-info div.shiplisting-step-chooser-left,
+div.shiplisting-step-chooser div.shiplisting-step-chooser-right, div.shiplisting-alert-info div.shiplisting-step-chooser-right {
+    cursor: pointer;
+}
+
+div.shiplisting-step-chooser div.shiplisting-step-chooser-left, div.shiplisting-alert-info div.shiplisting-step-chooser-left {
+    flex: 0 0 calc(50% - 10px);
+    text-align: right;
+    float: right;
+    padding-right: 10px;
+}
+
+div.shiplisting-alert-info div.shiplisting-step-chooser-left,
+div.shiplisting-step-chooser div.shiplisting-step-chooser-left.text-center,
+div.shiplisting-step-chooser div.shiplisting-step-chooser-right.text-center {
+    text-align: center !important;
+}
+
+div.shiplisting-step-chooser div.shiplisting-step-chooser-right, div.shiplisting-alert-info div.shiplisting-step-chooser-right {
+    flex: 0 0 calc(50% - 8px);
+    text-align: left;
+    float: left;
+    padding-left: 8px;
+}
+
+div.shiplisting-alert-info div.shiplisting-step-chooser-right {
+    text-align: center !important;
+}
+
+div.shiplisting-step-content div.shiplisting-step-form {
+
+}
+
+div.shiplisting-step-form div.shiplisting-step-form-row {
+    background-color: #ededed;
+    border-bottom: 1px solid #c9ccd7;
+    padding: 4px;
+    width: calc(100% - 8px);
+    display: flex;
+}
+
+div.shiplisting-step-form div.shiplisting-step-form-row:nth-child(odd) {
+    background-color: #fff;
+}
+
+div.shiplisting-step-form div.shiplisting-step-form-row:last-of-type {
+    border-bottom: 0;
+}
+
+div.shiplisting-step-form-row div.shiplisting-form-cell-label {
+    flex: 0 0 calc(50% - 15px);
+    border-right: 1px solid #d7d7d7;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: right;
+    padding-right: 15px;
+    font-weight: 600;
+}
+
+div.shiplisting-step-form-row div.shiplisting-form-cell-label.required span:after {
+    content: ' *';
+    color: red;
+}
+
+div.shiplisting-form-cell-label small.shiplisting-form-cell-label-help {
+    color: #55b1de;
+    font-weight: 400;
+    display: block;
+}
+
+div.shiplisting-step-form-row div.shiplisting-form-cell-value {
+    flex: 0 0 calc(50% - 30px);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: left;
+}
+
+div.shiplisting-step-form-row.advanced_filtering div.shiplisting-form-cell-value div.shiplisting-form-adv-filtering-header {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+div.shiplisting-step-form-row.advanced_filtering div.shiplisting-form-cell-value div.shiplisting-form-adv-filtering-content {
+    display: grid;
+    width: 100%;
+}
+
+div.shiplisting-step-form-row.advanced_filtering div.shiplisting-form-cell-value div.shiplisting-form-adv-filtering-content div.shiplisting-form-adv-filtering-cell {
+    width: 50%;
+}
+
+div.shiplisting-form-cell-value span.value-helper:first-of-type {
+    padding-left: 0;
+}
+
+div.shiplisting-form-cell-value span.value-helper {
+    display: inline-block;
+    padding: 5px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+div.shiplisting-form-cell-value input.shiplisting-form-cell-value-input {
+    width: 50%;
+    padding: 0.875rem 1.375rem;
+    background-color: #ffffff;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    outline: 0;
+    border: 1px solid #c9ccd7;
+    font-weight: 400;
+    font-size: 0.875rem;
+    height: 2.875rem;
+}
+
+div.shiplisting-form-cell-value input.shiplisting-form-cell-value-input.has-error {
+    border: 1px solid #ac1b1b;
+    background-color: #ffebeb;
+}
+
+div.shiplisting-form-cell-value div.shiplisting-form-cell-value-placert {
+    display: inline;
+    padding: 5px;
+}
+
+div.shiplisting-form-cell-value div.shiplisting-form-cell-value-placert button {
+    border: 1px solid #c9ccd7;
+    background: #fff;
+    padding: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+div.shiplisting-form-cell-value div.shiplisting-form-cell-value-placert button:hover {
+    border: 1px solid #bcbec9;
+    background: #f6f6f6;
+}
+
+div.shiplisting-form-cell-value div.shiplisting-form-cell-variable-row {
+    display: flex;
+    width: 100%;
+}
+
+div.shiplisting-form-cell-value div.shiplisting-form-cell-value-loading {
+    width: 16px;
+    display: none;
+    position: absolute;
+    padding-top: 7px;
+    padding-left: 5px;
+}
+
+div.shiplisting-form-cell-value div.shiplisting-form-cell-value-loading.text-input {
+    padding-top: 15px;
+    padding-left: 10px;
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-key {
+    flex: 0 0 25%;
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-key select {
+    width: 170px;
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-value {
+    flex: 0 0 25%;
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-value select {
+    width: 120px;
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-value input {
+    width: 120px;
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-value #shiplisting-vars-val {
+    display: none;
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-value #shiplisting-vars-val-text {
+    display: none;
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-add {
+    flex: 0 0 25%;
+    text-align: center;
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-add a {
+    display: none;
+    text-decoration: none;
+    padding-top: 3px;
+    float: left;
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-add a span.tag-add {
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin-left: 15px;
+    background-image: url('/wp-content/plugins/shiplisting/admin/images/tag-add.png');
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-add a:hover span.tag-add {
+    background-image: url('/wp-content/plugins/shiplisting/admin/images/tag-add-over.png');
+}
+
+div.shiplisting-form-cell-variable-row div.shiplisting-variable-add a span.tag-add-desc {
+    margin-top: 3px;
+    float: left;
+    margin-left: 4px;
+}
+
+div.shiplisting-form-cell-value div.shiplisting-form-cell-variable-result {
+    display: block;
+    width: 100%;
+}
+
+div.shiplisting-form-cell-value div.shiplisting-form-cell-variable-result div.shiplisting-result-row {
+    display: flex;
+}
+
+div.shiplisting-form-cell-value div.shiplisting-form-cell-variable-result div.shiplisting-form-cell-variable-result-key {
+    flex: 0 0 164px;
+    padding: 3px;
+    padding-top: 8px;
+    font-weight: 600;
+}
+
+div.shiplisting-form-cell-value div.shiplisting-form-cell-variable-result div.shiplisting-form-cell-variable-result-value {
+    flex: 0 0 114px;
+    padding: 3px;
+    padding-top: 8px;
+}
+
+div.shiplisting-form-cell-value div.shiplisting-form-cell-variable-result div.shiplisting-form-cell-variable-result-options {
+    flex: 0 0 calc(25% - 6px);
+    padding: 3px;
+}
+
+div.shiplisting-form-cell-variable-result div.shiplisting-form-cell-variable-result-options a {
+    text-decoration: none;
+    padding-top: 3px;
+    float: left;
+}
+
+div.shiplisting-form-cell-variable-result div.shiplisting-form-cell-variable-result-options a span.tag-remove {
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin-left: 15px;
+    background-image: url('/wp-content/plugins/shiplisting/admin/images/tag-remove.png');
+}
+
+div.shiplisting-form-cell-variable-result div.shiplisting-form-cell-variable-result-options a:hover span.tag-remove {
+    background-image: url('/wp-content/plugins/shiplisting/admin/images/tag-remove-over.png');
+}
+
+div.shiplisting-form-cell-variable-result div.shiplisting-form-cell-variable-result-options a span.tag-remove-desc {
+    margin-top: 3px;
+    float: left;
+    margin-left: 4px;
+}
+
+div.shiplisting-generator-step-content div.shiplisting-step-finish {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+div.shiplisting-generator-step-content div.shiplisting-step-bottom {
+    width: calc(100% - 24px);
+    border-top: 1px solid #dedede;
+    margin-top: 7px;
+    padding-top: 7px;
+    text-align: center;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+div.shiplisting-generator-content div.shiplisting-helper {
+    flex: 0 0 35%;
+}
+
+div.shiplisting-helper div.shiplisting-helper-box {
+    border: 1px solid #4ac4ff;
+    background: #b9e8ff;
+    color: #333;
+    font-size: 14px;
+    padding: 8px;
+    width: calc(100% - 8px);
+    border-radius: 5px;
+}
+
+div.shiplisting-helper div.shiplisting-helper-box h2 {
+    margin: 0;
+    margin-bottom: 7px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 10px !important;
+    height: 50px;
+    margin-left: -50px !important;
+}
+.lds-ellipsis div {
+    position: absolute;
+    top: 27px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #333;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+    left: 6px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+    left: 6px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+    left: 26px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+    left: 45px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(19px, 0);
+    }
+}
+
+div.shiplisting-admin-wrapper, div.shiplisting-admin-wrapper div {
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+}
+
+div.shiplisting-admin-wrapper {
+    display: block;
+    width: calc(100% + 20px);
+    margin-left: -20px;
+    position: absolute;
+}
+
+div.shiplisting-admin-wrapper div.shiplisting-admin-header {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    display: block;
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+div.shiplisting-admin-wrapper div.shiplisting-admin-header h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+div.shiplisting-admin-wrapper div.shiplisting-admin-header h1:before {
+    content: ' :: ';
+    color: #0073aa;
+}
+
+div.shiplisting-admin-wrapper div.shiplisting-admin-header div.shiplisting-admin-header-desc {
+    width: calc(100% - 32px);
+    font-size: 14px;
+    color: #0073aa;
+    margin-top: 5px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 5px;
+}
+
+div.shiplisting-admin-wrapper div.shiplisting-admin-configuration-page-wrapper {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    display: block;
+    padding: 20px;
+}
+
+div.shiplisting-admin-configuration-page-wrapper div.shiplisting-admin-configuration-page {
+    width: calc(100% - 32px);
+    height: calc(100% - 32px);
+    display: block;
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #e3e3e3;
+    margin-bottom: 15px;
+}
+
+div.shiplisting-admin-configuration-page-wrapper div.shiplisting-admin-configuration-page h2.shiplisting-admin-title {
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+}
+
+div.shiplisting-admin-configuration-page-wrapper div.shiplisting-admin-configuration-page h2.shiplisting-admin-title div.shiplisting-admin-toggle {
+    margin: 0;
+    padding: 0;
+    width: 10%;
+    display: inline-block;
+    float: right;
+    text-align: right;
+}
+
+div.shiplisting-admin-configuration-page-wrapper div.shiplisting-admin-configuration-page div.shiplisting-admin-content {
+    display: none;
+    width: 100%;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+div.shiplisting-admin-configuration-page-wrapper div.shiplisting-admin-configuration-page div.shiplisting-admin-content.active {
+    display: block;
+}
+
+div.shiplisting-admin-content.active form div.shiplisting-admin-form {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+div.shiplisting-admin-form div.shipstling-admin-form-row {
+    width: calc(100% - 1px);
+    height: calc(100% - 1px);
+    border-bottom: 1px solid #e3e3e3;
+    display: flex;
+}
+
+div.shiplisting-admin-form div.shipstling-admin-form-row div.shiplisting-row-label {
+    width: calc(50% - 30px);
+    height: calc(100% - 23px);
+    margin: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 16px;
+    padding-bottom: 10px;
+    display: block;
+}
+
+div.shiplisting-admin-form div.shipstling-admin-form-row div.shiplisting-row-label label {
+    font-weight: 500;
+    display: block;
+}
+
+div.shiplisting-admin-form div.shipstling-admin-form-row div.shiplisting-row-label.required label:after {
+    content: '*';
+    color: red;
+    display: inline-block;
+    padding-left: 3px;
+}
+
+div.shiplisting-admin-form div.shipstling-admin-form-row div.shiplisting-row-content {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+div.shiplisting-admin-form div.shipstling-admin-form-row div.shiplisting-row-content select {
+    margin-top: 13px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+div.shiplisting-admin-form div.shipstling-admin-form-row div.shiplisting-row-content input[type=text] {
+    width: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+div.shiplisting-admin-form div.shipstling-admin-form-row div.shiplisting-row-content.flex {
+    display: flex;
+}
+
+div.shiplisting-admin-form div.shipstling-admin-form-row div.shiplisting-row-content.flex div.first,
+div.shiplisting-admin-form div.shipstling-admin-form-row div.shiplisting-row-content.flex div.second {
+    width: 20%;
+    height: calc(100% - 20px);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+div.shiplisting-admin-form div.shipstling-admin-form-row div.shiplisting-row-content.flex div.second label {
+    font-size: 14px;
+}
+
+div.shiplisting-admin-configuration-page-wrapper div.shiplisting-admin-configuration-save {
+    width: 100%;
+    text-align: right;
+}
+
+div.shiplisting-admin-configuration-page-wrapper div.shiplisting-admin-configuration-save button.shiplisting-admin-configuration-save-button {
+    padding: 10px;
+    background-color: #fff;
+    color: #248afd;
+    border: 1px solid #248afd;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 250ms ease-in-out;
+}
+
+div.shiplisting-admin-configuration-page-wrapper div.shiplisting-admin-configuration-save button.shiplisting-admin-configuration-save-button:hover {
+    background-color: #248afd;
+    color: #fff;
+}
+
+div.shiplisting-form-cell-value-placert div.shiplisting-modal-placert {
+    width: 290px;
+    height: 270px;
+    position: absolute;
+    margin-left: 375px;
+    margin-top: -159px;
+    display: none;
+}
+
+div.shiplisting-modal-placert div.modal-placert-left {
+    width: 15px;
+    float: left;
+}
+
+div.modal-placert-left div.arrow {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #c9ccd7;
+    width: 0;
+    height: 0;
+    display: block;
+    top: calc(50% - 10px);
+}
+
+div.shiplisting-modal-placert div.modal-placert-right {
+    width: calc(275px - 10px);
+    height: calc(100% - 10px);
+    float: right;
+    border: 1px solid #c9ccd7;
+    background: #fff;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+div.shiplisting-modal-placert div.modal-placert-right h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    width: calc(100% - 3px);
+    border-bottom: 1px solid #c9ccd7;
+    padding-left: 3px;
+    padding-bottom: 3px;
+    display: block;
+}
+
+div.shiplisting-modal-placert div.modal-placert-right div.close {
+    display: inline;
+    margin-left: 55%;
+    cursor: pointer;
+}
+
+div.shiplisting-modal-placert div.modal-placert-right div.modal-placert-right-content {
+    width: 100%;
+    height: calc(100% - 22px);
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    margin-bottom: 5px;
+    display: block;
+}
+
+div.shiplisting-modal-placert div.modal-placert-right div.modal-placert-right-content a {
+    width: calc(100% - 8px);
+    border-bottom: 1px solid #c9ccd7;
+    text-decoration: none;
+    display: block;
+    padding-left: 8px;
+    padding-top: 2px;
+    transition: all 250ms ease-in-out;
+}
+
+div.shiplisting-modal-placert div.modal-placert-right div.modal-placert-right-content a:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+div.shiplisting-modal-placert div.modal-placert-right div.modal-placert-right-content a:hover,
+div.shiplisting-modal-placert div.modal-placert-right div.modal-placert-right-content a.active {
+    background-color: #f3f3f3;
+}
+
+div.shiplisting-modal-placert div.modal-placert-right div.modal-placert-right-content a.active {
+    font-weight: 600;
+}
+
+div.shiplisting-modal-placert div.modal-placert-right div.modal-placert-right-content a.placert-cat {
+    color: #000;
+}
+
+div.shiplisting-modal-placert div.modal-placert-right div.modal-placert-right-content a.placert-link {
+    padding-left: 14px;
+    width: calc(100% - 14px);
+}
+
+div.shiplisting-modal-placert div.modal-placert-right div.modal-placert-right-content div.placert-cat-content {
+    display: none;
+}
+
+div.shiplisting-generator-blocker div.shiplisting-generator-loader .spinner-loader {
+    display: none;
+    width: 70px;
+    height: 70px;
+
+    position: relative;
+    margin: 13% auto;
+}
+
+div.shiplisting-generator-blocker div.shiplisting-generator-loader div.spinner-loader .double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+div.shiplisting-generator-blocker div.shiplisting-generator-loader div.spinner-loader .double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 50% {
+          transform: scale(1.0);
+          -webkit-transform: scale(1.0);
+      }
+}

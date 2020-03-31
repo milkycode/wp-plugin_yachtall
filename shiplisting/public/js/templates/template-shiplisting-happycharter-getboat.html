@@ -1,0 +1,410 @@
+<div class="shiplisting-boat-wrapper">
+    <div class="shiplisting-discounts-wrapper">
+        <h2>{i18n_boat-charter_data-Discounts_offers}:</h2>
+        <div class="shiplisting-discounts-content-wrapper">
+            {discounts}
+        </div>
+    </div>
+    <div class="shiplisting-data-wrapper">
+        <div class="shiplisting-image-wrapper">
+            <div class="shiplisting-images">
+                {imageSlider-html}
+            </div>
+            <div class="shiplisting-images-sale-info">
+                {marketing_texts-0-val}
+            </div>
+        </div>
+        <div class="shiplisting-boatdata-wrapper">
+            <h2>{i18n_boat-boat_data-main_node} {boat_data-general_data-boat_model-val}</h2>
+            <div id="general_data" class="shiplisting-boatdata-details-wrapper">
+                <div class="shiplisting-boatdata-details-row">
+                    <b style="font-weight: 600;">{i18n_boat-charter_data-identical_boats}: <span class="shiplisting-identical-boats-value">{charter_data-identical_boats-val}</span></b>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-managing-boat_id}</div>
+                    <div class="shiplisting-boatdata-details-value">{boatid}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-boat_name}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-boat_name-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row bold">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-boat_model}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-boat_model-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-boat_type}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(boat_data-general_data-boat_type-val,boat_data-general_data-boat_category-val," / ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-sale_data-boat_class}</div>
+                    <div class="shiplisting-boatdata-details-value">{sale_data-boat_class-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-manufacturer}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-manufacturer-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-designer}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-designer-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-year_built} / {i18n_boat-boat_data-general_data-year_refit}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(boat_data-general_data-year_built-val,boat_data-general_data-year_refit-val," / ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-launching}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-launching-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-sale_data-previous_owners}</div>
+                    <div class="shiplisting-boatdata-details-value">{sale_data-previous_owners-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-passengers-all_cabins} / {i18n_boat-boat_data-passengers-all_berths}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(boat_data-passengers-all_cabins-val,boat_data-passengers-all_berths-val," / ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-passengers-persons_day}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-passengers-persons_day-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-sale_data-condition}</div>
+                    <div class="shiplisting-boatdata-details-value">{sale_data-condition-val} {sale_data-was_in_charter-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-charter_data-location}</div>
+                    <div class="shiplisting-boatdata-details-value">{getValue(sale_data-location-attr-country,", ")} {getValue(sale_data-location-attr-province,", ")} {getValue(sale_data-location-val," ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row mb-25">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-flag}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-flag-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-hull_colour}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-hull_colour-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-hull_type}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-hull_type-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-hull_material}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-hull_material-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-hull_number}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-hull_number-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-steering_type}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-steering_type-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-charter_data-boat_equipment-rig_sails-sail_area}</div>
+                    <div class="shiplisting-boatdata-details-value">{charter_data-boat_equipment-rig_sails-sail_area-val} {charter_data-boat_equipment-rig_sails-sail_area-attr-unit}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-charter_data-boat_equipment-rig_sails-main_sail} / {i18n_boat-charter_data-boat_equipment-rig_sails-fore_sail}</div>
+                    <div class="shiplisting-boatdata-details-value">{charter_data-boat_equipment-rig_sails-main_sail_area-val} {doubleValue(charter_data-boat_equipment-rig_sails-main_sail_area-attr-unit,charter_data-boat_equipment-rig_sails-fore_sail_area-val," / ")} {charter_data-boat_equipment-rig_sails-fore_sail_area-attr-unit}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-measure-mast_height}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-measure-mast_height-val} {boat_data-measure-mast_height-attr-unit}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-charter_data-Other_information}</div>
+                    <div class="shiplisting-boatdata-details-value">{other_extras_charter}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-charter_data-possibilities-sale_possible}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(charter_data-possibilities-sale_possible-attr-price,charter_data-possibilities-sale_possible-attr-currency_sign," ")}</div>
+                </div>
+            </div>
+            <h2>{i18n_boat-equipment_cats-technics}</h2>
+            <div id="technical_data" class="shiplisting-boatdata-details-wrapper">
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-measure-loa}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-measure-loa-val} {boat_data-measure-loa-attr-unit} ({boat_data-measure-loa_feet-val} {boat_data-measure-loa_feet-attr-unit})</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-measure-beam} / {i18n_boat-boat_data-measure-draft}</div>
+                    <div class="shiplisting-boatdata-details-value">{other_details-beamdraft-html}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-measure-max_headroom}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-measure-max_headroom-val} {boat_data-measure-max_headroom-attr-unit}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-measure-air_draft}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(boat_data-measure-air_draft-val,boat_data-measure-air_draft-attr-unit," ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-heating}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-heating-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-passengers-toilets}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-passengers-toilets-attr-quantity}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-passengers-inside_showers}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-passengers-inside_showers-attr-quantity}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-measure-displacement}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(boat_data-measure-displacement-val,boat_data-measure-displacement-attr-unit," ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-measure-mast_height}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(boat_data-measure-mast_height-val,boat_data-measure-mast_height-attr-unit," ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row mb-25">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-ballast}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(boat_data-general_data-ballast-val,boat_data-general_data-ballast-attr-unit," ")}</div>
+                </div>
+
+                <div class="shiplisting-boatdata-details-row bold">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-engine_data-engine}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(engine_data-engine_manufacturer-val,engine_data-engine_model-val," ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-engine_data-engine_power}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(engine_data-engine_quantity-val,engine_data-horse_power-val," x ")} {engine_data-horse_power-attr-unit} ({engine_data-kw_power-val} {engine_data-kw_power-attr-unit})</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-engine_data-fuel}</div>
+                    <div class="shiplisting-boatdata-details-value">{engine_data-fuel-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-engine_data-propulsion}</div>
+                    <div class="shiplisting-boatdata-details-value">{engine_data-propulsion-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-engine_data-max_speed} {engine_data-max_speed-val} test</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(engine_data-max_speed-val,engine_data-max_speed-attr-unit," ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-engine_data-max_consumption}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(engine_data-max_consumption-val,engine_data-max_consumption-attr-unit," ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-engine_data-cruising_speed}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(engine_data-cruising_speed-val,engine_data-cruising_speed-attr-unit," ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-engine_data-cruising_consumption}</div>
+                    <div class="shiplisting-boatdata-details-value">{doubleValue(engine_data-cruising_consumption-val,engine_data-cruising_consumption-attr-unit," ")}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-engine_data-engine_hours}</div>
+                    <div class="shiplisting-boatdata-details-value">{engine_data-engine_hours-val}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-fuel_tank}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-fuel_tank-val} {boat_data-general_data-fuel_tank-attr-unit}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-water_tank}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-water_tank-val} {boat_data-general_data-water_tank-attr-unit}</div>
+                </div>
+                <div class="shiplisting-boatdata-details-row">
+                    <div class="shiplisting-boatdata-details-title">{i18n_boat-boat_data-general_data-holding_tank}</div>
+                    <div class="shiplisting-boatdata-details-value">{boat_data-general_data-holding_tank-val} {boat_data-general_data-holding_tank-attr-unit}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="shiplisting-boat-equipment-wrapper">
+    <div class="shiplisting-boat-equipment ajax-toggler">
+        <h2>{i18n_boat-charter_data-Equipment}<span i18n-open="{i18n_boat-managing-open_all}" i18n-close="{i18n_boat-managing-close_all}">[ {i18n_boat-managing-open_all} ]</span></h2>
+        <div class="shiplisting-equipment-item-wrapper">
+            <h3>{i18n_boat-equipment_cats-navigation}</h3>
+            <div class="shiplisting-equipment-item-text">{charter_data-boat_equipment-navigation-all-val}</div>
+        </div>
+        <div class="shiplisting-equipment-item-wrapper">
+            <h3>{i18n_boat-equipment_cats-technics}</h3>
+            <div class="shiplisting-equipment-item-text">{charter_data-boat_equipment-technics-all-val}</div>
+        </div>
+        <div class="shiplisting-equipment-item-wrapper">
+            <h3>{i18n_boat-equipment_cats-deck}</h3>
+            <div class="shiplisting-equipment-item-text">{charter_data-boat_equipment-deck-all-val}</div>
+        </div>
+        <div class="shiplisting-equipment-item-wrapper">
+            <h3>{i18n_boat-equipment_cats-interior}</h3>
+            <div class="shiplisting-equipment-item-text">{charter_data-boat_equipment-interior-all-val}</div>
+        </div>
+        <div class="shiplisting-equipment-item-wrapper">
+            <h3>{i18n_boat-equipment_cats-entertainment}</h3>
+            <div class="shiplisting-equipment-item-text">{charter_data-boat_equipment-entertainment-all-val}</div>
+        </div>
+        <div class="shiplisting-equipment-item-wrapper">
+            <h3>{i18n_boat-equipment_cats-safety}</h3>
+            <div class="shiplisting-equipment-item-text">{charter_data-boat_equipment-safety-all-val}</div>
+        </div>
+        <div class="shiplisting-equipment-item-wrapper">
+            <h3>{i18n_boat-equipment_cats-persennings}</h3>
+            <div class="shiplisting-equipment-item-text">{charter_data-boat_equipment-persennings-all-val}</div>
+        </div>
+        <div class="shiplisting-equipment-item-wrapper">
+            <h3>{i18n_boat-equipment_cats-rig_sails}</h3>
+            <div class="shiplisting-equipment-item-text">{charter_data-boat_equipment-rig_sails-all-val}</div>
+        </div>
+        <div class="shiplisting-equipment-item-wrapper">
+            <h3>{i18n_boat-equipment_cats-layout}</h3>
+            <div class="shiplisting-equipment-item-text">{charter_data-boat_equipment-layout-all-val}</div>
+        </div>
+        <div class="shiplisting-equipment-item-wrapper">
+            <h3>{i18n_boat-equipment_cats-other}</h3>
+            <div class="shiplisting-equipment-item-text">{charter_data-boat_equipment-other-all-val}</div>
+        </div>
+        <div class="shiplisting-equipment-item-wrapper">
+            <h3>{i18n_boat-charter_data-Other_information}</h3>
+            <div class="shiplisting-equipment-item-text">{charter_data-equipment_texts-0-val}</div>
+        </div>
+    </div>
+</div>
+<div class="shiplisting-charter-wrapper">
+    <div class="shiplisting-charter">
+        <h2>{i18n_boat-charter_data-prices-name}</h2>
+        <div class="shiplisting-charter-possibilities-row">
+            <b>{i18n_boat-charter_data-Charter_possibilities}: </b> {possibilities}
+        </div>
+        <div class="shiplisting-charter-data">
+            <div class="shiplisting-charter-possibilities">
+                {possibilities_table}
+                <div class="row">
+                    <div class="left">{i18n_boat-charter_data-skipper}:</div>
+                    <div class="right">{charter_data-skipper-val}</div>
+                </div>
+                <div class="row">
+                    <div class="left">{i18n_boat-charter_data-crew_members}:</div>
+                    <div class="right">{charter_data-crew_members-val}</div>
+                </div>
+                {pets}
+                <div class="row">
+                    <div class="left">{i18n_boat-charter_data-extra_charged-damage_deposit}:</div>
+                    <div class="right">{caution}</div>
+                </div>
+                <div class="row">
+                    <div class="left">{i18n_boat-charter_data-check_in_days-name}:</div>
+                    <div class="right">{check_in_days}</div>
+                </div>
+            </div>
+            <div class="shiplisting-charter-other">
+                <div class="row">
+                    <div class="left">{i18n_boat-charter_data-areas-ports}:</div>
+                    <div class="right">{ports}</div>
+                </div>
+                <div class="row">
+                    <div class="left">{i18n_boat-charter_data-areas-water_areas}:</div>
+                    <div class="right">{water_areas}</div>
+                </div>
+                <div class="row">
+                    <div class="left">{i18n_boat-charter_data-areas-countries}:</div>
+                    <div class="right">{countries}</div>
+                </div>
+            </div>
+        </div>
+        <div class="shiplisting-charter-season-prices-wrapper">
+            <h3>{i18n_boat-charter_data-season_prices}</h3>
+            {season_prices}
+        </div>
+        <div class="shiplisting-charter-extra-wrapper">
+            <div class="shiplisting-charter-extra">
+                <div class="shiplisting-charter-extra-extra">
+                    <h3>Extras:</h3>
+                    {extras}
+                </div>
+                <div class="shiplisting-charter-extra-additional">
+                    <h3>{i18n_boat-charter_data-additional}:</h3>
+                    {extras_additional}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="shiplisting-sale-contact-wrapper">
+    <div class="shiplisting-sale-contact">
+        <h2>{i18n_boat-request-require_offer}</h2>
+        <div class="shiplisting-sale-contact-flex">
+            <div class="shiplisting-sale-contact-details">
+                {contact_details-html}
+            </div>
+            <div class="shiplisting-sale-contact-form{contactform_enabled}">
+                <form id="shiplisting-sale-contact-form">
+                    <input type="hidden" id="shiplisting-boat_id" value="{boatid}" /><input type="hidden" id="shiplisting-hidden-value" value="{ip_address}" />
+                    <div class="shiplisting-sale-alert rounded-corners-3 info" i18n-success="{i18n_boat-request-email_sent}" i18n-required="{i18n_boat-words-fields_required}">
+                        {i18n_boat-words-fields_required}
+                    </div>
+                    <div class="shiplisting-sale-form-row required">
+                        <div class="shiplisting-sale-form-row-label">{i18n_boat-request-cname}</div>
+                        <div class="shiplisting-sale-form-row-field">
+                            <input type="text" id="shiplisting-sale-contact-name" />
+                        </div>
+                    </div>
+                    <div class="shiplisting-sale-form-row required">
+                        <div class="shiplisting-sale-form-row-label">{i18n_boat-request-cemail}</div>
+                        <div class="shiplisting-sale-form-row-field">
+                            <input type="text" id="shiplisting-sale-contact-email" />
+                        </div>
+                    </div>
+                    <div class="shiplisting-sale-form-row">
+                        <div class="shiplisting-sale-form-row-label">{i18n_boat-request-cphone}</div>
+                        <div class="shiplisting-sale-form-row-field">
+                            <input type="text" id="shiplisting-sale-contact-telephone" />
+                        </div>
+                    </div>
+                    <div class="shiplisting-sale-form-row">
+                        <div class="shiplisting-sale-form-row-label">{i18n_boat-request-caddress}</div>
+                        <div class="shiplisting-sale-form-row-field">
+                            <input type="text" id="shiplisting-sale-contact-street" />
+                        </div>
+                    </div>
+                    <div class="shiplisting-sale-form-row">
+                        <div class="shiplisting-sale-form-row-label">{i18n_boat-request-cpostcode} / {i18n_boat-request-ccity}</div>
+                        <div class="shiplisting-sale-form-row-field">
+                            <input type="text" class="shiplisting-sale-contact-postcode" id="shiplisting-sale-contact-postcode" /> <input type="text" class="shiplisting-sale-contact-city" id="shiplisting-sale-contact-city" />
+                        </div>
+                    </div>
+                    <div class="shiplisting-sale-form-row required">
+                        <div class="shiplisting-sale-form-row-label">{i18n_boat-request-ccountry}</div>
+                        <div class="shiplisting-sale-form-row-field">
+                            <select class="shiplisting-sale-contact-countries" id="shiplisting-sale-contact-countries">{contact_details-countries-html}</select>
+                        </div>
+                    </div>
+                    <div class="shiplisting-sale-form-row required">
+                        <div class="shiplisting-sale-form-row-label">{i18n_boat-request-chTime}</div>
+                        <div class="shiplisting-sale-form-row-field">
+                            <input type="text" class="shiplisting-sale-contact-chtime" id="shiplisting-sale-contact-chtime" />
+                        </div>
+                    </div>
+                    <div class="shiplisting-sale-form-row required">
+                        <div class="shiplisting-sale-form-row-label">{i18n_boat-request-ctext}</div>
+                        <div class="shiplisting-sale-form-row-field">
+                            <textarea id="shiplisting-sale-contact-message"></textarea>
+                        </div>
+                    </div>
+                    <div class="shiplisting-sale-form-row">
+                        <div class="shiplisting-sale-form-row-label" style="opacity: 0;"></div>
+                        <div class="shiplisting-sale-form-row-field">
+                            <button type="button" id="shiplisting-sale-contact-submit">{i18n_boat-request-send_request}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="shiplisting-modal-window rounded-corners-5">
+    <div class="shiplisting-modal-current-img">
+        <img />
+    </div>
+    <div class="shiplisting-modal-slider">
+        <ul></ul>
+    </div>
+    <div class="shiplisting-modal-close">
+        <img src="{imageData-closePng}" />
+    </div>
+</div>

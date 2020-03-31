@@ -1,0 +1,1395 @@
+/**
+ * Yachtall Shiplisting WordPress Plugin.
+ * @author      Stefan Meyer <stefan@milkycode.com>
+ * @category    Milkycode
+ * @package     shiplisting
+ * @copyright   Copyright (c) 2019 milkycode GmbH (https://www.milkycode.com)
+ */
+
+div.entry-content p {
+    margin: 0;
+    padding: 0;
+}
+
+div.shiplisting-boat-wrapper div, div.shiplisting-boats-wrapper div {
+    margin: 0;
+    padding: 0;
+}
+
+div.shiplisting-boat-wrapper {
+    width: 100%;
+    display: block;
+}
+
+div.shiplisting-data-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-image-wrapper {
+    width: calc(50% - 10px);
+    height: 100%;
+    margin-left: 10px;
+    padding: 5px;
+    padding-right: 0;
+    float: right;
+    order: 2;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-image-wrapper div.shiplisting-images {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    padding-right: 0;
+    padding-left: 0;
+    float: right;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-image-wrapper div.shiplisting-images div.shiplisting-images-current {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-image-wrapper div.shiplisting-images div.shiplisting-images-current img {
+    z-index: -1;
+    opacity: 1.0;
+    transition: all 250ms ease-in-out;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    cursor: pointer;
+    width: 100%;
+    max-width: 100%;
+    height: 300px;
+    max-height: 300px;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-image-wrapper div.shiplisting-images-sale-info {
+    font-size: 14px;
+}
+
+div.shiplisting-images div.shiplisting-images-position {
+    background-color: #000;
+    padding: 2px;
+    font-size: 11px;
+    color: #fff;
+    max-width: calc(15% - 4px);
+    text-align: center;
+    opacity: 0.5;
+    border-radius: 3px;
+
+    position: relative;
+    left: 0;
+    top: -17px;
+    margin: 0 auto;
+}
+
+div.shiplisting-images div.shiplisting-images-slider-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin-top: -10px;
+    position: relative;
+}
+
+div.shiplisting-images-slider-wrapper.rounded-corners ul.shiplisting-images-slider li.shiplisting-images-slider-item img {
+    border-radius: 3px;
+}
+
+div.shiplisting-images-slider-wrapper ul.shiplisting-images-slider {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    white-space: nowrap;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+div.shiplisting-images-slider-wrapper ul.shiplisting-images-slider li.shiplisting-images-slider-item {
+    width: 90px;
+    height: 58px;
+    margin-left: 5px;
+    cursor: pointer;
+
+    display: inline-block;
+    zoom: 1;
+}
+
+div.shiplisting-images-slider-wrapper ul.shiplisting-images-slider li.shiplisting-images-slider-item:first-child {
+    margin-left: 0px;
+}
+
+div.shiplisting-images-slider-wrapper ul.shiplisting-images-slider li.shiplisting-images-slider-item img {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 1.0;
+    transition: all 250ms ease-in-out;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+}
+
+div.shiplisting-images-slider-wrapper ul.shiplisting-images-slider li.shiplisting-images-slider-item:hover img,
+div.shiplisting-images-slider-wrapper ul.shiplisting-images-slider li.shiplisting-images-slider-item.current img {
+    opacity: 0.8;
+}
+
+div.shiplisting-images-slider-wrapper ul.shiplisting-images-slider li.shiplisting-images-slider-item.current img {
+    border: 1px solid #000;
+}
+
+div.shiplisting-images-slider-wrapper ul.shiplisting-images-slider li.shiplisting-images-slider-item.pdf.current {
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-image-wrapper div.shiplisting-images div.shiplisting-images-current:hover img {
+    opacity: 0.8;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-image-wrapper div.shiplisting-images div.shiplisting-images-current.rounded-corners img {
+    border-radius: 3px;
+}
+
+div.shiplisting-images-slider-wrapper ul.shiplisting-images-slider li.shiplisting-images-slider-item.video div.shiplisting-video-thumb,
+div.shiplisting-images-slider-wrapper ul.shiplisting-images-slider li.shiplisting-images-slider-item.pdf div.shiplisting-pdf-thumb {
+    position: absolute;
+    width: 90px;
+    padding-top: 38px;
+    top: 0;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    color: #e7ab41;
+    text-shadow: 1px 1px 1px #000;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-boatdata-wrapper {
+    width: calc(50% - 5px);
+    height: 100%;
+    margin: 5px;
+    margin-left: 0;
+    float: left;
+    order: 1;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-boatdata-wrapper div.shiplisting-boatdata-details-wrapper {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row {
+    display: flex;
+    width: 100%;
+    margin-top: 5px;
+    float: left;
+    font-size: 13px;
+}
+
+div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row.mb-15 {
+    margin-bottom: 15px !important;
+}
+
+div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row.mb-25 {
+     margin-bottom: 15px !important;
+ }
+
+div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row.highlight div.shiplisting-boatdata-details-value {
+    color: #ef9900;
+}
+
+div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row div.shiplisting-boatdata-details-value span.highlight {
+    color: #c00000;
+}
+
+div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row div.shiplisting-boatdata-details-value span.shiplisting-old-price,
+div.shiplisting-boats-wrapper div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-object-price span.shiplisting-object-price-value span.shiplisting-old-price {
+    color: #000;
+    text-decoration: line-through;
+    font-weight: 400;
+    margin-right: 3px;
+}
+
+div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row.bold div.shiplisting-boatdata-details-value,
+div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row div.shiplisting-boatdata-details-value span.bold {
+    font-weight: 600;
+}
+
+div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row:first-child {
+    margin-top: 0px;
+}
+
+div.shiplisting-boatdata-details-row div.shiplisting-boatdata-details-title {
+    width: 60%;
+    margin-left: 5px;
+}
+
+div.shiplisting-boatdata-details-row div.shiplisting-boatdata-details-title:after {
+    content: ':';
+}
+
+div.shiplisting-boatdata-details-row div.shiplisting-boatdata-details-value {
+    width: calc(40% - 5px);
+    margin-right: 5px;
+    text-align: left;
+    word-wrap: normal;
+    white-space: revert;
+}
+
+div.shiplisting-boatdata-details-row.highlight div.shiplisting-boatdata-details-value {
+    white-space: nowrap;
+}
+
+div.shiplisting-boatdata-details-row div.shiplisting-boatdata-details-value small {
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+    font-weight: normal;
+    color: #000;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-boatdata-wrapper h2, div.shiplisting-boat-wrapper div.shiplisting-image-wrapper h2 {
+    margin: 0;
+    margin-top: 25px;
+    padding: 0;
+    font-weight: bold;
+    font-size: 17px;
+    float: left;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-image-wrapper h2 {
+    margin-top: 0;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-boatdata-wrapper h2:first-child {
+    margin-top: 0px;
+}
+
+.has-sidebar:not(.error404) #primary {
+    width: 100% !important;
+}
+
+div.shiplisting-modal-window {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: none;
+}
+
+div.shiplisting-modal-window div.shiplisting-modal-current-img {
+    height: calc(70% - 75px);
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+div.shiplisting-modal-window div.shiplisting-modal-current-img img {
+    height: 100%;
+}
+
+div.shiplisting-modal-window div.shiplisting-modal-slider {
+    margin-top: 25px;
+    height: 30%;
+    text-align: center;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+div.shiplisting-modal-window div.shiplisting-modal-slider ul {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    -moz-column-count: 15;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 15;
+    -webkit-column-gap: 20px;
+    column-count: 15;
+    column-gap: 20px;
+}
+
+div.shiplisting-modal-window div.shiplisting-modal-slider ul li.shiplisting-modal-slider-item {
+    margin-right: 15px;
+    cursor: pointer;
+    opacity: 1.0;
+    transition: all 250ms ease-in-out;
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    padding-bottom: 20px;
+}
+
+div.shiplisting-modal-window div.shiplisting-modal-slider ul li.shiplisting-modal-slider-item.current img {
+    border: 1px solid #000;
+    opacity: 0.8;
+}
+
+div.shiplisting-modal-window div.shiplisting-modal-slider ul li.shiplisting-modal-slider-item:hover {
+    opacity: 0.8;
+}
+
+div.shiplisting-modal-window div.shiplisting-modal-slider ul li.shiplisting-modal-slider-item:last-child {
+    margin-right: 0;
+}
+
+div.shiplisting-modal-window div.shiplisting-modal-slider ul li.shiplisting-modal-slider-item img {
+    width: 90px;
+    height: 58px;
+}
+
+div.shiplisting-modal-window.rounded-corners-5 div.shiplisting-modal-slider ul li img,
+div.shiplisting-modal-window.rounded-corners-5 div.shiplisting-modal-current-img img {
+    border-radius: 5px;
+}
+
+div.shiplisting-modal-window.rounded-corners-3 div.shiplisting-modal-slider ul li img,
+div.shiplisting-modal-window.rounded-corners-3 div.shiplisting-modal-current-img img {
+    border-radius: 3px;
+}
+
+div.shiplisting-modal-window .shiplisting-modal-close {
+    position: fixed;
+    top: 50px;
+    right: 25px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+div.shiplisting-boat-equipment-wrapper div {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+div.shiplisting-boat-equipment-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    float: left;
+    margin-top: 15px;
+}
+
+div.shiplisting-boat-equipment {
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    float: left;
+}
+
+div.shiplisting-boat-equipment h2 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 17px;
+    float: left;
+}
+
+div.shiplisting-boat-equipment div.shiplisting-equipment-item-wrapper {
+    width: 100%;
+    height: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+div.shiplisting-boat-equipment div.shiplisting-equipment-item-wrapper:last-child {
+    margin-bottom: 0;
+}
+
+div.shiplisting-boat-equipment div.shiplisting-equipment-item-wrapper h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 14px;
+    float: left;
+    color: #9E9E9E;
+    display: flex;
+}
+
+div.shiplisting-equipment-item-wrapper div.shiplisting-equipment-item-text {
+    width: 100%;
+    height: 100%;
+    float: left;
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+div.shiplisting-boat-equipment.ajax-toggler h2 span {
+    font-size: 12px;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+div.shiplisting-boat-equipment.ajax-toggler div.shiplisting-equipment-item-wrapper h3 {
+    cursor: pointer;
+}
+
+div.shiplisting-boat-equipment.ajax-toggler div.shiplisting-equipment-item-wrapper h3:before {
+    content: ':: ';
+    padding-right: 5px;
+}
+
+div.shiplisting-boat-equipment.ajax-toggler div.shiplisting-equipment-item-wrapper div.shiplisting-equipment-item-text {
+    display: none;
+}
+
+div.shiplisting-sale-contact-wrapper div {
+    margin: 0;
+    padding: 0;
+}
+
+div.shiplisting-sale-contact-wrapper {
+    width: 100%;
+    height: 100%;
+    float: left;
+    margin-top: 15px;
+}
+
+div.shiplisting-sale-contact-wrapper div.shiplisting-sale-contact {
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+div.shiplisting-sale-contact-wrapper div.shiplisting-sale-contact h2 {
+    padding: 0;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+div.shiplisting-sale-contact div.shiplisting-sale-contact-flex {
+    display: flex;
+}
+
+div.shiplisting-sale-contact div.shiplisting-sale-contact-flex div.shiplisting-sale-contact-details {
+    flex: 0 0 50%;
+    height: 100%;
+}
+
+div.shiplisting-sale-contact div.shiplisting-sale-contact-flex div.shiplisting-sale-contact-form.enabled {
+    display: block;
+}
+
+div.shiplisting-sale-contact div.shiplisting-sale-contact-flex div.shiplisting-sale-contact-form {
+    flex: 0 0 50%;
+    height: 100%;
+    display: none;
+}
+
+div.shiplisting-sale-contact div.shiplisting-sale-contact-flex.only-details,
+div.shiplisting-sale-contact div.shiplisting-sale-contact-flex.only-form {
+    display: block;
+}
+
+div.shiplisting-sale-contact div.shiplisting-sale-contact-flex.only-details div.shiplisting-sale-contact-details,
+div.shiplisting-sale-contact div.shiplisting-sale-contact-flex.only-form div.shiplisting-sale-contact-form {
+    display: block;
+    width: 100%;
+}
+
+div.shiplisting-sale-contact div.shiplisting-sale-contact-flex.only-details div.shiplisting-sale-contact-form,
+div.shiplisting-sale-contact div.shiplisting-sale-contact-flex.only-form div.shiplisting-sale-contact-details {
+    display: none;
+}
+
+div.shiplisting-sale-contact-form div.shiplisting-sale-alert {
+    padding: 8px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+}
+
+div.shiplisting-sale-contact-form div.shiplisting-sale-alert.rounded-corners-5 {
+    border-radius: 5px;
+}
+
+div.shiplisting-sale-contact-form div.shiplisting-sale-alert.rounded-corners-3 {
+    border-radius: 3px;
+}
+
+div.shiplisting-sale-contact-form div.shiplisting-sale-alert.info {
+    background-color: #bae9ff;
+    border: 1px solid #a0dcf8;
+}
+
+div.shiplisting-sale-contact-form div.shiplisting-sale-alert.success {
+    background-color: #cdffba;
+    border: 1px solid #c1f8a0;
+}
+
+div.shiplisting-sale-contact-form div.shiplisting-sale-alert.error {
+    background-color: #ffbaba;
+    border: 1px solid #f8a0a0;
+}
+
+div.shiplisting-sale-contact-form div.shiplisting-sale-form-row {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin-top: 10px;
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-label {
+    width: 50%;
+    font-size: 14px;
+    padding-top: 5px;
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-label:after {
+    content: ':';
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field {
+    width: 50%;
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field input,
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field textarea,
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field select {
+    width: 100%;
+    padding: 0.875rem 10px;
+    margin: 0;
+    background-color: #ffffff;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    outline: 0;
+    font-weight: 400;
+    font-size: 0.875rem;
+    height: 35px !important;
+    transition: all 150ms ease-in-out;
+    -webkit-transition: all 150ms ease-in-out;
+    -moz-transition: all 150ms ease-in-out;
+    -o-transition: all 150ms ease-in-out;
+    color: #a7a7a7;
+    border: 1px solid #a7a7a7;
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field select {
+    padding: 0 10px;
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field input[type=text],
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field select {
+    height: 30px;
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field textarea {
+    height: 100px;
+    max-height: 100px;
+    min-height: 100px;
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field input[type=text]:focus {
+    border: 1px solid #333;
+    color: #333;
+}
+
+div.shiplisting-sale-contact-form div.shiplisting-sale-form-row.required div.shiplisting-sale-form-row-label:after {
+    content: ' (*):';
+    color: red;
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field #shiplisting-sale-contact-submit,
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-submit button {
+    text-decoration: none;
+    padding: 6px;
+    padding-right: 6px;
+    padding-left: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin: 0;
+    display: inline-block;
+    transition: all 250ms ease-in-out;
+    border-radius: 0.1875rem;
+    background-color: #e9e9e9;
+    color: #a3a4a5;
+    border: 1px solid #bbbbbb;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field #shiplisting-sale-contact-submit:hover,
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-submit button:hover {
+    border: 1px solid #bbbbbb;
+    background-color: #d6d6d6;
+    color: #000;
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field input[type=text].shiplisting-sale-contact-postcode {
+    width: 30%;
+    float: left;
+}
+
+div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field input[type=text].shiplisting-sale-contact-city {
+    width: 60%;
+    float: right;
+}
+
+div.shiplisting-sale-contact-details {
+    width: 100%;
+}
+
+div.shiplisting-sale-contact div.shiplisting-sale-details-row {
+    width: 100%;
+    display: flex;
+    font-size: 14px;
+}
+
+div.shiplisting-sale-details-label {
+    width: 30%;
+}
+
+
+div.shiplisting-sale-details-field {
+    width: 70%;
+}
+
+div.shiplisting-boats-pagination-wrapper {
+    width: 100%;
+    margin-bottom: 15px !important;
+    float: left;
+    margin-top: 1px !important;
+}
+
+div.shiplisting-boats-pagination-wrapper ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+div.shiplisting-boats-pagination-wrapper ul li.shiplisting-pagination-page {
+    display: inline-block;
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+div.shiplisting-boats-pagination-wrapper ul li.shiplisting-pagination-page a {
+    text-decoration: none;
+    box-shadow: none !important;
+    padding: 4px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border: 1px solid #d6d6d6;
+    border-radius: 3px;
+    color: #d6d6d6;
+    font-size: 13px;
+    text-align: center;
+    transition: all 250ms ease-in-out;
+    margin-right: 3px;
+}
+
+div.shiplisting-boats-pagination-wrapper ul li.shiplisting-pagination-page.active a {
+    font-weight: 400;
+    color: #000;
+    border-color: #686868;
+}
+
+div.shiplisting-boats-pagination-wrapper ul li.shiplisting-pagination-page.previous-page a,
+div.shiplisting-boats-pagination-wrapper ul li.shiplisting-pagination-page.next-page a {
+    color: #7a7a7a;
+}
+
+div.shiplisting-boats-pagination-wrapper ul li.shiplisting-pagination-page a:hover {
+    color: #000;
+    border-color: #686868;
+}
+
+div.shiplisting-boats {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+div.shiplisting-boats div.shiplisting-boats-wrapper {
+    display: block;
+    float: left;
+}
+
+div.shiplisting-boats.adv-filtering div.shiplisting-boats-wrapper {
+    width: 60%;
+}
+
+div.shiplisting-boats.adv-filtering div.shiplisting-boats-object div.shiplisting-object-image {
+    margin-right: 10px;
+}
+
+div.shiplisting-boats-wrapper {
+     width: 100%;
+    display: block;
+}
+
+div.shiplisting-boats-wrapper p {
+    margin: 0;
+    padding: 0;
+}
+
+div.shiplisting-boats-wrapper h2 {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 7px;
+    padding: 0;
+}
+
+div.shiplisting-boats-wrapper div.shiplisting-boats-object {
+    width: 100%;
+    display: flex;
+    max-height: 210px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+div.shiplisting-boats-wrapper.tiles div.shiplisting-boats-object {
+    display: block;
+    width: calc(25% - 20px);
+    float: left;
+    max-height: 275px;
+    height: 275px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+div.shiplisting-boats-object div.shiplisting-object-image {
+    width: 35%;
+    text-align: center;
+}
+
+div.shiplisting-boats-wrapper.tiles div.shiplisting-boats-object div.shiplisting-object-image {
+    width: 100%;
+    display: block;
+    float: left;
+    height: 120px;
+}
+
+div.shiplisting-boats-object div.shiplisting-object-image img {
+    width: 222px;
+    height: 155px;
+    border-radius: 5px;
+}
+
+div.shiplisting-boats-object div.shiplisting-object-details {
+    width: 65%;
+    font-size: 14px;
+}
+
+div.shiplisting-boats-wrapper.tiles div.shiplisting-boats-object div.shiplisting-object-details {
+    width: 100%;
+    display: block;
+    float: left;
+}
+
+div.shiplisting-boats-object div.shiplisting-object-details h3.shiplisting-object-title {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    margin-top: -3px;
+    margin-bottom: 3px;
+}
+
+div.shiplisting-boats-wrapper.tiles div.shiplisting-boats-object div.shiplisting-object-details h3.shiplisting-object-title {
+    text-align: center;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+div.shiplisting-boats-object div.shiplisting-object-details h3.shiplisting-object-title a {
+    font-size: 16px;
+    line-height: 1;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-object-detail {
+    width: 100%;
+    padding-bottom: 3px;
+}
+
+div.shiplisting-boats-wrapper.tiles div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-object-detail div.year-built {
+    float: right;
+    display: inline-block;
+    position: relative;
+    top: -21px;
+}
+
+div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-object-price {
+    width: 100%;
+    padding-bottom: 5px;
+    word-break: break-word;
+}
+
+div.shiplisting-object-price span.shiplisting-object-price-value {
+    color: #ef9900;
+}
+
+div.shiplisting-object-price span.shiplisting-object-price-value small {
+    color: #000;
+}
+
+div.shiplisting-boats.adv-filtering div.shiplisting-boats-filtering {
+    display: block;
+}
+
+div.shiplisting-boats.adv-filtering {
+    display: flex;
+}
+
+div.shiplisting-boats-filtering {
+    width: 30%;
+    min-width: 30%;
+    margin-right: 10px;
+    display: none;
+}
+
+div.shiplisting-boats-filtering div {
+    margin: 0;
+    padding: 0;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-boats-filter {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #e5e5e5;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-boats-filter h2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px;
+    margin-left: 8px;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column {
+    display: block;
+    width: 100%;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-label,
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-content.checkbox label {
+    display: block;
+    width: calc(100% - 13px);
+    padding: 5px;
+    padding-left: 8px;
+    font-size: 13px;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-content.checkbox label {
+    width: initial;
+    display: inline-block;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-content {
+    display: block;
+    width: calc(100% - 13px);
+    padding: 5px;
+    padding-top: 0;
+    padding-left: 8px;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-content input[type=text],
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-content select {
+    font-size: 12px;
+    width: 100%;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-content.double {
+    display: flex;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-content.double div.first {
+    width: 50%;
+    margin-right: 5px;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-content.double div.second {
+    width: 50%;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-content.double select {
+    width: 100%;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-content.checkbox label {
+    font-weight: normal;
+    padding-bottom: 0;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-submit {
+    display: block;
+    width: calc(100% - 13px);
+    padding-right: 5px;
+    padding-left: 8px;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-submit button {
+    width: 100%;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-actions {
+    width: 100%;
+    display: flex;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-actions a {
+    font-size: 13px;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-actions div.shiplisting-filter-reset {
+    width: 50%;
+    margin: 5px;
+    margin-left: 8px;
+}
+
+div.shiplisting-boats-filtering div.shiplisting-filter-actions div.shiplisting-filter-submit {
+    width: 50%;
+    margin: 5px;
+    margin-right: 8px;
+    text-align: right;
+}
+
+div.shiplisting-charter-wrapper {
+    width: 100%;
+    height: 100%;
+    float: left;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+div.shiplisting-charter-wrapper div.shiplisting-charter {
+    width: 100%;
+    height: 100%;
+}
+
+div.shiplisting-charter-wrapper div.shiplisting-charter h2 {
+    padding: 0;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+div.shiplisting-charter div.shiplisting-charter-possibilities-row {
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+}
+
+div.shiplisting-charter div.shiplisting-charter-possibilities-row b {
+    font-weight: 600;
+}
+
+div.shiplisting-charter div.shiplisting-charter-data {
+    width: 100%;
+    height: 100%;
+    float: left;
+    display: flex;
+}
+
+div.shiplisting-charter-data div.shiplisting-charter-possibilities {
+    width: 50%;
+    display: block;
+}
+
+div.shiplisting-charter-data div.shiplisting-charter-possibilities div.row {
+    width: 100%;
+    display: flex;
+}
+
+div.shiplisting-charter-data div.shiplisting-charter-possibilities div.row.bold div.right {
+    font-weight: 600;
+}
+
+div.shiplisting-charter-data div.shiplisting-charter-possibilities div.row div.left {
+    width: 50%;
+}
+
+div.shiplisting-charter-data div.shiplisting-charter-possibilities div.row div.right {
+    width: 50%;
+}
+
+div.shiplisting-charter-data div.shiplisting-charter-other {
+    width: 50%;
+    display: block;
+}
+
+div.shiplisting-charter-data div.shiplisting-charter-other div.row {
+    width: 100%;
+    display: flex;
+}
+
+div.shiplisting-charter-data div.shiplisting-charter-other div.row div.left {
+    width: 50%;
+}
+
+div.shiplisting-charter-data div.shiplisting-charter-other div.row div.right {
+    width: 50%;
+}
+
+div.shiplisting-charter-data div.shiplisting-charter-other div.row.bold div.right {
+    font-weight: 600;
+}
+
+div.shiplisting-charter div.shiplisting-charter-season-prices-wrapper {
+    width: 100%;
+    height: 100%;
+    float: left;
+    display: block;
+    margin-bottom: 15px;
+}
+
+div.shiplisting-charter div.shiplisting-charter-season-prices-wrapper h3 {
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    margin-top: 15px;
+}
+
+div.shiplisting-charter-season-prices-wrapper div.shiplisting-charter-season-prices-row {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+div.shiplisting-charter-season-prices-row div.shiplisting-charter-season-prices-title {
+    width: 100%;
+    height: 100%;
+}
+
+div.shiplisting-charter-season-prices-title b {
+    font-weight: 600;
+}
+
+div.shiplisting-charter-season-prices-row div.shiplisting-charter-season-prices-boxes-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+div.shiplisting-charter-season-prices-boxes-wrapper div.shiplisting-charter-season-prices-box {
+    width: 15%;
+    height: 100%;
+    border: 1px solid #d6d6d6;
+    margin-right: 5px;
+}
+
+div.shiplisting-charter-season-prices-box div.shiplisting-charter-season-prices-box-title {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: #d6d6d6;
+    padding: 2px;
+}
+
+div.shiplisting-charter-season-prices-box div.shiplisting-charter-season-prices-box-content {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-weight: 600;
+    padding: 2px;
+}
+
+div.shiplisting-charter-wrapper div.shiplisting-charter div.shiplisting-charter-extra-wrapper {
+    width: 100%;
+    height: 100%;
+    float: left;
+    margin-top: 15px;
+}
+
+div.shiplisting-charter-wrapper div.shiplisting-charter div.shiplisting-charter-extra-wrapper h3 {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+div.shiplisting-charter-extra-wrapper div.shiplisting-charter-extra {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+div.shiplisting-charter-extra div.shiplisting-charter-extra-extra {
+    width: calc(50% - 5px);
+    padding-right: 5px;
+}
+
+div.shiplisting-charter-extra div.shiplisting-charter-extra-additional {
+    width: calc(50% - 5px);
+    padding-left: 5px;
+}
+
+div.shiplisting-charter-extra-extra div.shiplisting-charter-extra-row {
+    width: 100%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    display: flex;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+div.shiplisting-charter-extra-extra div.shiplisting-charter-extra-row:last-child {
+    border-bottom: 0;
+}
+
+div.shiplisting-charter-extra-extra div.shiplisting-charter-extra-row div.left {
+    width: 50%;
+}
+
+div.shiplisting-charter-extra-extra div.shiplisting-charter-extra-row div.right {
+    width: 50%;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-discounts-wrapper {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ffcdcd;
+    background-color: #ffefef;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+div.shiplisting-boat-wrapper div.shiplisting-discounts-wrapper h2 {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+}
+
+div.shiplisting-discounts-wrapper div.shiplisting-discounts-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: block;
+    font-weight: normal;
+    font-size: 13px;
+    color: #831c1c;
+}
+
+div.shiplisting-discounts-wrapper div.shiplisting-discounts-content-wrapper h3 {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #a42525;
+}
+
+div.shiplisting-discounts-wrapper div.shiplisting-discounts-content-wrapper h3:first-child {
+    margin-top: 0;
+}
+
+div.shiplisting-discounts-wrapper div.shiplisting-discounts-content-wrapper b {
+    font-weight: 600;
+}
+
+div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-object-price.flex {
+    display: flex;
+}
+
+div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-object-price.flex div.left {
+    flex: 1;
+    width: 50%;
+    color: #c00000;
+    font-weight: 600;
+}
+
+div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-object-price.flex div.right {
+    flex: 2;
+    width: 50%;
+}
+
+@media screen and (max-width:720px) {
+    div.shiplisting-boat-wrapper {
+        display: block;
+    }
+
+    div.shiplisting-boat-wrapper div.shiplisting-data-wrapper {
+        display: block;
+    }
+
+    div.shiplisting-boat-wrapper div.shiplisting-image-wrapper {
+        display: block;
+        width: 100%;
+    }
+
+    div.shiplisting-boat-wrapper div.shiplisting-boatdata-wrapper {
+        display: block;
+        width: 100%;
+        float: left !important;
+    }
+
+    div.shiplisting-boat-wrapper div.shiplisting-boatdata-wrapper div.shiplisting-boatdata-details-wrapper {
+        display: block;
+    }
+
+    div.shiplisting-boat-wrapper div.shiplisting-image-wrapper div.shiplisting-images div.shiplisting-images-current img {
+        width: 100%;
+    }
+
+    div.shiplisting-boatdata-details-row div.shiplisting-boatdata-details-value small {
+        display: block;
+    }
+
+    div.shiplisting-boats-object div.shiplisting-object-image img {
+        width: 70%;
+        height: 35%;
+    }
+
+    div.shiplisting-boats-wrapper div.shiplisting-boats-object {
+        max-height: inherit;
+    }
+
+    div.shiplisting-boat-wrapper div.shiplisting-boatdata-wrapper div.shiplisting-boatdata-details-wrapper {
+        float: left;
+    }
+
+    div.shiplisting-boatdata-details-row.highlight div.shiplisting-boatdata-details-value {
+        white-space: normal !important;
+    }
+
+    div.shiplisting-boatdata-details-value br {
+        display: none;
+    }
+
+    div.shiplisting-sale-contact div.shiplisting-sale-contact-flex {
+        display: block;
+    }
+
+    div.shiplisting-sale-contact div.shiplisting-sale-contact-flex div.shiplisting-sale-contact-details,
+    div.shiplisting-sale-contact div.shiplisting-sale-contact-flex div.shiplisting-sale-contact-form {
+        width: 100%;
+        float: left;
+        flex: none;
+    }
+
+    div.shiplisting-sale-contact div.shiplisting-sale-contact-flex div.shiplisting-sale-contact-details {
+        margin-bottom: 10px;
+    }
+
+    div.shiplisting-boats-object div.shiplisting-object-image,
+    div.shiplisting-boats-object div.shiplisting-object-details {
+        float: left;
+        width: 100%;
+    }
+
+    div.shiplisting-boats-wrapper div.shiplisting-boats-object {
+        display: block;
+        border-bottom: 3px solid #333;
+        float: left;
+        margin-bottom: 10px;
+    }
+
+    div.shiplisting-boats-wrapper div.shiplisting-boats-object:last-of-type {
+        margin-bottom: 0;
+    }
+
+    div.shiplisting-boat-wrapper div.shiplisting-image-wrapper {
+        margin-right: 0;
+        padding: 0;
+    }
+
+    div.shiplisting-boat-wrapper div.shiplisting-image-wrapper div.shiplisting-images {
+        padding: 0;
+        width: 100%;
+    }
+
+    div.shiplisting-sale-contact-form div.shiplisting-sale-form-row:last-of-type {
+        margin-bottom: 15px;
+    }
+
+    div.shiplisting-modal-window div.shiplisting-modal-slider {
+        display: none;
+    }
+
+    div.shiplisting-modal-window div.shiplisting-modal-current-img {
+        margin-left: 50px;
+        margin-right: 50px;
+        height: calc(40% - 75px);
+    }
+
+    div.shiplisting-boats.flex div.shiplisting-boats-wrapper {
+        width: 100%;
+    }
+
+    div.shiplisting-boats.flex {
+        display: block;
+    }
+
+    div.shiplisting-boats-filtering {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    div.shiplisting-boats-filtering {
+        display: none;
+    }
+
+    div.shiplisting-boats.adv-filtering {
+        display: block;
+    }
+
+    div.shiplisting-boats.adv-filtering div.shiplisting-boats-wrapper {
+        width: 100%;
+    }
+
+    div.shiplisting-charter div.shiplisting-charter-data {
+        display: block;
+    }
+
+    div.shiplisting-charter-data div.shiplisting-charter-possibilities {
+        margin-bottom: 15px;
+    }
+
+    div.shiplisting-charter-data div.shiplisting-charter-possibilities, div.shiplisting-charter-data div.shiplisting-charter-other {
+        width: 100%;
+    }
+
+    div.shiplisting-charter-season-prices-row div.shiplisting-charter-season-prices-boxes-wrapper {
+        flex-wrap: wrap;
+    }
+
+    div.shiplisting-charter-season-prices-boxes-wrapper div.shiplisting-charter-season-prices-box {
+        width: 30%;
+        margin-bottom: 3px;
+    }
+
+    div.shiplisting-charter-extra-wrapper div.shiplisting-charter-extra {
+        display: block;
+    }
+
+    div.shiplisting-charter-extra div.shiplisting-charter-extra-extra, div.shiplisting-charter-extra div.shiplisting-charter-extra-additional {
+        width: calc(100% - 5px);
+    }
+
+    div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-object-price.flex {
+        display: block;
+    }
+
+    div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-object-price.flex div.left,
+    div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-object-price.flex div.right {
+        width: 100%;
+    }
+}
+/*move title to top in mobile?*/
