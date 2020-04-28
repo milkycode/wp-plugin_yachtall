@@ -10,7 +10,7 @@
     "author" : "Christian Hinz",
     "author_homepage" : "https://www.yachtino.com",
     "sections" : {
-        "description" : "Plugin for detailed listing of your yachtall and happycharters offers.",
+        "description" : "Plugin for detailed listing of your yachtall and happycharter offers.",
         "installation" : "Upload the plugin to your Wordpress site and activate it. Go to \"Generator\" and create your pages. That's it!",
         "changelog" : ""
     }

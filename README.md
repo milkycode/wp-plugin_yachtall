@@ -1,29 +1,14 @@
-# README #
+# Yachtall Wordpress  Plugin
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Plugin for detailed listing of your yachtall and happycharter offers on your own Wordpress site.
 
-### What is this repository for? ###
+* Copyright by [milkycode GmbH](https://www.milkycode.com)
+* Like us on Facebook: https://www.facebook.com/milkycode
+* Follow us in Instagram https://www.instagram.com/milkycode_com
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Installation
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Upload the plugin to your Wordpress site and activate it. 
+* Contact Support on Happycharter.com to get your Application Key
+* Go to "Shiplisting->Generator" and create your pages.
+* That's it!
