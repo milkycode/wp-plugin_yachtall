@@ -67,7 +67,9 @@ class Shiplisting_Api {
 
     public function init() {
         $this->api_host = 'https://api.yachtall.com/';
-        $this->api_uri = $this->api_host.'[LANG]/[URL_PART1]/[URL_PART2]/?code=[API_KEY]&site_id=[SITE_ID]&bt_vers=3.0&api_vers=1.0&device_id=1&os_id=1';
+        $this->api_uri = $this->api_host.'[LANG]/[URL_PART1]/[URL_PART2]/?code=[API_KEY]&site_id=[SITE_ID]&bt_vers=3.0&api_vers=1.0'
+            . '&ip=' . $_SERVER['REMOTE_ADDR'] . '&http_agent=' . self::escapeUrlForApi($_SERVER['HTTP_USER_AGENT'])
+            . '&remote_host=' . gethostbyaddr($_SERVER['REMOTE_ADDR']);
         $this->api_key = get_option('shiplisting_api_key');
         $this->site_id = get_option('shiplisting_api_siteid');
 
@@ -87,9 +89,20 @@ class Shiplisting_Api {
         }
     }
 
+    // special encoding for Yachtino API
+    public static function escapeUrlForApi($var) {
+        $var = str_replace('/', '~~', $var);
+        $var = str_replace('\\', '§~§', $var);
+        $var = rawurlencode($var);
+
+        return $var;
+    }
+
     public function update_uri($host) {
         $this->api_host = $host;
-        $this->api_uri = $this->api_host.'[LANG]/[URL_PART1]/[URL_PART2]/?code=[API_KEY]&site_id=[SITE_ID]&bt_vers=3.0&api_vers=1.0&device_id=1&os_id=1';
+        $this->api_uri = $this->api_host.'[LANG]/[URL_PART1]/[URL_PART2]/?code=[API_KEY]&site_id=[SITE_ID]&bt_vers=3.0&api_vers=1.0'
+            . '&ip=' . $_SERVER['REMOTE_ADDR'] . '&http_agent=' . self::escapeUrlForApi($_SERVER['HTTP_USER_AGENT'])
+            . '&remote_host=' . gethostbyaddr($_SERVER['REMOTE_ADDR']);
     }
 
     public function check_service() {
@@ -242,28 +255,32 @@ class Shiplisting_Api {
             return;
 
         $tmpBoat = json_decode( $this->send_request( 'boat-data', 'boats', $filter ), true );
-        if ( !$tmpBoat ) {
-            return;
-        }
+        // if ( !$tmpBoat ) {
+            // return;
+        // }
 
-        if (!$tmpBoat[ 'adverts' ]) {
-            return;
-        }
+        // if (!$tmpBoat[ 'adverts' ]) {
+            // return;
+        // }
 
-        if (sizeof($tmpBoat[ 'adverts' ]) <= 0) {
-            return;
-        }
+        // if (sizeof($tmpBoat[ 'adverts' ]) <= 0) {
+            // return;
+        // }
 
         $boats = $tmpBoat;
-        if (!$boats['adverts'])
-            return;
+        // if (!$boats['adverts'])
+            // return;
 
         //echo '<script type="text/javascript" src="' . get_bloginfo( 'url' ) . '/wp-content/plugins/shiplisting/public/js/shiplisting-public.js"></script>';
         wp_enqueue_script( "shiplisting_public", plugin_dir_url( __DIR__ ) . 'public/js/shiplisting-public.js', array( 'jquery' ), SHIPLISTING_VERSION, false );
         wp_localize_script( "shiplisting_public", 'shiplisting_public',
                             array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 
-        return $tmpBoat;
+        if (empty($tmpBoat['adverts'])) {
+            return;
+        } else {
+            return $tmpBoat;
+        }
     }
 
     public function get_boats($filter='') {
