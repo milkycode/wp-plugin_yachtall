@@ -8,6 +8,7 @@ Plugin for detailed listing of your yachtall and happycharter offers on your own
 
 ### Installation
 
+* Download latest Version from here: https://update.yachtino.com/wordpress/shiplisting.zip
 * Upload the plugin to your Wordpress site and activate it. 
 * Contact Support on Happycharter.com to get your Application Key
 * Go to "Shiplisting->Generator" and create your pages.
