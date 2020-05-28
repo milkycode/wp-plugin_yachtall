@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -8,7 +7,7 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://www.milkycode.com
+ * @link              http://www.yachtino.com
  * @since             1.0.0
  * @package           Shiplisting
  *
@@ -16,9 +15,9 @@
  * Plugin Name:       yachtino Shiplisting
  * Plugin URI:        http://www.yachtino.com
  * Description:       Plugin for detailed listing of your yachtino (yachtall, happycharter) offers.
- * Version:           1.8.7
- * Author:            yachtino GmbH
- * Author URI:        http://www.yachtino.com
+ * Version:           1.8.8
+ * Author:            milkycode GmbH
+ * Author URI:        https://www.milkycode.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       shiplisting
@@ -35,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.2.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'SHIPLISTING_VERSION', '1.8.7' );
+define( 'SHIPLISTING_VERSION', '1.8.8' );
 
 /**
  * The code that runs during plugin activation.

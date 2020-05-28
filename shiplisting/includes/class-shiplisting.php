@@ -51,7 +51,7 @@ class Shiplisting {
 		if ( defined( 'SHIPLISTING_VERSION' ) ) {
 			$this->version = SHIPLISTING_VERSION;
 		} else {
-			$this->version = '1.8.7';
+			$this->version = '1.8.8';
 		}
 		$this->plugin_name = 'shiplisting';
 
