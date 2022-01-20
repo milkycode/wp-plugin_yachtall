@@ -1,13 +1,5 @@
 <?php
 /*
-Plugin Name: WP Router
-Plugin URI: https://github.com/jbrinley/WP-Router
-Description: Provides a simple API for mapping requests to callback functions.
-Author: Flightless
-Author URI: http://flightless.us/
-Version: 0.5
-*/
-/*
 Copyright (c) 2012 Flightless, Inc. http://flightless.us/
 
 Permission is hereby granted, free of charge, to any person obtaining
@@ -36,30 +28,32 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @return void
  */
-if ( !function_exists('WP_Router_load') ) {
-	function WP_Router_load() {
-		// load the base class
-		require_once 'WP_Router_Utility.class.php';
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+if ( ! function_exists('WP_Router_load')) {
+    function WP_Router_load()
+    {
+        // load the base class
+        require_once 'WP_Router_Utility.class.php';
+        include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
-		if ( WP_Router_Utility::prerequisites_met(phpversion(), get_bloginfo('version')) ) {
-			// we can continue. Load all supporting files and hook into wordpress
-			require_once 'WP_Router.class.php';
-			require_once 'WP_Route.class.php';
-			require_once 'WP_Router_Page.class.php';
-			add_action('init', array('WP_Router_Utility', 'init'), -100, 0);
-			add_action(WP_Router_Utility::PLUGIN_INIT_HOOK, array('WP_Router_Page', 'init'), 0, 0);
-			add_action(WP_Router_Utility::PLUGIN_INIT_HOOK, array('WP_Router', 'init'), 1, 0);
+        if (WP_Router_Utility::prerequisites_met(phpversion(), get_bloginfo('version'))) {
+            // we can continue. Load all supporting files and hook into wordpress
+            require_once 'WP_Router.class.php';
+            require_once 'WP_Route.class.php';
+            require_once 'WP_Router_Page.class.php';
+            add_action('init', array('WP_Router_Utility', 'init'), -100, 0);
+            add_action(WP_Router_Utility::PLUGIN_INIT_HOOK, array('WP_Router_Page', 'init'), 0, 0);
+            add_action(WP_Router_Utility::PLUGIN_INIT_HOOK, array('WP_Router', 'init'), 1, 0);
 
-            if( is_plugin_active( 'shiplisting/shiplisting.php' ) ) {
+            if (is_plugin_active('shiplisting/shiplisting.php')) {
                 require_once $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/shiplisting/includes/class-shiplisting-api.php';
                 add_action(WP_Router_Utility::PLUGIN_INIT_HOOK, array('Shiplisting_Router', 'init'), 2, 0);
             }
-		} else {
-			// let the user know prerequisites weren't met
-			add_action('admin_head', array('WP_Router_Utility', 'failed_to_load_notices'), 0, 0);
-		}
-	}
-	// Fire it up!
-	WP_Router_load();
+        } else {
+            // let the user know prerequisites weren't met
+            add_action('admin_head', array('WP_Router_Utility', 'failed_to_load_notices'), 0, 0);
+        }
+    }
+
+    // Fire it up!
+    WP_Router_load();
 }

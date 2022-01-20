@@ -6,4 +6,3 @@
  * @package     shiplisting
  * @copyright   Copyright (c) 2019 milkycode GmbH (https://www.milkycode.com)
  */
-?>

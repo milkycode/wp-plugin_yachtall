@@ -7,39 +7,41 @@
  * @copyright   Copyright (c) 2019 milkycode GmbH (https://www.milkycode.com)
  */
 
-require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-class Shiplisting_Activator {
+class Shiplisting_Activator
+{
     private static $do_update = false;
 
-	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
-	 *
-	 * @since    1.0.0
-	 */
-	public static function activate() {
-	    global $wpdb;
+    /**
+     * Short Description. (use period)
+     *
+     * Long Description.
+     *
+     * @since    1.0.0
+     */
+    public static function activate()
+    {
+        global $wpdb;
 
-	    $apikey = get_option('shiplisting_api_key');
-	    $apisiteid = get_option('shiplisting_api_siteid');
-	    $version = get_option('shiplisting_version');
+        $apikey    = get_option('shiplisting_api_key');
+        $apisiteid = get_option('shiplisting_api_siteid');
+        $version   = get_option('shiplisting_version');
 
-	    if (!$apikey) {
-            add_option( 'shiplisting_api_key', '', '', 'yes' );
+        if ( ! $apikey) {
+            add_option('shiplisting_api_key', '', '', 'yes');
         }
 
-	    if (!$apisiteid) {
-            add_option( 'shiplisting_api_siteid', '', '', 'yes' );
+        if ( ! $apisiteid) {
+            add_option('shiplisting_api_siteid', '', '', 'yes');
         }
 
-	    if (!$version) {
-            add_option( 'shiplisting_version', SHIPLISTING_VERSION, '', 'yes' );
+        if ( ! $version) {
+            add_option('shiplisting_version', SHIPLISTING_VERSION, '', 'yes');
         } else {
-	        $before_version = $version;
-	        if ($before_version != SHIPLISTING_VERSION) {
-                update_option( 'shiplisting_version', SHIPLISTING_VERSION );
+            $before_version = $version;
+            if ($before_version != SHIPLISTING_VERSION) {
+                update_option('shiplisting_version', SHIPLISTING_VERSION);
                 self::$do_update = true;
             }
         }
@@ -51,7 +53,7 @@ class Shiplisting_Activator {
         }
 
         $charset_collate = $wpdb->get_charset_collate();
-        if (!self::table_exists('wp_shiplisting_routes')) {
+        if ( ! self::table_exists('wp_shiplisting_routes')) {
             $sql = "CREATE TABLE `wp_shiplisting_routes` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(255) NULL DEFAULT NULL,
@@ -69,10 +71,10 @@ class Shiplisting_Activator {
 	UNIQUE INDEX `id` (`id`),
 	UNIQUE INDEX `name` (`name`)
 ) $charset_collate;";
-            dbDelta( $sql );
+            dbDelta($sql);
         }
 
-        if (!self::table_exists('wp_shiplisting_filter')) {
+        if ( ! self::table_exists('wp_shiplisting_filter')) {
             $sql = "CREATE TABLE `wp_shiplisting_filter` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(255) NULL DEFAULT NULL,
@@ -82,10 +84,10 @@ class Shiplisting_Activator {
 	`updated` DATETIME NULL DEFAULT NULL,
 	PRIMARY KEY (`id`)
 ) $charset_collate;";
-            dbDelta( $sql );
+            dbDelta($sql);
         }
 
-        if (!self::table_exists('wp_shiplisting_settings')) {
+        if ( ! self::table_exists('wp_shiplisting_settings')) {
             $sql = "CREATE TABLE `wp_shiplisting_settings` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`active` INT(11) NULL DEFAULT NULL,
@@ -99,19 +101,19 @@ class Shiplisting_Activator {
 	`cache_time` VARCHAR(255) NULL DEFAULT NULL,
 	PRIMARY KEY (`id`)
 ) $charset_collate;";
-            dbDelta( $sql );
+            dbDelta($sql);
 
             $sql = "INSERT INTO `wp_shiplisting_settings` (`active`, `maintenance`, `filtering_standard`, `filtering_advanced`, `contact_form`, `cache_active`, `cache_time`) VALUES ('1', '0', '1', '1', '1', '0', '3 minutes');";
-            dbDelta( $sql );
+            dbDelta($sql);
         } else {
             $rowcount = $wpdb->get_var("SELECT COUNT(*) FROM `wp_shiplisting_settings`");
             if ($rowcount == 0) {
                 $sql = "INSERT INTO `wp_shiplisting_settings` (`active`, `maintenance`, `filtering_standard`, `filtering_advanced`, `contact_form`, `cache_active`, `cache_time`) VALUES ('1', '0', '1', '1', '1', '0', '3 minutes');";
-                dbDelta( $sql );
+                dbDelta($sql);
             }
         }
 
-        if (!self::table_exists('wp_shiplisting_caching')) {
+        if ( ! self::table_exists('wp_shiplisting_caching')) {
             $sql = "CREATE TABLE `wp_shiplisting_caching` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`hash` VARCHAR(255) NOT NULL DEFAULT '0',
@@ -122,18 +124,18 @@ class Shiplisting_Activator {
 	PRIMARY KEY (`id`),
 	INDEX `id` (`id`)
 )$charset_collate;";
-            dbDelta( $sql );
+            dbDelta($sql);
         }
-	}
+    }
 
-	private static function table_exists($table_name) {
-	    global $wpdb;
+    private static function table_exists($table_name)
+    {
+        global $wpdb;
 
-        if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name ) ) === $table_name ) {
+        if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_name)) === $table_name) {
             return true;
         } else {
             return false;
         }
     }
-
 }

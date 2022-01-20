@@ -620,7 +620,7 @@ div.shiplisting-form-cell-value span.value-helper {
 div.shiplisting-form-cell-value input.shiplisting-form-cell-value-input {
     width: 50%;
     padding: 0.875rem 1.375rem;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 2px;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -828,6 +828,7 @@ div.shiplisting-helper div.shiplisting-helper-box h2 {
     height: 50px;
     margin-left: -50px !important;
 }
+
 .lds-ellipsis div {
     position: absolute;
     top: 27px;
@@ -837,22 +838,27 @@ div.shiplisting-helper div.shiplisting-helper-box h2 {
     background: #333;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
+
 .lds-ellipsis div:nth-child(1) {
     left: 6px;
     animation: lds-ellipsis1 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(2) {
     left: 6px;
     animation: lds-ellipsis2 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(3) {
     left: 26px;
     animation: lds-ellipsis2 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(4) {
     left: 45px;
     animation: lds-ellipsis3 0.6s infinite;
 }
+
 @keyframes lds-ellipsis1 {
     0% {
         transform: scale(0);
@@ -861,6 +867,7 @@ div.shiplisting-helper div.shiplisting-helper-box h2 {
         transform: scale(1);
     }
 }
+
 @keyframes lds-ellipsis3 {
     0% {
         transform: scale(1);
@@ -869,6 +876,7 @@ div.shiplisting-helper div.shiplisting-helper-box h2 {
         transform: scale(0);
     }
 }
+
 @keyframes lds-ellipsis2 {
     0% {
         transform: translate(0, 0);
@@ -1191,8 +1199,9 @@ div.shiplisting-generator-blocker div.shiplisting-generator-loader div.spinner-l
     0%, 100% {
         transform: scale(0.0);
         -webkit-transform: scale(0.0);
-    } 50% {
-          transform: scale(1.0);
-          -webkit-transform: scale(1.0);
-      }
+    }
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
 }

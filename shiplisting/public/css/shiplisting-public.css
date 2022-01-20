@@ -196,8 +196,8 @@ div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row.mb
 }
 
 div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row.mb-25 {
-     margin-bottom: 15px !important;
- }
+    margin-bottom: 15px !important;
+}
 
 div.shiplisting-boatdata-details-wrapper div.shiplisting-boatdata-details-row.highlight div.shiplisting-boatdata-details-value {
     color: #ef9900;
@@ -277,7 +277,7 @@ div.shiplisting-modal-window {
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     top: 0;
     left: 0;
     z-index: 1000;
@@ -409,7 +409,7 @@ div.shiplisting-boat-equipment div.shiplisting-equipment-item-wrapper h3 {
     font-weight: bold;
     font-size: 14px;
     float: left;
-    color: #9E9E9E;
+    color: #9e9e9e;
     display: flex;
 }
 
@@ -558,7 +558,7 @@ div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field select {
     width: 100%;
     padding: 0.875rem 10px;
     margin: 0;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 2px;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -610,14 +610,14 @@ div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-fi
     border-radius: 0.1875rem;
     background-color: #e9e9e9;
     color: #a3a4a5;
-    border: 1px solid #bbbbbb;
+    border: 1px solid #bbb;
     font-size: 14px;
     font-weight: 400;
 }
 
 div.shiplisting-sale-form-row div.shiplisting-sale-form-row-field #shiplisting-sale-contact-submit:hover,
 div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-submit button:hover {
-    border: 1px solid #bbbbbb;
+    border: 1px solid #bbb;
     background-color: #d6d6d6;
     color: #000;
 }
@@ -719,7 +719,7 @@ div.shiplisting-boats.adv-filtering div.shiplisting-boats-object div.shiplisting
 }
 
 div.shiplisting-boats-wrapper {
-     width: 100%;
+    width: 100%;
     display: block;
 }
 
@@ -1196,7 +1196,7 @@ div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-obje
     width: 50%;
 }
 
-@media screen and (max-width:720px) {
+@media screen and (max-width: 720px) {
     div.shiplisting-boat-wrapper {
         display: block;
     }
@@ -1368,4 +1368,5 @@ div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-obje
         width: 100%;
     }
 }
+
 /*move title to top in mobile?*/
