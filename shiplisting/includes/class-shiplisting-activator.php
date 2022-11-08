@@ -1,10 +1,10 @@
 <?php
 /**
- * Yachtall Shiplisting WordPress Plugin.
- * @author      Stefan Meyer <stefan@milkycode.com>
+ * Yachtino Shiplisting WordPress Plugin.
+ * @author      Christian Hinz <christian@milkycode.com>
  * @category    Milkycode
  * @package     shiplisting
- * @copyright   Copyright (c) 2019 milkycode GmbH (https://www.milkycode.com)
+ * @copyright   Copyright (c) 2022 milkycode GmbH (https://www.milkycode.com)
  */
 
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -24,19 +24,19 @@ class Shiplisting_Activator
     {
         global $wpdb;
 
-        $apikey    = get_option('shiplisting_api_key');
+        $apikey = get_option('shiplisting_api_key');
         $apisiteid = get_option('shiplisting_api_siteid');
-        $version   = get_option('shiplisting_version');
+        $version = get_option('shiplisting_version');
 
-        if ( ! $apikey) {
+        if (!$apikey) {
             add_option('shiplisting_api_key', '', '', 'yes');
         }
 
-        if ( ! $apisiteid) {
+        if (!$apisiteid) {
             add_option('shiplisting_api_siteid', '', '', 'yes');
         }
 
-        if ( ! $version) {
+        if (!$version) {
             add_option('shiplisting_version', SHIPLISTING_VERSION, '', 'yes');
         } else {
             $before_version = $version;
@@ -53,7 +53,7 @@ class Shiplisting_Activator
         }
 
         $charset_collate = $wpdb->get_charset_collate();
-        if ( ! self::table_exists('wp_shiplisting_routes')) {
+        if (!self::table_exists('wp_shiplisting_routes')) {
             $sql = "CREATE TABLE `wp_shiplisting_routes` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(255) NULL DEFAULT NULL,
@@ -74,7 +74,7 @@ class Shiplisting_Activator
             dbDelta($sql);
         }
 
-        if ( ! self::table_exists('wp_shiplisting_filter')) {
+        if (!self::table_exists('wp_shiplisting_filter')) {
             $sql = "CREATE TABLE `wp_shiplisting_filter` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(255) NULL DEFAULT NULL,
@@ -87,7 +87,7 @@ class Shiplisting_Activator
             dbDelta($sql);
         }
 
-        if ( ! self::table_exists('wp_shiplisting_settings')) {
+        if (!self::table_exists('wp_shiplisting_settings')) {
             $sql = "CREATE TABLE `wp_shiplisting_settings` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`active` INT(11) NULL DEFAULT NULL,
@@ -113,7 +113,7 @@ class Shiplisting_Activator
             }
         }
 
-        if ( ! self::table_exists('wp_shiplisting_caching')) {
+        if (!self::table_exists('wp_shiplisting_caching')) {
             $sql = "CREATE TABLE `wp_shiplisting_caching` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`hash` VARCHAR(255) NOT NULL DEFAULT '0',

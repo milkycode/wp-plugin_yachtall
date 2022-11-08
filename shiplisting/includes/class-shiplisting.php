@@ -1,10 +1,10 @@
 <?php
 /**
- * Yachtall Shiplisting WordPress Plugin.
- * @author      Stefan Meyer <stefan@milkycode.com>
+ * Yachtino Shiplisting WordPress Plugin.
+ * @author      Christian Hinz <christian@milkycode.com>
  * @category    Milkycode
  * @package     shiplisting
- * @copyright   Copyright (c) 2019 milkycode GmbH (https://www.milkycode.com)
+ * @copyright   Copyright (c) 2022 milkycode GmbH (https://www.milkycode.com)
  */
 
 class Shiplisting
@@ -133,7 +133,7 @@ class Shiplisting
      */
     private function define_admin_hooks()
     {
-        $plugin_admin      = new Shiplisting_Admin($this->get_plugin_name(), $this->get_version());
+        $plugin_admin = new Shiplisting_Admin($this->get_plugin_name(), $this->get_version());
         $plugin_admin->api = $this->api;
 
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');

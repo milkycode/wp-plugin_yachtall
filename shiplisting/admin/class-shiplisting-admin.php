@@ -58,7 +58,7 @@ class Shiplisting_Admin
     public function __construct($plugin_name, $version)
     {
         $this->plugin_name = $plugin_name;
-        $this->version     = $version;
+        $this->version = $version;
     }
 
     /**
@@ -80,8 +80,7 @@ class Shiplisting_Admin
          * class.
          */
 
-        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/shiplisting-admin.css', array(),
-            $this->version, 'all');
+        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/shiplisting-admin.css', array(), $this->version, 'all');
     }
 
     /**
@@ -114,7 +113,7 @@ class Shiplisting_Admin
 
     function shiplisting_adminmenu()
     {
-        add_menu_page(__('yachtall Shiplisting', 'shiplisting'), __('Shiplisting', 'shiplisting'), 'manage_options',
+        add_menu_page(__('yachtall Shiplisting', 'shiplisting'), __('Yachtino', 'shiplisting'), 'manage_options',
             'shiplisting-admin', array($this, 'beta_shiplisting_configuration'));
         add_submenu_page('shiplisting-admin', __('yachtall Shiplisting - Filter', 'shiplisting'),
             __('Filter', 'shiplisting'), 'manage_options', 'shiplisting-admin-filter',
@@ -129,13 +128,13 @@ class Shiplisting_Admin
 
     function shiplisting_configuration_page()
     {
-        if ( ! current_user_can('manage_options')) {
+        if (!current_user_can('manage_options')) {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
         $hidden_field_name = 'shiplisting_submit';
 
         if (isset($_POST[$hidden_field_name]) && $_POST[$hidden_field_name] == 'Y') {
-            $api_key_val    = $_POST['shiplisting_api_key'];
+            $api_key_val = $_POST['shiplisting_api_key'];
             $api_siteid_val = $_POST['shiplisting_api_siteid'];
 
             update_option('shiplisting_api_key', $api_key_val);
@@ -177,33 +176,33 @@ class Shiplisting_Admin
         global $wpdb;
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $shiplisting_active  = $_POST['shiplisting_active'];
+            $shiplisting_active = $_POST['shiplisting_active'];
             $shiplisting_caching = $_POST['shiplisting_caching'];
 
-            $shiplisting_api_key     = $_POST['shiplisting_api_key'];
+            $shiplisting_api_key = $_POST['shiplisting_api_key'];
             $shiplisting_api_site_id = $_POST['shiplisting_api_site_id'];
 
             $shiplisting_filtering_standard = $_POST['shiplisting_filtering_standard'];
             $shiplisting_filtering_advanced = $_POST['shiplisting_filtering_advanced'];
-            $shiplisting_contact_form       = $_POST['shiplisting_contact_form'];
+            $shiplisting_contact_form = $_POST['shiplisting_contact_form'];
 
-            if ( ! empty($shiplisting_api_key)) {
+            if (!empty($shiplisting_api_key)) {
                 update_option('shiplisting_api_key', $shiplisting_api_key);
             }
-            if ( ! empty($shiplisting_api_site_id)) {
+            if (!empty($shiplisting_api_site_id)) {
                 update_option('shiplisting_api_siteid', $shiplisting_api_site_id);
             }
 
             $wpdb->update(
                 'wp_shiplisting_settings',
                 array(
-                    'active'             => $shiplisting_active,
-                    'cache_active'       => $shiplisting_caching,
-                    'api_key'            => $shiplisting_api_key,
-                    'api_site_id'        => $shiplisting_api_site_id,
+                    'active' => $shiplisting_active,
+                    'cache_active' => $shiplisting_caching,
+                    'api_key' => $shiplisting_api_key,
+                    'api_site_id' => $shiplisting_api_site_id,
                     'filtering_standard' => $shiplisting_filtering_standard,
                     'filtering_advanced' => $shiplisting_filtering_advanced,
-                    'contact_form'       => $shiplisting_contact_form,
+                    'contact_form' => $shiplisting_contact_form,
                 ),
                 array(
                     'id' => 1
@@ -212,20 +211,20 @@ class Shiplisting_Admin
         }
 
         $template = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/shiplisting/admin/js/templates/shiplisting-admin-configuration.html');
-        if ( ! $template) {
+        if (!$template) {
             return;
         }
 
-        $data   = [];
+        $data = [];
         $result = $wpdb->get_results('SELECT * FROM wp_shiplisting_settings');
         if ($result) {
-            $data['active']             = ($result[0]->{'active'} == "1") ? ' selected="selected"' : '';
-            $data['cache']              = ($result[0]->{'cache_active'} == "1") ? ' selected="selected"' : '';
-            $data['api_key']            = $result[0]->{'api_key'};
-            $data['api_site_id']        = $result[0]->{'api_site_id'};
+            $data['active'] = ($result[0]->{'active'} == "1") ? ' selected="selected"' : '';
+            $data['cache'] = ($result[0]->{'cache_active'} == "1") ? ' selected="selected"' : '';
+            $data['api_key'] = $result[0]->{'api_key'};
+            $data['api_site_id'] = $result[0]->{'api_site_id'};
             $data['filtering_standard'] = ($result[0]->{'filtering_standard'} == "1") ? ' selected="selected"' : '';
             $data['filtering_advanced'] = ($result[0]->{'filtering_advanced'} == "1") ? ' selected="selected"' : '';
-            $data['contact_form']       = ($result[0]->{'contact_form'} == "1") ? ' selected="selected"' : '';
+            $data['contact_form'] = ($result[0]->{'contact_form'} == "1") ? ' selected="selected"' : '';
         }
 
         $template = preg_replace_callback("/\{(.*?)\}/i", function ($result) use ($data) {
@@ -233,10 +232,10 @@ class Shiplisting_Admin
 
             if (strpos($placeholder, 'data_') > -1) {
                 $placeholder = substr($placeholder, 5);
-                $isData      = true;
+                $isData = true;
             }
 
-            if ($isData && ! empty($placeholder)) {
+            if ($isData && !empty($placeholder)) {
                 return $data[$placeholder];
             }
         }, $template);
@@ -248,7 +247,7 @@ class Shiplisting_Admin
     {
         global $wpdb;
 
-        if ( ! current_user_can('manage_options')) {
+        if (!current_user_can('manage_options')) {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
 
@@ -278,32 +277,36 @@ class Shiplisting_Admin
 
         echo '
         <div class="shiplisting-admin-wrapper">
-            <h2>Filter - Overview</h2>
-            <div class="shiplisting-filter-wrapper">
-                <div class="shiplisting-filter-heading">         
-                    <div class="shiplisting-filter-header id">
-                        ID
-                    </div>         
-                    <div class="shiplisting-filter-header name">
-                        Name
-                    </div>         
-                    <div class="shiplisting-filter-header filter-fields">
-                        Filter Fields
-                    </div>         
-                    <div class="shiplisting-filter-header added">
-                        Added
-                    </div>
-                    <div class="shiplisting-filter-header options">
-                        Options
-                    </div>
-                </div>
-                <div class="shiplisting-filter-content">';
+            <div class="shiplisting-admin-header">
+                <h1>Filter - Overview</h1>
+            </div>
+            <div class="shiplisting-admin-configuration-page-wrapper">
+                <div class="shiplisting-admin-configuration-page">
+                    <div class="shiplisting-filter-wrapper">
+                        <div class="shiplisting-filter-heading">         
+                            <div class="shiplisting-filter-header id">
+                                ID
+                            </div>         
+                            <div class="shiplisting-filter-header name">
+                                Name
+                            </div>         
+                            <div class="shiplisting-filter-header filter-fields">
+                                Filter Fields
+                            </div>         
+                            <div class="shiplisting-filter-header added">
+                                Added
+                            </div>
+                            <div class="shiplisting-filter-header options">
+                                Options
+                            </div>
+                        </div>
+                        <div class="shiplisting-filter-content">';
 
         $result = $wpdb->get_results("SELECT * FROM wp_shiplisting_filter");
         foreach ($result as $filterObj) {
-            if ( ! empty($filterObj->{'fields_to_filter'}) && $filterObj->{'fields_to_filter'} != "null") {
+            if (!empty($filterObj->{'fields_to_filter'}) && $filterObj->{'fields_to_filter'} != "null") {
                 $filterFieldsData = json_decode($filterObj->{'fields_to_filter'}, true);
-                $filterFields     = '';
+                $filterFields = '';
                 foreach ($filterFieldsData as $field) {
                     foreach ($field as $key => $fieldObj) {
                         $filterFields .= $key . ' => ' . $fieldObj . '<br>';
@@ -315,27 +318,29 @@ class Shiplisting_Admin
 
 
             echo '
-                    <div class="shiplisting-filter-row">
-                        <div class="shiplisting-filter id">
-                            ' . $filterObj->{'id'} . '
-                        </div>
-                        <div class="shiplisting-filter name">
-                            ' . $filterObj->{'name'} . '
-                        </div>
-                        <div class="shiplisting-filter filter-fields">
-                            ' . $filterFields . '
-                        </div>
-                        <div class="shiplisting-filter added">
-                            ' . $filterObj->{'added'} . '
-                        </div>
-                        <div class="shiplisting-filter options">
-                            <a class="shiplisting-filter-delete" href="javascript:void(0);">Remove</a>
-                        </div>
-                    </div>
+                            <div class="shiplisting-filter-row">
+                                <div class="shiplisting-filter id">
+                                    ' . $filterObj->{'id'} . '
+                                </div>
+                                <div class="shiplisting-filter name">
+                                    ' . $filterObj->{'name'} . '
+                                </div>
+                                <div class="shiplisting-filter filter-fields">
+                                    ' . $filterFields . '
+                                </div>
+                                <div class="shiplisting-filter added">
+                                    ' . $filterObj->{'added'} . '
+                                </div>
+                                <div class="shiplisting-filter options">
+                                    <a class="shiplisting-filter-delete" href="javascript:void(0);">Remove</a>
+                                </div>
+                            </div>
             ';
         }
 
         echo '
+                        </div>
+                    </div>
                 </div>
             </div>
 <!--
@@ -434,7 +439,7 @@ class Shiplisting_Admin
     {
         global $wpdb;
 
-        if ( ! current_user_can('manage_options')) {
+        if (!current_user_can('manage_options')) {
             wp_die(__('You do not have sufficient permissions to access this page.'));
         }
 
@@ -498,37 +503,46 @@ class Shiplisting_Admin
 
         echo '
         <div class="shiplisting-admin-wrapper">
-            <h2>Pages - Overview</h2>
-            <div class="shiplisting-filter-wrapper">
-                <div class="shiplisting-filter-heading">         
-                    <div class="shiplisting-filter-header id">
-                        ID
-                    </div>         
-                    <div class="shiplisting-filter-header name">
-                        Name
-                    </div>    
-                    <div class="shiplisting-filter-header title">
-                        Title
-                    </div>     
-                    <div class="shiplisting-filter-header path">
-                        Path
-                    </div>         
-                    <div class="shiplisting-filter-header variables">
-                        Filter
-                    </div>
-                    <div class="shiplisting-filter-header added">
-                        Added
-                    </div>
-                    <div class="shiplisting-filter-header options">
-                        Options
-                    </div>
-                </div>
-                <div class="shiplisting-filter-content">';
+            <div class="shiplisting-admin-header">
+                <h1>Pages - Overview</h1>
+                <div class="shiplisting-admin-header-desc"></div>
+            </div>
+            <div class="shiplisting-admin-configuration-page-wrapper">
+                <div class="shiplisting-admin-configuration-page">
+                    <div class="shiplisting-filter-wrapper">
+                        <div class="shiplisting-filter-heading">         
+                            <div class="shiplisting-filter-header id">
+                                ID
+                            </div>         
+                            <div class="shiplisting-filter-header name">
+                                Name
+                            </div>    
+                            <div class="shiplisting-filter-header title">
+                                Title
+                            </div>     
+                            <div class="shiplisting-filter-header path">
+                                Path
+                            </div>         
+                            <div class="shiplisting-filter-header variables">
+                                Filter
+                            </div>
+                            <div class="shiplisting-filter-header added">
+                                Added
+                            </div>
+                            <div class="shiplisting-filter-header options">
+                                Options
+                            </div>
+                        </div>
+                        <div class="shiplisting-filter-content">';
 
         $result = $wpdb->get_results("SELECT * FROM wp_shiplisting_routes");
         foreach ($result as $routesObj) {
+            $vars = json_decode($routesObj->{'vars'}, true);
+            $filterId = 0;
+            if (isset($vars[2]['filter'])) {
+                $filterId = $vars[2]['filter'];
+            }
 
-            $filterId = json_decode($routesObj->{'vars'}, true)[2]['filter'];
             if ($filterId > 0) {
                 $filter = $wpdb->get_results("SELECT id, name FROM wp_shiplisting_filter WHERE id = $filterId");
                 $filter = $filter[0]->{'name'};
@@ -537,8 +551,7 @@ class Shiplisting_Admin
             }
 
             $path = $routesObj->{'path'};
-            $uri  = '';
-
+            $uri = '';
             if (stripos($path, '/(.*?)$') > 0) {
                 $uri = substr($path, 1);
                 $uri = substr($uri, 0, stripos($uri, '/(.*?)')) . '/57/';
@@ -546,35 +559,36 @@ class Shiplisting_Admin
                 $uri = $path;
             }
 
-
             echo '
-                    <div class="shiplisting-filter-row">
-                        <div class="shiplisting-filter id">
-                            ' . $routesObj->{'id'} . '
-                        </div>
-                        <div class="shiplisting-filter name">
-                            ' . $routesObj->{'name'} . '
-                        </div>
-                        <div class="shiplisting-filter title">
-                            ' . $routesObj->{'title'} . '
-                        </div>
-                        <div class="shiplisting-filter path">
-                            <a target="_blank" href="/' . $uri . '">' . $routesObj->{'path'} . '</a>
-                        </div>
-                        <div class="shiplisting-filter variables">
-                            ' . $filter . '
-                        </div>
-                        <div class="shiplisting-filter added">
-                            ' . $routesObj->{'added'} . '
-                        </div>
-                        <div class="shiplisting-filter options">
-                            <a class="shiplisting-filter-delete" href="javascript:void(0);">Remove</a>
-                        </div>
-                    </div>
+                            <div class="shiplisting-filter-row">
+                                <div class="shiplisting-filter id">
+                                    ' . $routesObj->{'id'} . '
+                                </div>
+                                <div class="shiplisting-filter name">
+                                    ' . $routesObj->{'name'} . '
+                                </div>
+                                <div class="shiplisting-filter title">
+                                    ' . $routesObj->{'title'} . '
+                                </div>
+                                <div class="shiplisting-filter path">
+                                    <a target="_blank" href="/' . $uri . '">' . $routesObj->{'path'} . '</a>
+                                </div>
+                                <div class="shiplisting-filter variables">
+                                    ' . $filter . '
+                                </div>
+                                <div class="shiplisting-filter added">
+                                    ' . $routesObj->{'added'} . '
+                                </div>
+                                <div class="shiplisting-filter options">
+                                    <a class="shiplisting-filter-delete" href="javascript:void(0);">Remove</a>
+                                </div>
+                            </div>
             ';
         }
 
         echo '
+                        </div>
+                    </div>
                 </div>
             </div>
             <!--
@@ -747,26 +761,26 @@ class Shiplisting_Admin
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (is_array($_POST['formData'][0])) {
-                $routeCallback         = '';
-                $routeName             = '';
-                $routeTitle            = '';
-                $routePath             = '';
-                $routeSource           = 0;
+                $routeCallback = '';
+                $routeName = '';
+                $routeTitle = '';
+                $routePath = '';
+                $routeSource = 0;
                 $routeLinkedDetailView = 0;
 
-                $variables              = [];
-                $arguments              = [];
-                $routeCallback          = '';
+                $variables = [];
+                $arguments = [];
+                $routeCallback = '';
                 $routeAdvancedFiltering = '';
-                $routeLanguage          = '';
+                $routeLanguage = '';
 
                 if ($_POST['formType'] == 0) {
-                    $routeCallback  = 'display_boat_details';
-                    $routeName      = $_POST['formData'][0]['detail_name'] . '';
-                    $routeTitle     = $_POST['formData'][0]['detail_title'];
-                    $routePath      = '^' . $_POST['formData'][0]['detail_path'] . '/(.*?)$';
+                    $routeCallback = 'display_boat_details';
+                    $routeName = $_POST['formData'][0]['detail_name'] . '';
+                    $routeTitle = $_POST['formData'][0]['detail_title'];
+                    $routePath = '^' . $_POST['formData'][0]['detail_path'] . '/(.*?)$';
                     $templateDetail = '';
-                    $routeLanguage  = $_POST['formData'][0]['detail_language'];
+                    $routeLanguage = $_POST['formData'][0]['detail_language'];
 
                     $routeSource = $_POST['formSource'];
                     if ($routeSource == "0") {
@@ -784,7 +798,7 @@ class Shiplisting_Admin
                     $arguments[] = 'source';
                 } elseif ($_POST['formType'] == 1) {
                     $filterNameStr = $_POST['formData'][0]['list_name'] . '_filter';
-                    $filters       = [];
+                    $filters = [];
                     foreach ($_POST['formFilters'] as $filterName => $filterVal) {
                         $filters[$filterName] = $filterVal;
                     }
@@ -792,16 +806,16 @@ class Shiplisting_Admin
                     $wpdb->insert(
                         'wp_shiplisting_filter',
                         array(
-                            'name'             => $filterNameStr,
+                            'name' => $filterNameStr,
                             'fields_to_filter' => json_encode($filters)
                         )
                     );
                     $filterId = $wpdb->insert_id;
 
-                    $routeName         = $_POST['formData'][0]['list_name'];
-                    $routeTitle        = $_POST['formData'][0]['list_title'];
-                    $routePath         = $_POST['formData'][0]['list_path'];
-                    $routeCallback     = 'display_boats';
+                    $routeName = $_POST['formData'][0]['list_name'];
+                    $routeTitle = $_POST['formData'][0]['list_title'];
+                    $routePath = $_POST['formData'][0]['list_path'];
+                    $routeCallback = 'display_boats';
                     $advancedFiltering = $_POST['formData'][0]['list_advanced_filtering'];
                     if ($advancedFiltering) {
                         //$routeAdvancedFiltering = json_encode($_POST['formData'][0]['list_advanced_filtering_options']);
@@ -814,7 +828,7 @@ class Shiplisting_Admin
                         }
                     }
                     $routeLinkedDetailView = $_POST['formData'][0]['list_linked_detail_view'];
-                    $routeLanguage         = $_POST['formData'][0]['list_language'];
+                    $routeLanguage = $_POST['formData'][0]['list_language'];
 
                     array_push($variables, ['template' => 'template-shiplisting-get-all-boats.html']);
                     array_push($variables, ['boatTemplate' => 'template-shiplisting-boat-obj.html']);
@@ -834,15 +848,15 @@ class Shiplisting_Admin
                     $wpdb->insert(
                         'wp_shiplisting_routes',
                         array(
-                            'name'               => $routeName,
-                            'title'              => $routeTitle,
-                            'path'               => $routePath,
-                            'callback'           => $routeCallback,
-                            'adv_filter'         => $routeAdvancedFiltering,
-                            'vars'               => json_encode($variables),
-                            'arguments'          => json_encode($arguments),
+                            'name' => $routeName,
+                            'title' => $routeTitle,
+                            'path' => $routePath,
+                            'callback' => $routeCallback,
+                            'adv_filter' => $routeAdvancedFiltering,
+                            'vars' => json_encode($variables),
+                            'arguments' => json_encode($arguments),
                             'linked_detail_view' => $routeLinkedDetailView,
-                            'language'           => $routeLanguage
+                            'language' => $routeLanguage
                         )
                     );
                 } catch (Exception $e) {
@@ -852,11 +866,11 @@ class Shiplisting_Admin
         }
 
         $template = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/shiplisting/admin/js/templates/shiplisting-admin-generator.html');
-        if ( ! $template) {
+        if (!$template) {
             return;
         }
 
-        if ( ! Shiplisting_Shortcodes::$api) {
+        if (!Shiplisting_Shortcodes::$api) {
             Shiplisting_Shortcodes::$api = $GLOBALS['shiplisting'];
         }
 
@@ -885,21 +899,21 @@ class Shiplisting_Admin
                     )
                 );
 
-                if ( ! is_wp_error($remote) && isset($remote['response']['code']) && $remote['response']['code'] == 200 && ! empty($remote['body'])) {
+                if (!is_wp_error($remote) && isset($remote['response']['code']) && $remote['response']['code'] == 200 && !empty($remote['body'])) {
                     set_transient($this->transientStr, $remote, 43200); // 12 hours cache
 
                     $body = json_decode($remote['body']);
                     if ($body && !empty($body->version) && version_compare($this->pluginVersion, $body->version, '<')
                         && version_compare($body->requires, get_bloginfo('version'), '<')) {
-                        $res                               = new stdClass();
-                        $res->slug                         = $this->pluginSlug;
-                        $res->plugin                       = 'shiplisting/shiplisting.php';
-                        $res->new_version                  = $body->version;
-                        $res->tested                       = $body->tested;
-                        $res->package                      = $body->download_url;
-                        $res->compatibility                = new stdClass();
+                        $res = new stdClass();
+                        $res->slug = $this->pluginSlug;
+                        $res->plugin = 'shiplisting/shiplisting.php';
+                        $res->new_version = $body->version;
+                        $res->tested = $body->tested;
+                        $res->package = $body->download_url;
+                        $res->compatibility = new stdClass();
                         $transient->response[$res->plugin] = $res;
-                        $transient->checked[$res->plugin]  = $body->version;
+                        $transient->checked[$res->plugin] = $body->version;
                     }
                 }
             }
@@ -929,32 +943,32 @@ class Shiplisting_Admin
                 )
             );
 
-            if ( ! is_wp_error($remote) && isset($remote['response']['code']) && $remote['response']['code'] == 200 && ! empty($remote['body'])) {
+            if (!is_wp_error($remote) && isset($remote['response']['code']) && $remote['response']['code'] == 200 && !empty($remote['body'])) {
                 set_transient($this->transientStr, $remote, 43200);
             }
 
         }
 
         if ($remote) {
-            $remote              = json_decode($remote['body']);
-            $res                 = new stdClass();
-            $res->name           = $remote->name;
-            $res->slug           = $this->pluginSlug;
-            $res->version        = $remote->version;
-            $res->tested         = $remote->tested;
-            $res->requires       = $remote->requires;
-            $res->author         = '<a href="http://milkycode.com">Stefan Meyer (stefan@milkycode.com) | milkycode GmbH</a>';
+            $remote = json_decode($remote['body']);
+            $res = new stdClass();
+            $res->name = $remote->name;
+            $res->slug = $this->pluginSlug;
+            $res->version = $remote->version;
+            $res->tested = $remote->tested;
+            $res->requires = $remote->requires;
+            $res->author = '<a href="https://www.milkycode.com">Christian Hinz (christian@milkycode.com) | milkycode GmbH</a>';
             $res->author_profile = '';
-            $res->download_link  = $remote->download_url;
-            $res->trunk          = $remote->download_url;
-            $res->last_updated   = $remote->last_updated;
-            $res->sections       = array(
+            $res->download_link = $remote->download_url;
+            $res->trunk = $remote->download_url;
+            $res->last_updated = $remote->last_updated;
+            $res->sections = array(
                 //'description' => $remote->sections->description,
                 //'installation' => $remote->sections->installation,
                 'changelog' => $remote->sections->changelog
                 // you can add your custom sections (tabs) here
             );
-            if ( ! empty($remote->sections->screenshots)) {
+            if (!empty($remote->sections->screenshots)) {
                 $res->sections['screenshots'] = $remote->sections->screenshots;
             }
 

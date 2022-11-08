@@ -1,10 +1,10 @@
 <?php
 /**
- * Yachtall Shiplisting WordPress Plugin.
- * @author      Stefan Meyer <stefan@milkycode.com>
+ * Yachtino Shiplisting WordPress Plugin.
+ * @author      Christian Hinz <christian@milkycode.com>
  * @category    Milkycode
  * @package     shiplisting
- * @copyright   Copyright (c) 2019 milkycode GmbH (https://www.milkycode.com)
+ * @copyright   Copyright (c) 2022 milkycode GmbH (https://www.milkycode.com)
  */
 
 class Shiplisting_Loader
@@ -92,10 +92,10 @@ class Shiplisting_Loader
     {
 
         $hooks[] = array(
-            'hook'          => $hook,
-            'component'     => $component,
-            'callback'      => $callback,
-            'priority'      => $priority,
+            'hook' => $hook,
+            'component' => $component,
+            'callback' => $callback,
+            'priority' => $priority,
             'accepted_args' => $accepted_args
         );
 

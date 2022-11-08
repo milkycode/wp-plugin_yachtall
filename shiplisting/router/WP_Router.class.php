@@ -53,9 +53,9 @@ class WP_Router extends WP_Router_Utility
     {
         if (isset($this->routes[$id])) {
             return $this->routes[$id];
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     /**
@@ -68,11 +68,11 @@ class WP_Router extends WP_Router_Utility
      */
     public function edit_route($id, array $changes)
     {
-        if ( ! isset($this->routes[$id])) {
+        if (!isset($this->routes[$id])) {
             return;
         }
         foreach ($changes as $key => $value) {
-            if ($key != 'id') {
+            if ($key !== 'id') {
                 try {
                     $this->routes[$id]->set($key, $value);
                 } catch (Exception $e) {
@@ -107,7 +107,7 @@ class WP_Router extends WP_Router_Utility
     public function get_url($route_id, $arguments = array())
     {
         $route = $this->get_route($route_id);
-        if ( ! $route) {
+        if (!$route) {
             return home_url();
         } else {
             return $route->url($arguments);
@@ -124,7 +124,7 @@ class WP_Router extends WP_Router_Utility
 
     public static function get_instance()
     {
-        if ( ! self::$instance) {
+        if (!self::$instance) {
             self::$instance = new self();
         }
 
@@ -140,18 +140,6 @@ class WP_Router extends WP_Router_Utility
         add_action('parse_request', array($this, 'parse_request'), 10, 1);
         add_filter('rewrite_rules_array', array($this, 'add_rewrite_rules'), 10, 1);
         add_filter('query_vars', array($this, 'add_query_vars'), 10, 1);
-    }
-
-    private function __clone()
-    {
-        // cannot be cloned
-        trigger_error(__CLASS__ . ' may not be cloned', E_USER_ERROR);
-    }
-
-    public function __sleep()
-    {
-        // cannot be serialized
-        trigger_error(__CLASS__ . ' may not be serialized', E_USER_ERROR);
     }
 
     /**
@@ -202,7 +190,7 @@ class WP_Router extends WP_Router_Utility
     public function add_query_vars($vars)
     {
         $route_vars = $this->query_vars();
-        $vars       = array_merge($vars, $route_vars);
+        $vars = array_merge($vars, $route_vars);
 
         return $vars;
     }
@@ -232,7 +220,7 @@ class WP_Router extends WP_Router_Utility
     {
         // we'll only get a 'wp_router_page' query var when visiting
         // the page for a WP Router post, and there's only one of those
-        if ( ! empty($query->query_vars[WP_Router_Page::POST_TYPE])) {
+        if (!empty($query->query_vars[WP_Router_Page::POST_TYPE])) {
             wp_redirect(home_url(), 303);
             exit();
         }
@@ -247,11 +235,11 @@ class WP_Router extends WP_Router_Utility
      */
     protected function identify_route($query)
     {
-        if ( ! isset($query->query_vars[self::QUERY_VAR])) {
+        if (!isset($query->query_vars[self::QUERY_VAR])) {
             return null;
         }
         $id = $query->query_vars[self::QUERY_VAR];
-        if ( ! isset($this->routes[$id]) || ! $this->routes[$id] instanceof WP_Route) {
+        if (!isset($this->routes[$id]) || !$this->routes[$id] instanceof WP_Route) {
             return null;
         }
 

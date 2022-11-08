@@ -1,9 +1,9 @@
 /**
- * Yachtall Shiplisting WordPress Plugin.
- * @author      Stefan Meyer <stefan@milkycode.com>
+ * Yachtino Shiplisting WordPress Plugin.
+ * @author      Christian Hinz <christian@milkycode.com>
  * @category    Milkycode
  * @package     shiplisting
- * @copyright   Copyright (c) 2019 milkycode GmbH (https://www.milkycode.com)
+ * @copyright   Copyright (c) 2022 milkycode GmbH (https://www.milkycode.com)
  */
 
 @import url('https://fonts.googleapis.com/css?family=Barlow:300,400,500,600,700&display=swap');
@@ -48,7 +48,7 @@ div.shiplisting-filter-heading div.shiplisting-filter-header.filter-fields, div.
 }
 
 div.shiplisting-filter-heading div.shiplisting-filter-header.added, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.added {
-    width: 15%;
+    width: 10%;
 }
 
 div.shiplisting-filter-heading div.shiplisting-filter-header.options, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.options {
@@ -60,7 +60,7 @@ div.shiplisting-filter-heading div.shiplisting-filter-header.path, div.shiplisti
 }
 
 div.shiplisting-filter-heading div.shiplisting-filter-header.variables, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.variables {
-    width: 10%;
+    width: 15%;
 }
 
 div.shiplisting-filter-heading div.shiplisting-filter-header.arguments, div.shiplisting-filter-content div.shiplisting-filter-row div.shiplisting-filter.arguments {

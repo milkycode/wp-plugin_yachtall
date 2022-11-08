@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wordpress Plugin für Yachtall.com/Happycharter.com</title>
+<title>Yachtino Wordpress Plugin für Yachtall.com/Happycharter.com</title>
 <meta name="robots" content="noindex, nofollow, noarchive">
 <style>
 body {
@@ -44,7 +44,7 @@ a:hover, .alike-a:hover {
 </style>
 </head>
 <body>
-<h1>Wordpress Plugin für Yachtall.com/Happycharter.com</h1>
+<h1>Yachtino Wordpress Plugin für Yachtall.com/Happycharter.com</h1>
 Sie können Ihre Boote, die Sie auf yachtall.com oder happycharter.com haben, auch in Ihre eigene Webseite einbinden, wenn Sie Wordpress benutzen.<br />
 Damit das Wordpress Plugin mit unserer Datenbank kommuniziert, brauchen Sie Ihren Application Key für das Plugin.<br />
 Kontaktieren Sie uns bitte <a href="https://www.happycharter.com/de/info/contact" target="_blank">auf Happycharter.com</a> oder

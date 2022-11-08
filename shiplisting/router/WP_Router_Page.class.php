@@ -26,19 +26,19 @@ class WP_Router_Page extends WP_Router_Utility
     {
         // a very quiet post type
         $args = array(
-            'public'              => false,
-            'show_ui'             => false,
+            'public' => false,
+            'show_ui' => false,
             'exclude_from_search' => true,
-            'publicly_queryable'  => true,
-            'show_in_menu'        => false,
-            'show_in_nav_menus'   => false,
-            'supports'            => array('title'),
-            'has_archive'         => true,
-            'rewrite'             => array(
-                'slug'       => self::$rewrite_slug,
+            'publicly_queryable' => true,
+            'show_in_menu' => false,
+            'show_in_nav_menus' => false,
+            'supports' => array('title'),
+            'has_archive' => true,
+            'rewrite' => array(
+                'slug' => self::$rewrite_slug,
                 'with_front' => false,
-                'feeds'      => false,
-                'pages'      => false,
+                'feeds' => false,
+                'pages' => false,
             )
         );
         register_post_type(self::POST_TYPE, $args);
@@ -52,10 +52,10 @@ class WP_Router_Page extends WP_Router_Utility
      */
     protected static function get_post_id()
     {
-        if ( ! self::$post_id) {
+        if (!self::$post_id) {
             $posts = get_posts(array(
-                'post_type'      => self::POST_TYPE,
-                'post_status'    => 'publish',
+                'post_type' => self::POST_TYPE,
+                'post_status' => 'publish',
                 'posts_per_page' => 1,
             ));
             if ($posts) {
@@ -77,11 +77,11 @@ class WP_Router_Page extends WP_Router_Utility
     private static function make_post()
     {
         $post = array(
-            'post_title'  => __('WP Router Placeholder Page', 'wp-router'),
+            'post_title' => __('WP Router Placeholder Page', 'wp-router'),
             'post_status' => 'publish',
-            'post_type'   => self::POST_TYPE,
+            'post_type' => self::POST_TYPE,
         );
-        $id   = wp_insert_post($post);
+        $id = wp_insert_post($post);
         if (is_wp_error($id)) {
             return 0;
         }
@@ -92,7 +92,7 @@ class WP_Router_Page extends WP_Router_Utility
     public function __construct($contents, $title, $template = '')
     {
         $this->contents = $contents;
-        $this->title    = $title;
+        $this->title = $title;
         $this->template = $template;
         $this->add_hooks();
     }
@@ -123,13 +123,13 @@ class WP_Router_Page extends WP_Router_Utility
         if (isset($query->query_vars[self::QUERY_VAR])) {
             // make sure we get the right post
             $query->query_vars['post_type'] = self::POST_TYPE;
-            $query->query_vars['p']         = self::get_post_id();
+            $query->query_vars['p'] = self::get_post_id();
 
             // override any vars WordPress set based on the original query
-            $query->is_single   = true;
+            $query->is_single = true;
             $query->is_singular = true;
-            $query->is_404      = false;
-            $query->is_home     = false;
+            $query->is_404 = false;
+            $query->is_home = false;
         }
     }
 
@@ -175,7 +175,7 @@ class WP_Router_Page extends WP_Router_Utility
     public function get_single_post_title($title, $post = null)
     {
         // in WP 3.0.x, $post might be NULL. Not true in WP 3.1
-        if ( ! $post) {
+        if (!$post) {
             $post = $GLOBALS['post'];
         }
 

@@ -55,7 +55,8 @@ class WP_Router_Utility
     public static function failed_to_load_notices(
         $php_version = self::MIN_PHP_VERSION,
         $wp_version = self::MIN_WP_VERSION
-    ) {
+    )
+    {
         printf('<div class="error"><p>%s</p></div>',
             sprintf(__('%1$s requires WordPress %2$s or higher and PHP %3$s or higher.', 'wp-router'),
                 self::PLUGIN_NAME, $wp_version, $php_version));

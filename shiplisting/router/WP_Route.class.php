@@ -35,7 +35,7 @@ class WP_Route extends WP_Router_Utility
         $this->set('id', $id);
 
         foreach (array('path', 'page_callback') as $property) {
-            if ( ! isset($properties[$property]) || ! $properties[$property]) {
+            if (!isset($properties[$property]) || !$properties[$property]) {
                 throw new Exception(sprintf(__("Missing %s", 'wp-router'), $property));
             }
         }
@@ -44,7 +44,7 @@ class WP_Route extends WP_Router_Utility
             $this->set($property, $value);
         }
 
-        if ($this->access_arguments && ! $properties['access_callback']) {
+        if ($this->access_arguments && !$properties['access_callback']) {
             $this->set('access_callback', 'current_user_can');
         }
 
@@ -80,11 +80,11 @@ class WP_Route extends WP_Router_Utility
      */
     public function set($property, $value)
     {
-        if (in_array($property, array('id', 'path', 'page_callback')) && ! $value) {
+        if (in_array($property, array('id', 'path', 'page_callback')) && !$value) {
             throw new Exception(sprintf(__("Invalid value for %s. Value may not be empty.", 'wp-router'), $property));
         }
         if (in_array($property,
-                array('query_vars', 'title_arguments', 'page_arguments', 'access_arguments')) && ! is_array($value)) {
+                array('query_vars', 'title_arguments', 'page_arguments', 'access_arguments')) && !is_array($value)) {
             throw new Exception(sprintf(__('Invalid value for %1$s: %2$s. Value must be an array.'), $property,
                 $value));
         }
@@ -105,7 +105,7 @@ class WP_Route extends WP_Router_Utility
     public function execute(WP $query)
     {
         // check access
-        if ( ! $this->check_access($query)) {
+        if (!$this->check_access($query)) {
             $this->access_denied();
 
             return; // can't get in
@@ -202,13 +202,13 @@ class WP_Route extends WP_Router_Utility
     protected function get_page(WP $query)
     {
         $callback = $this->get_callback($this->page_callback);
-        if ( ! $callback) {
+        if (!$callback) {
             return false;
         }
         $args = $this->get_query_args($query, 'page');
         ob_start();
         $returned = call_user_func_array($callback, $args);
-        $echoed   = ob_get_clean();
+        $echoed = ob_get_clean();
 
         if ($returned === false) {
             return false;
@@ -220,11 +220,11 @@ class WP_Route extends WP_Router_Utility
     protected function get_title(WP $query)
     {
         $callback = $this->get_callback($this->title_callback);
-        if ( ! $callback) {
+        if (!$callback) {
             return $this->title; // can't call it
         }
         $args = $this->get_query_args($query, 'title');
-        if ( ! $args) {
+        if (!$args) {
             $args = array($this->title);
         }
         $title = call_user_func_array($callback, $args);
@@ -242,7 +242,7 @@ class WP_Route extends WP_Router_Utility
             return true;
         }
         $callback = $this->get_callback($this->access_callback);
-        if ( ! $callback) {
+        if (!$callback) {
             return false; // nobody gets in
         }
         if (is_callable($callback)) {
@@ -278,8 +278,8 @@ class WP_Route extends WP_Router_Utility
     {
         $message = apply_filters('wp_router_access_denied_message',
             __('You are not authorized to access this page', 'wp-router'));
-        $title   = apply_filters('wp_router_access_denied_title', __('Access Denied', 'wp-router'));
-        $args    = apply_filters('wp_router_access_denied_args', array('response' => 403));
+        $title = apply_filters('wp_router_access_denied_title', __('Access Denied', 'wp-router'));
+        $args = apply_filters('wp_router_access_denied_args', array('response' => 403));
         wp_die($message, $title, $args);
         exit();
     }
@@ -299,7 +299,7 @@ class WP_Route extends WP_Router_Utility
     protected function get_query_args(WP $query, $callback_type = 'page')
     {
         $property = $callback_type . '_arguments';
-        $args     = array();
+        $args = array();
         if ($this->$property) {
             foreach ($this->$property as $query_var) {
                 if ($this->is_a_query_var($query_var, $query)) {
@@ -343,8 +343,8 @@ class WP_Route extends WP_Router_Utility
                 $vars[] = $var . '=' . $value;
             }
         }
-        $vars[]           = self::QUERY_VAR . '=' . $this->id;
-        $rule             .= implode('&', $vars);
+        $vars[] = self::QUERY_VAR . '=' . $this->id;
+        $rule .= implode('&', $vars);
         $this->wp_rewrite = $rule;
     }
 
@@ -369,7 +369,7 @@ class WP_Route extends WP_Router_Utility
             return false;
         }
         $template = '';
-        $extra    = array(
+        $extra = array(
             'route-$id.php',
             'route.php',
             'page-$id.php',
@@ -394,7 +394,7 @@ class WP_Route extends WP_Router_Utility
         foreach ($extra as $key => $path) {
             $extra[$key] = str_replace('$id', $this->id, $path);
         }
-        if ( ! $template) {
+        if (!$template) {
             $template = locate_template($extra);
         }
 

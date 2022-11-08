@@ -1,9 +1,9 @@
 /**
- * Yachtall Shiplisting WordPress Plugin.
- * @author      Stefan Meyer <stefan@milkycode.com>
+ * Yachtino Shiplisting WordPress Plugin.
+ * @author      Christian Hinz <christian@milkycode.com>
  * @category    Milkycode
  * @package     shiplisting
- * @copyright   Copyright (c) 2019 milkycode GmbH (https://www.milkycode.com)
+ * @copyright   Copyright (c) 2022 milkycode GmbH (https://www.milkycode.com)
  */
 
 div.entry-content p {
@@ -1368,5 +1368,3 @@ div.shiplisting-boats-object div.shiplisting-object-details div.shiplisting-obje
         width: 100%;
     }
 }
-
-/*move title to top in mobile?*/

@@ -1,15 +1,14 @@
 <?php
 /**
- * Yachtall Shiplisting WordPress Plugin.
- * @author      Stefan Meyer <stefan@milkycode.com>
+ * Yachtino Shiplisting WordPress Plugin.
+ * @author      Christian Hinz <christian@milkycode.com>
  * @category    Milkycode
  * @package     shiplisting
- * @copyright   Copyright (c) 2019 milkycode GmbH (https://www.milkycode.com)
+ * @copyright   Copyright (c) 2022 milkycode GmbH (https://www.milkycode.com)
  */
 
 class Shiplisting_Public
 {
-
     /**
      * The ID of this plugin.
      *
@@ -40,7 +39,7 @@ class Shiplisting_Public
     {
 
         $this->plugin_name = $plugin_name;
-        $this->version     = $version;
+        $this->version = $version;
 
     }
 
