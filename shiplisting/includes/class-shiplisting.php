@@ -126,8 +126,7 @@ class Shiplisting
     }
 
     /**
-     * Register all of the hooks related to the admin area functionality
-     * of the plugin.
+     * Register all hooks related to the admin area functionality of the plugin.
      *
      * @since    1.0.0
      * @access   private
@@ -141,43 +140,27 @@ class Shiplisting
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
         $this->loader->add_action('admin_menu', $plugin_admin, 'shiplisting_adminmenu');
         $this->loader->add_filter('site_transient_update_plugins', $plugin_admin, 'shiplisting_pushupdate');
-        $this->loader->add_filter('plugins_api', $plugin_admin, 'shiplisting_plugininfo');
+        $this->loader->add_filter('plugins_api', $plugin_admin, 'shiplisting_plugininfo', 1, 3);
         $this->loader->add_action('upgrader_process_complete', $plugin_admin, 'shiplisting_afterupdate');
-
-        $this->loader->add_action('wp_ajax_nopriv_shiplisting_advanced_filters', $plugin_admin->api,
-            'public_ajax_get_all_filters');
-        $this->loader->add_action('wp_ajax_shiplisting_advanced_filters', $plugin_admin->api,
-            'public_ajax_get_all_filters');
-
-        $this->loader->add_action('wp_ajax_nopriv_shiplisting_get_detail_views', $plugin_admin->api,
-            'ajax_get_detail_views');
+        $this->loader->add_action('wp_ajax_nopriv_shiplisting_advanced_filters', $plugin_admin->api, 'public_ajax_get_all_filters');
+        $this->loader->add_action('wp_ajax_shiplisting_advanced_filters', $plugin_admin->api, 'public_ajax_get_all_filters');
+        $this->loader->add_action('wp_ajax_nopriv_shiplisting_get_detail_views', $plugin_admin->api, 'ajax_get_detail_views');
         $this->loader->add_action('wp_ajax_shiplisting_get_detail_views', $plugin_admin->api, 'ajax_get_detail_views');
-
-        $this->loader->add_action('wp_ajax_nopriv_shiplisting_get_api_langues', $plugin_admin->api,
-            'public_ajax_get_api_langues');
-        $this->loader->add_action('wp_ajax_shiplisting_get_api_langues', $plugin_admin->api,
-            'public_ajax_get_api_langues');
-
+        $this->loader->add_action('wp_ajax_nopriv_shiplisting_get_api_langues', $plugin_admin->api, 'public_ajax_get_api_langues');
+        $this->loader->add_action('wp_ajax_shiplisting_get_api_langues', $plugin_admin->api, 'public_ajax_get_api_langues');
         $this->loader->add_action('wp_ajax_nopriv_shiplisting_route_exists', $plugin_admin->api, 'public_route_exists');
         $this->loader->add_action('wp_ajax_shiplisting_route_exists', $plugin_admin->api, 'public_route_exists');
-
-        $this->loader->add_action('wp_ajax_nopriv_shiplisting_get_api_title_placeholders', $plugin_admin->api,
-            'public_ajax_get_api_title_placeholders');
-        $this->loader->add_action('wp_ajax_shiplisting_get_api_title_placeholders', $plugin_admin->api,
-            'public_ajax_get_api_title_placeholders');
-
+        $this->loader->add_action('wp_ajax_nopriv_shiplisting_get_api_title_placeholders', $plugin_admin->api, 'public_ajax_get_api_title_placeholders');
+        $this->loader->add_action('wp_ajax_shiplisting_get_api_title_placeholders', $plugin_admin->api, 'public_ajax_get_api_title_placeholders');
         $this->loader->add_action('wp_ajax_nopriv_shiplisting_path_exists', $plugin_admin->api, 'public_path_exists');
         $this->loader->add_action('wp_ajax_shiplisting_path_exists', $plugin_admin->api, 'public_path_exists');
-
-        $this->loader->add_action('wp_ajax_nopriv_shiplisting_get_translation', $plugin_admin->api,
-            'public_get_translation');
+        $this->loader->add_action('wp_ajax_nopriv_shiplisting_get_translation', $plugin_admin->api, 'public_get_translation');
         $this->loader->add_action('wp_ajax_shiplisting_get_translation', $plugin_admin->api, 'public_get_translation');
-
         $this->loader->add_action('wp_ajax_shiplisting_api_init_route', $plugin_admin->api, 'ajax_api_init_route');
     }
 
     /**
-     * Register all of the hooks related to the public-facing functionality
+     * Register all hooks related to the public-facing functionality.
      * of the plugin.
      *
      * @since    1.0.0
