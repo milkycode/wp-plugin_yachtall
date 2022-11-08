@@ -18,11 +18,13 @@ Plugin for detailed listing of your yachtino (yachtall, happycharter) offers.
 
 == Changelog ==
 
+= 1.8.10 =
+* Compatibility with PHP 8
+
 = 1.8.9 =
 * Compatibility with Wordpress 5.8.3
-* Fixed wrong plugin header error on installation
+* Fixed wrong plugin header error
 * Fixed some notices
-* Fixed possible update errors
 
 = 1.8.8 =
 * Fixed image display

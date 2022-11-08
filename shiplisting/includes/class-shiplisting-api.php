@@ -440,70 +440,74 @@ class Shiplisting_Api
             ';
         }
 
-        if (is_array($boat_data['sale_data']['price']['val']['old_price'])) {
-            $boat_data['price_details']['html'] = '<span class="shiplisting-old-price">' . $boat_data['sale_data']['price']['attr']['currency_sign'] . ' ' . $boat_data['sale_data']['price']['val']['old_price']['val'] . '</span> ';
-            $boat_data['price_details']['html'] .= $boat_data['sale_data']['price']['attr']['currency_sign'] . ' ' . $boat_data['sale_data']['price']['val']['price_amount']['val'];
+        if (!empty($boat_data['sale_data'])) {
+            if (!empty($boat_data['sale_data']['price']['val']['old_price']['val'])) {
+                $boat_data['price_details']['html'] = '<span class="shiplisting-old-price">' . $boat_data['sale_data']['price']['attr']['currency_sign'] . ' ' . $boat_data['sale_data']['price']['val']['old_price']['val'] . '</span> ';
+                $boat_data['price_details']['html'] .= $boat_data['sale_data']['price']['attr']['currency_sign'] . ' ' . $boat_data['sale_data']['price']['val']['price_amount']['val'];
 
-            if ( ! empty($boat_data['sale_data']['price']['val']['euro_amount']['val'])) {
-                $boat_data['price_details']['html'] .= '<br>(≈ € ' . $boat_data['sale_data']['price']['val']['euro_amount']['val'] . ')';
-            }
-        } else {
-            $boat_data['price_details']['html'] = $boat_data['sale_data']['price']['attr']['currency_sign'] . ' ' . $boat_data['sale_data']['price']['val']['price_amount']['val'];
+                if ( ! empty($boat_data['sale_data']['price']['val']['euro_amount']['val'])) {
+                    $boat_data['price_details']['html'] .= '<br>(≈ € ' . $boat_data['sale_data']['price']['val']['euro_amount']['val'] . ')';
+                }
+            } else {
+                $boat_data['price_details']['html'] = $boat_data['sale_data']['price']['attr']['currency_sign'] . ' ' . $boat_data['sale_data']['price']['val']['price_amount']['val'];
 
-            if ( ! empty($boat_data['sale_data']['price']['val']['euro_amount']['val'])) {
-                $boat_data['price_details']['html'] .= ' (≈ € ' . $boat_data['sale_data']['price']['val']['euro_amount']['val'] . ')';
-            }
-        }
-
-        if ( ! empty($boat_data['sale_data']['price']['val']['vat_included']['val']) || ! empty($boat_data['sale_data']['price']['val']['eu_tax']['val'])) {
-            $steuer = '<br><small>';
-            if ( ! empty($boat_data['sale_data']['price']['val']['vat_included']['val'])) {
-                $steuer .= $boat_data['sale_data']['price']['val']['vat_included']['val'];
+                if ( ! empty($boat_data['sale_data']['price']['val']['euro_amount']['val'])) {
+                    $boat_data['price_details']['html'] .= ' (≈ € ' . $boat_data['sale_data']['price']['val']['euro_amount']['val'] . ')';
+                }
             }
 
-            if ( ! empty($boat_data['sale_data']['price']['val']['vat_included']['val']) && ! empty($boat_data['sale_data']['price']['val']['eu_tax']['val'])) {
-                $steuer .= ', ';
+            if ( ! empty($boat_data['sale_data']['price']['val']['vat_included']['val']) || ! empty($boat_data['sale_data']['price']['val']['eu_tax']['val'])) {
+                $steuer = '<br><small>';
+                if ( ! empty($boat_data['sale_data']['price']['val']['vat_included']['val'])) {
+                    $steuer .= $boat_data['sale_data']['price']['val']['vat_included']['val'];
+                }
+
+                if ( ! empty($boat_data['sale_data']['price']['val']['vat_included']['val']) && ! empty($boat_data['sale_data']['price']['val']['eu_tax']['val'])) {
+                    $steuer .= ', ';
+                }
+
+                if ( ! empty($boat_data['sale_data']['price']['val']['eu_tax']['val'])) {
+                    $steuer .= $boat_data['sale_data']['price']['val']['eu_tax']['val'];
+                }
+
+                $steuer                             .= '</small>';
+                $boat_data['price_details']['html'] .= $steuer;
             }
 
-            if ( ! empty($boat_data['sale_data']['price']['val']['eu_tax']['val'])) {
-                $steuer .= $boat_data['sale_data']['price']['val']['eu_tax']['val'];
+            if ( ! empty($boat_data['sale_data']['price']['val']['plus_broker_fee']['val']) || ! empty($boat_data['sale_data']['price']['val']['price_negotiable']['val'])) {
+                $makler = '<br><small>';
+
+                if ( ! empty($boat_data['sale_data']['price']['val']['plus_broker_fee']['val'])) {
+                    $makler .= $boat_data['sale_data']['price']['val']['plus_broker_fee']['val'];
+                }
+
+                if ( ! empty($boat_data['sale_data']['price']['val']['plus_broker_fee']['val']) && ! empty($boat_data['sale_data']['price']['val']['price_negotiable']['val'])) {
+                    $makler .= ', ';
+                }
+
+                if ( ! empty($boat_data['sale_data']['price']['val']['price_negotiable']['val'])) {
+                    $makler .= $boat_data['sale_data']['price']['val']['price_negotiable']['val'];
+                }
+
+                $makler                             .= '</small>';
+                $boat_data['price_details']['html'] .= $makler;
             }
 
-            $steuer                             .= '</small>';
-            $boat_data['price_details']['html'] .= $steuer;
-        }
-
-        if ( ! empty($boat_data['sale_data']['price']['val']['plus_broker_fee']['val']) || ! empty($boat_data['sale_data']['price']['val']['price_negotiable']['val'])) {
-            $makler = '<br><small>';
-
-            if ( ! empty($boat_data['sale_data']['price']['val']['plus_broker_fee']['val'])) {
-                $makler .= $boat_data['sale_data']['price']['val']['plus_broker_fee']['val'];
+            if ( ! empty($boat_data['sale_data']['under_offer']['val'])) {
+                $boat_data['price_details']['html'] .= '<br><span class="highlight bold">' . $this->translation['boat']['sale_data']['under_offer'] . '</span>';
             }
 
-            if ( ! empty($boat_data['sale_data']['price']['val']['plus_broker_fee']['val']) && ! empty($boat_data['sale_data']['price']['val']['price_negotiable']['val'])) {
-                $makler .= ', ';
+            if (!empty($boat_data['sale_data']['price']['val']['trade_in']['val'])
+            && ($boat_data['sale_data']['price']['val']['trade_in']['val'] == 'ja' || $boat_data['sale_data']['price']['val']['trade_in']['val'] == 'yes')) {
+                $boat_data['sale_data']['price']['val']['trade_in']['val'] = '<span class="bold">' . $this->translation['boat']['sale_data']['price']['trade_in'] . '</span>';
+            } else {
+                $boat_data['sale_data']['price']['val']['trade_in']['val'] = '';
             }
 
-            if ( ! empty($boat_data['sale_data']['price']['val']['price_negotiable']['val'])) {
-                $makler .= $boat_data['sale_data']['price']['val']['price_negotiable']['val'];
+            if ($boat_data['sale_data']['was_in_charter']['val'] == 'ja') {
+                $boat_data['sale_data']['was_in_charter']['val'] = '(' . $this->translation['boat']['sale_data']['was_in_charter'] . ')';
             }
 
-            $makler                             .= '</small>';
-            $boat_data['price_details']['html'] .= $makler;
-        }
-
-        if ( ! empty($boat_data['sale_data']['under_offer']['val'])) {
-            $boat_data['price_details']['html'] .= '<br><span class="highlight bold">' . $this->translation['boat']['sale_data']['under_offer'] . '</span>';
-        }
-
-        if ($boat_data['sale_data']['price']['val']['trade_in']['val'] == 'ja' || $boat_data['sale_data']['price']['val']['trade_in']['val'] == 'yes') {
-            $boat_data['sale_data']['price']['val']['trade_in']['val'] = '<span class="bold">' . $this->translation['boat']['sale_data']['price']['trade_in'] . '</span>';
-        } else {
-            $boat_data['sale_data']['price']['val']['trade_in']['val'] = '';
-        }
-
-        if ($boat_data['sale_data']['was_in_charter']['val'] == 'ja') {
-            $boat_data['sale_data']['was_in_charter']['val'] = '(' . $this->translation['boat']['sale_data']['was_in_charter'] . ')';
         }
 
         // build beam draft
@@ -826,7 +830,7 @@ class Shiplisting_Api
             $tmpDays[] = $days['val'];
         }
 
-        return implode($tmpDays, ", ");
+        return implode(', ', $tmpDays);
     }
 
     public function ajax_get_detail_views()
@@ -1291,6 +1295,11 @@ class Shiplisting_Router
                     array_get_value($boat_data, explode('-', $arguments[1]))
                 ];
 
+                if (strpos($valuePair[0], 'doubleValue(') !== false
+                || (!empty($valuePair[1]) && strpos($valuePair[1], 'doubleValue(') !== false)) {
+                    return '';
+                }
+
                 if (empty($valuePair[1])) {
                     return $valuePair[0];
                 }
@@ -1340,7 +1349,7 @@ class Shiplisting_Router
                     }
                 }
 
-                return implode($tmpData, ', ');
+                return implode(', ', $tmpData);
             }
 
             if ($placeholder == "possibilities_table") {
@@ -1370,7 +1379,7 @@ class Shiplisting_Router
                     }
                 }
 
-                return implode($tmpData, '');
+                return implode('', $tmpData);
             }
 
             if ($placeholder == "check_in_days") {
@@ -1430,7 +1439,7 @@ class Shiplisting_Router
                                 $boxTmpl .= '<div class="shiplisting-charter-season-prices-box">';
                                 // content box title
                                 $boxTmpl .= '<div class="shiplisting-charter-season-prices-box-title">';
-                                $boxTmpl .= $prices['attr']['date_from'] . '<br>' . self::$translation['words']['to'] . '<br>' . $prices['attr']['date_to'];
+                                $boxTmpl .= $prices['attr']['date_from'] . '<br>' . self::$translation['boat']['words']['to'] . '<br>' . $prices['attr']['date_to'];
                                 $boxTmpl .= '</div>';
                                 // content box content
                                 $boxTmpl .= '<div class="shiplisting-charter-season-prices-box-content">';
@@ -1545,6 +1554,10 @@ class Shiplisting_Router
         }
 
         $template = self::replace_placeholder_boat_details($boat_id, $template, $source);
+
+        if (strpos($template, 'doubleValue(') !== false) {
+            return '';
+        }
 
         return $template;
     }
@@ -1852,7 +1865,10 @@ class Shiplisting_Router
                                 $boat_class    = $boatObj['sale_data']['boat_class']['val'];
                                 $hull_material = $boatObj['boat_data']['general_data']['hull_material']['val'];
 
-                                $tmp = [];
+                                $tmp = [
+                                    'label' => '',
+                                    'value' => '',
+                                ];
                                 if ( ! empty($boat_type)) {
                                     $tmp['label'] .= $boat_type;
                                 }
@@ -2017,6 +2033,10 @@ class Shiplisting_Router
         }
 
         $template = self::replace_placeholder_boats($boatTemplate, $template, $filterId, $hitsByPage, $source);
+
+        if (strpos($template, 'doubleValue(') !== false) {
+            return '';
+        }
 
         return $template;
     }

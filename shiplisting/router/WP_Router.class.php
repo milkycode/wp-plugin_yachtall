@@ -148,7 +148,7 @@ class WP_Router extends WP_Router_Utility
         trigger_error(__CLASS__ . ' may not be cloned', E_USER_ERROR);
     }
 
-    private function __sleep()
+    public function __sleep()
     {
         // cannot be serialized
         trigger_error(__CLASS__ . ' may not be serialized', E_USER_ERROR);
