@@ -22,7 +22,7 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined('WPINC')) {
+if (!defined('WPINC')) {
     die;
 }
 
@@ -77,6 +77,15 @@ function run_shiplisting()
     $plugin = new Shiplisting();
     $plugin->run();
     $GLOBALS['shiplisting'] = $plugin->api;
+}
+
+// Because WP automatically adds </p> to every line ending, remove that function completely on shiplisting pages.
+add_filter('the_content', 'shiplisting_remove_autop', 0);
+function shiplisting_remove_autop($content)
+{
+    'shiplisting_page' === get_post_type() && remove_filter('the_content', 'wpautop');
+
+    return $content;
 }
 
 run_shiplisting();

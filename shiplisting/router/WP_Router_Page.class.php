@@ -2,7 +2,7 @@
 
 class WP_Router_Page extends WP_Router_Utility
 {
-    const POST_TYPE = 'wp_router_page';
+    const POST_TYPE = 'shiplisting_page';
 
     protected static $rewrite_slug = 'WP_Router';
     protected static $post_id = 0; // The ID of the post this plugin uses
