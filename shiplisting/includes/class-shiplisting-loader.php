@@ -9,7 +9,6 @@
 
 class Shiplisting_Loader
 {
-
     /**
      * The array of actions registered with WordPress.
      *
@@ -35,10 +34,8 @@ class Shiplisting_Loader
      */
     public function __construct()
     {
-
         $this->actions = array();
         $this->filters = array();
-
     }
 
     /**
@@ -90,7 +87,6 @@ class Shiplisting_Loader
      */
     private function add($hooks, $hook, $component, $callback, $priority, $accepted_args)
     {
-
         $hooks[] = array(
             'hook' => $hook,
             'component' => $component,
@@ -100,7 +96,6 @@ class Shiplisting_Loader
         );
 
         return $hooks;
-
     }
 
     /**
@@ -110,7 +105,6 @@ class Shiplisting_Loader
      */
     public function run()
     {
-
         foreach ($this->filters as $hook) {
             add_filter($hook['hook'], array($hook['component'], $hook['callback']), $hook['priority'],
                 $hook['accepted_args']);
@@ -120,7 +114,5 @@ class Shiplisting_Loader
             add_action($hook['hook'], array($hook['component'], $hook['callback']), $hook['priority'],
                 $hook['accepted_args']);
         }
-
     }
-
 }

@@ -47,11 +47,10 @@ class WP_Route extends WP_Router_Utility
         if ($this->access_arguments && !$properties['access_callback']) {
             $this->set('access_callback', 'current_user_can');
         }
-
     }
 
     /**
-     * Get the value of the the given property
+     * Get the value of the given property
      *
      * @param string $property
      *
@@ -128,7 +127,7 @@ class WP_Route extends WP_Router_Utility
 
         $title = $this->get_title($query);
 
-        $page = new WP_Router_Page($page_contents, $title, $template);
+        new WP_Router_Page($page_contents, $title, $template);
     }
 
     /**
@@ -178,6 +177,7 @@ class WP_Route extends WP_Router_Utility
         if (is_callable($possibilities)) {
             return $possibilities;
         }
+
         if (is_array($possibilities)) {
             $method = $_SERVER['REQUEST_METHOD'];
 

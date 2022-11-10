@@ -1,13 +1,11 @@
 <div class="shiplisting-boats-object">
     <div class="shiplisting-object-image">
-        <img src="{pictures-0-val}"/>
+        <img src="{pictures-0-val}" />
     </div>
     <div class="shiplisting-object-details">
-        <h3 class="shiplisting-object-title"><a
-                href="/boat-details/{boat_id}/">{boat_data-general_data-boat_model-val}</a></h3>
+        <h3 class="shiplisting-object-title"><a href="/boat-details/{boat_id}/">{boat_data-general_data-boat_model-val}</a></h3>
         <div class="shiplisting-object-detail">
-            {doubleValue(boat_data-measure-loa-val,boat_data-measure-beam-val," x ")}{boat_data-measure-loa-attr-unit}
-            <div class="year-built">{boat_data-general_data-year_built-val}</div>
+            {doubleValue(boat_data-measure-loa-val,boat_data-measure-beam-val," x ")}{boat_data-measure-loa-attr-unit} <div class="year-built">{boat_data-general_data-year_built-val}</div>
         </div>
         <div class="shiplisting-object-detail">
             {doubleValue(sale_data-location-attr-country,sale_data-location-val,", ")}
