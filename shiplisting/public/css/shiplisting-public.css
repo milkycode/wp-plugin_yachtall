@@ -917,7 +917,6 @@ div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-fi
 div.shiplisting-boats-filtering div.shiplisting-filter-column div.shiplisting-filter-column-submit {
     display: block;
     width: calc(100% - 13px);
-    padding-right: 5px;
     padding-left: 8px;
 }
 
