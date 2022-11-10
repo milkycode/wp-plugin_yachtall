@@ -1623,10 +1623,10 @@ class Shiplisting_Router
 
         $filter .= '&bnr=' . $hitsByPage;
         $page = 1;
-        if (!empty($_GET['page'])) {
-            $page = $_GET['page'];
+        if (!empty($_GET['pg'])) {
+            $page = $_GET['pg'];
         } else {
-            $_GET['page'] = "1";
+            $_GET['pg'] = "1";
         }
         $filter .= '&pg=' . $page;
 
@@ -1638,7 +1638,7 @@ class Shiplisting_Router
         if (isset($url_components['query'])) {
             parse_str($url_components['query'], $params);
             foreach ($params as $key => $value) {
-                if ($key !== "page") {
+                if ($key !== "pg") {
                     $filter .= '&' . $key . '=' . $value;
                 }
             }
@@ -2043,13 +2043,13 @@ class Shiplisting_Router
     private static function uriReplacePageNumber($newPageNumber)
     {
         $currentLink = $_SERVER["REQUEST_URI"];
-        if (stripos($currentLink, '?page=') > 0) {
-            $currentLink = str_replace('?page=' . ($_GET['page']  ?? '1'), '?page=' . $newPageNumber, $currentLink);
+        if (stripos($currentLink, '?pg=') > 0) {
+            $currentLink = str_replace('?pg=' . ($_GET['pg']  ?? '1'), '?pg=' . $newPageNumber, $currentLink);
         } else {
             if (substr($currentLink, -1, 1) !== '/') {
                 $currentLink .= '/';
             }
-            $currentLink .= '?page=' . $newPageNumber;
+            $currentLink .= '?pg=' . $newPageNumber;
         }
 
         return $currentLink;

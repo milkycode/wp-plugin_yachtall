@@ -493,7 +493,7 @@ jQuery(document).ready(function () {
                 }
             }
         });
-        var currentPage = '?page=1';
+        var currentPage = '?pg=1';
         var tmpuri = window.location.href.split('?')[0];
         if (tmpuri.slice(-1) !== '/') {
             tmpuri += '/';
