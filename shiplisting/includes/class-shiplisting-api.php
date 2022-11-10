@@ -11,8 +11,6 @@ class Shiplisting_Api
     protected $imageSlider_width = 320;
     protected $imageSlider_height = 320;
 
-    protected $api_source;
-
     // https://api.yachtall.com/de/docu/optional-variables/
     protected $optional_variables = [
         'trans' => [0, 1],
@@ -64,6 +62,9 @@ class Shiplisting_Api
         $this->init();
     }
 
+    /**
+     * @return false|void
+     */
     public function init()
     {
         $this->api_host = 'https://api.yachtall.com/';
@@ -81,6 +82,7 @@ class Shiplisting_Api
         }
 
         if (empty($this->api_key) || empty($this->site_id)) {
+            error_log('Yachtino API Key or Site-ID empty!!');
             return false;
         }
 
@@ -92,11 +94,8 @@ class Shiplisting_Api
     // special encoding for Yachtino API
     public static function escapeUrlForApi($var)
     {
-        $var = str_replace('/', '~~', $var);
-        $var = str_replace('\\', '§~§', $var);
-        $var = rawurlencode($var);
-
-        return $var;
+        $var = str_replace(array('/', '\\'), array('~~', '§~§'), $var);
+        return rawurlencode($var);
     }
 
     public function update_uri($host)
@@ -132,20 +131,20 @@ class Shiplisting_Api
 
         if (!$this->check_service()) {
             //todo: handle error
-            error_log('Yachtino service not available!', 0);
-            return;
+            error_log('Yachtino service not available!');
+            return false;
         }
 
         if (!$this->api_key) {
             //todo: handle error
-            error_log('Yachtino API Key not found!', 0);
-            return;
+            error_log('Yachtino API Key not found!');
+            return false;
         }
 
         if (!$this->site_id) {
             //todo: handle error
-            error_log('Yachtino Site-ID not found!', 0);
-            return;
+            error_log('Yachtino Site-ID not found!');
+            return false;
         }
 
         $lang = @Shiplisting_Shortcodes::$api->currentRoute['language'];
@@ -154,13 +153,12 @@ class Shiplisting_Api
         }
 
         try {
-
             $tmpUri = $this->api_uri;
-            $tmpUri = str_replace('[LANG]', $lang, $tmpUri);
-            $tmpUri = str_replace('[URL_PART1]', $urlpart1, $tmpUri);
-            $tmpUri = str_replace('[URL_PART2]', $urlpart2, $tmpUri);
-            $tmpUri = str_replace('[API_KEY]', $this->api_key, $tmpUri);
-            $tmpUri = str_replace('[SITE_ID]', $this->site_id, $tmpUri);
+            $tmpUri = str_replace(
+                array('[LANG]', '[URL_PART1]', '[URL_PART2]', '[API_KEY]', '[SITE_ID]'),
+                array($lang, $urlpart1, $urlpart2, $this->api_key, $this->site_id),
+                $tmpUri
+            );
             if (!empty($fields)) {
                 $tmpUri .= $fields;
             }
@@ -178,7 +176,7 @@ class Shiplisting_Api
             if (($plugin_settings->{'cache_active'} == 1) && $cache_hash && ($data == null)) {
                 if ($wpdb) {
                     $cache_result = $wpdb->get_results("SELECT * FROM `wp_shiplisting_caching` WHERE `hash` = '$cache_hash'");
-                    if ($cache_result && sizeof($cache_result) > 0) {
+                    if ($cache_result && count($cache_result) > 0) {
                         $do_caching = false;
 
                         date_default_timezone_set('Europe/Berlin');
@@ -237,7 +235,7 @@ class Shiplisting_Api
             }
         } catch (\Exception $e) {
             //todo:: handle error
-            error_log($e, 0);
+            error_log($e->getMessage());
             throw new \Exception();
         }
 
@@ -258,7 +256,7 @@ class Shiplisting_Api
     {
         $tmpFormData = json_decode($this->send_request('request', 'partner-forms', $filter), true);
         if (!$tmpFormData) {
-            return;
+            return false;
         }
 
         return $tmpFormData;
@@ -267,47 +265,30 @@ class Shiplisting_Api
     public function ajax_get_boats($filter = '')
     {
         if (is_admin()) {
-            return;
+            return false;
         }
 
-        $tmpBoat = json_decode($this->send_request('boat-data', 'boats', $filter), true);
-        // if ( !$tmpBoat ) {
-        // return;
-        // }
+        $boats = json_decode($this->send_request('article-data', 'list', $filter), true);
 
-        // if (!$tmpBoat[ 'adverts' ]) {
-        // return;
-        // }
+        wp_enqueue_script("shiplisting_public", plugin_dir_url(__DIR__) . 'public/js/shiplisting-public.js', array('jquery'), SHIPLISTING_VERSION, false);
+        wp_localize_script("shiplisting_public", 'shiplisting_public', array('ajax_url' => admin_url('admin-ajax.php')));
 
-        // if (sizeof($tmpBoat[ 'adverts' ]) <= 0) {
-        // return;
-        // }
-
-        $boats = $tmpBoat;
-        // if (!$boats['adverts'])
-        // return;
-
-        wp_enqueue_script("shiplisting_public", plugin_dir_url(__DIR__) . 'public/js/shiplisting-public.js',
-            array('jquery'), SHIPLISTING_VERSION, false);
-        wp_localize_script("shiplisting_public", 'shiplisting_public',
-            array('ajax_url' => admin_url('admin-ajax.php')));
-
-        if (empty($tmpBoat['adverts'])) {
-            return;
-        } else {
-            return $tmpBoat;
+        if (empty($boats['adverts'])) {
+            return false;
         }
+
+        return $boats;
     }
 
     public function get_boats($filter = '')
     {
         if (is_admin()) {
-            return;
+            return false;
         }
 
-        $tmpBoats = json_decode($this->send_request('boat-data', 'boats', 'bclass=2'), true);
+        $tmpBoats = json_decode($this->send_request('article-data', 'list', 'bclass=2'), true);
         if (!$tmpBoats) {
-            return;
+            return false;
         }
 
         $adverts = $tmpBoats['adverts'];
@@ -317,11 +298,11 @@ class Shiplisting_Api
 
                 $general_boat_model = $advert['val']['boat_data']['general_data']['boat_model']['val'];
                 $general_boat_picture = '';
-                if (sizeof($advert['val']['pictures']) > 1) {
-                    //todo: sort after order when more pictures avaib
+                if (count($advert['val']['pictures']) > 1) {
+                    //todo: sort after order when more pictures available
                     $tmpSortArr = array();
                     foreach ($advert['val']['pictures'] as $picture) {
-                        array_push($tmpSortArr, $picture);
+                        $tmpSortArr[] = $picture;
                     }
                     usort($tmpSortArr, function ($a, $b) {
                         return $a['attr']['order'] > $b['attr']['order'];
@@ -339,7 +320,7 @@ class Shiplisting_Api
                 $managing_owner = $advert['val']['managing']['owner']['val'];
                 $managing_owner_added = $advert['val']['managing']['added'];
 
-                echo '<img src="' . $general_boat_picture . '" width="320" height="320" /><br>' . $general_boat_model . " - " . $sale_price_euro_amount . " - " . $measure_boat_loa . " x " . $measure_boat_beam . " - " . $sale_location . " - " . $managing_owner . " - " . $managing_owner_added . "<br>";
+                echo '<img src="' . $general_boat_picture . '" width="320" height="320" alt="" /><br>' . $general_boat_model . " - " . $sale_price_euro_amount . " - " . $measure_boat_loa . " x " . $measure_boat_beam . " - " . $sale_location . " - " . $managing_owner . " - " . $managing_owner_added . "<br>";
             }
         }
     }
@@ -356,37 +337,37 @@ class Shiplisting_Api
     public function ajax_get_boat($bid)
     {
         if (is_admin()) {
-            return;
+            return false;
         }
 
-        $tmpBoat = json_decode($this->send_request('boat-data', 'boat', '&bid=' . $bid . '&trans=1'), true);
+        $tmpBoat = json_decode($this->send_request('article-data', 'detail', '&bid=' . $bid . '&trans=1'), true);
         if (!$tmpBoat) {
-            return;
+            return false;
         }
 
         $countries = $this->ajax_get_customer_form_data('&array=1&kind=request');
         if (!$countries) {
-            return;
+            return false;
         }
 
         $boat_data = $tmpBoat['adverts'][0]['val'];
         if (!$boat_data) {
-            return;
+            return false;
         }
 
         $this->translation = $tmpBoat['translation'];
         if (!$this->translation) {
-            return;
+            return false;
         }
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             die($this->send_request('request', 'send-request', '', $_POST));
         }
 
-        if (sizeof($boat_data['pictures']) > 0) {
-            $sizePics = sizeof(@$boat_data['pictures']);
-            $sizeVids = sizeof(@$boat_data['videos']);
-            $sizePdf = sizeof(@$boat_data['pdf']);
+        if (count($boat_data['pictures']) > 0) {
+            $sizePics = count(@$boat_data['pictures']);
+            $sizeVids = count(@$boat_data['videos']);
+            $sizePdf = count(@$boat_data['pdf']);
             $start = 1;
 
             if ($sizeVids > 0) {
@@ -398,46 +379,45 @@ class Shiplisting_Api
 
             $boat_data["imageSlider"]["html"] = '
             <div class="shiplisting-images-current rounded-corners">
-                <img src="' . $boat_data['pictures'][0]['val'] . '" width="' . $this->imageSlider_width . '" height="' . $this->imageSlider_height . '" />
+                <img src="' . $boat_data['pictures'][0]['val'] . '" width="' . $this->imageSlider_width . '" height="' . $this->imageSlider_height . '"  alt=""/>
             </div>
             <div class="shiplisting-images-position">' . $start . ' / ' . ($sizePics + $sizeVids + $sizePdf) . '</div>
             <div class="shiplisting-images-slider-wrapper rounded-corners">
                 <ul class="shiplisting-images-slider">';
+                if (count($boat_data['videos']) > 0) {
+                    foreach ($boat_data['videos'] as $key => $video) {
+                        $videoUrl = $video['val'];
+                        if (stripos($videoUrl, 'youtube') > 0) {
+                            $videoPicture = 'https://img.youtube.com/vi/{video_id}/maxresdefault.jpg';
+                            $videoId = substr($videoUrl, stripos($videoUrl, 'embed/') + 6);
+                            $videoId = substr($videoId, 0, stripos($videoId, '?'));
 
-            if (sizeof($boat_data['videos']) > 0) {
-                foreach ($boat_data['videos'] as $key => $video) {
-                    $videoUrl = $video['val'];
-                    if (stripos($videoUrl, 'youtube') > 0) {
-                        $videoPicture = 'https://img.youtube.com/vi/{video_id}/maxresdefault.jpg';
-                        $videoId = substr($videoUrl, stripos($videoUrl, 'embed/') + 6);
-                        $videoId = substr($videoId, 0, stripos($videoId, '?'));
-
-                        if (!empty($videoId)) {
-                            $videoPicture = str_replace("{video_id}", $videoId, $videoPicture);
-                            $boat_data["imageSlider"]["html"] .= '<li class="shiplisting-images-slider-item video" video-id="' . $videoId . '"><img src="' . $videoPicture . '" /><div class="shiplisting-video-thumb">VIDEO</div></li>';
+                            if (!empty($videoId)) {
+                                $videoPicture = str_replace("{video_id}", $videoId, $videoPicture);
+                                $boat_data["imageSlider"]["html"] .= '<li class="shiplisting-images-slider-item video" video-id="' . $videoId . '"><img src="' . $videoPicture . '" alt="" /><div class="shiplisting-video-thumb">VIDEO</div></li>';
+                            }
                         }
                     }
                 }
-            }
 
-            if (sizeof($boat_data['pdf']) > 0) {
-                foreach ($boat_data['pdf'] as $key => $pdf) {
-                    $pdfUrl = $pdf['val'];
-                    $boat_data["imageSlider"]["html"] .= '<li class="shiplisting-images-slider-item pdf" pdf-url="' . $pdfUrl . '"><div class="shiplisting-pdf-thumb">PDF</div></li>';
-                }
-            }
-
-            foreach ($boat_data['pictures'] as $key => $picture) {
-                if ($key == 0) {
-                    $current = ' current';
-                } else {
-                    $current = '';
+                if (count($boat_data['pdf']) > 0) {
+                    foreach ($boat_data['pdf'] as $key => $pdf) {
+                        $pdfUrl = $pdf['val'];
+                        $boat_data["imageSlider"]["html"] .= '<li class="shiplisting-images-slider-item pdf" pdf-url="' . $pdfUrl . '"><div class="shiplisting-pdf-thumb">PDF</div></li>';
+                    }
                 }
 
-                $boat_data["imageSlider"]["html"] .= '<li class="shiplisting-images-slider-item' . $current . '"><img src="' . str_replace('huge_',
-                        'list_', $picture['val']) . '" /></li>';
-            }
-            $boat_data["imageSlider"]["html"] .= '
+                foreach ($boat_data['pictures'] as $key => $picture) {
+                    if ($key == 0) {
+                        $current = ' current';
+                    } else {
+                        $current = '';
+                    }
+
+                    $boat_data["imageSlider"]["html"] .= '<li class="shiplisting-images-slider-item' . $current . '"><img src="' . str_replace('huge_',
+                            'list_', $picture['val']) . '" alt="" /></li>';
+                }
+                $boat_data["imageSlider"]["html"] .= '
                 </ul>
             </div>
             ';
@@ -501,19 +481,19 @@ class Shiplisting_Api
             }
 
             if (!empty($boat_data['sale_data']['price']['val']['trade_in']['val'])
-                && ($boat_data['sale_data']['price']['val']['trade_in']['val'] == 'ja' || $boat_data['sale_data']['price']['val']['trade_in']['val'] == 'yes')) {
+                && ($boat_data['sale_data']['price']['val']['trade_in']['val'] === 'ja' || $boat_data['sale_data']['price']['val']['trade_in']['val'] === 'yes')) {
                 $boat_data['sale_data']['price']['val']['trade_in']['val'] = '<span class="bold">' . $this->translation['boat']['sale_data']['price']['trade_in'] . '</span>';
             } else {
                 $boat_data['sale_data']['price']['val']['trade_in']['val'] = '';
             }
 
-            if ($boat_data['sale_data']['was_in_charter']['val'] == 'ja') {
+            if (!empty($boat_data['sale_data']['was_in_charter']['val']) && $boat_data['sale_data']['was_in_charter']['val'] === 'ja') {
                 $boat_data['sale_data']['was_in_charter']['val'] = '(' . $this->translation['boat']['sale_data']['was_in_charter'] . ')';
             }
-
         }
 
         // build beam draft
+        $boat_data['other_details']['beamdraft']['html'] = '';
         if (!empty($boat_data['boat_data']['measure']['beam']['val'])) {
             $boat_data['other_details']['beamdraft']['html'] .= $boat_data['boat_data']['measure']['beam']['val'] . ' ' . $boat_data['boat_data']['measure']['beam']['attr']['unit'];
         }
@@ -648,10 +628,8 @@ class Shiplisting_Api
         $boat_data["imageData"]["closePng"] = get_bloginfo('url') . '/wp-content/plugins/shiplisting/public/images/x-mark-16.png';
 
 
-        wp_enqueue_script("shiplisting_public", plugin_dir_url(__DIR__) . 'public/js/shiplisting-public.js',
-            array('jquery'), SHIPLISTING_VERSION, false);
-        wp_localize_script("shiplisting_public", 'shiplisting_public',
-            array('ajax_url' => admin_url('admin-ajax.php')));
+        wp_enqueue_script("shiplisting_public", plugin_dir_url(__DIR__) . 'public/js/shiplisting-public.js', array('jquery'), SHIPLISTING_VERSION, false);
+        wp_localize_script("shiplisting_public", 'shiplisting_public', array('ajax_url' => admin_url('admin-ajax.php')));
 
         $ppp['data'] = $boat_data;
         $ppp['translation']['boat'] = $tmpBoat['translation'];
@@ -661,8 +639,7 @@ class Shiplisting_Api
 
     public function get_boat_images($bid, $size = "huge")
     {
-        $tmpBoatImages = json_decode($this->send_request('boat-data', 'pictures',
-            '&bid=' . $bid . '&pic_size=' . $size . ''));
+        $tmpBoatImages = json_decode($this->send_request('article-data', 'pictures', '&bid=' . $bid . '&pic_size=' . $size . ''));
 
         return $tmpBoatImages;
     }
@@ -670,13 +647,13 @@ class Shiplisting_Api
     public function get_smiliar_boats()
     {
         //todo: handle boat id or category
-        $tmpSimliarBoats = json_decode($this->send_request('boat-data', 'similar-boats', ''));
+        $tmpSimliarBoats = json_decode($this->send_request('article-special', 'similar-items', ''));
     }
 
     public function get_featured_boats()
     {
         //todo: handle filter
-        $tmpSimliarBoats = json_decode($this->send_request('boat-data', 'featured-boats', ''), true);
+        $tmpSimliarBoats = json_decode($this->send_request('article-special', 'get-mixed', '&featured[cboat]=-1&featured[sboat]=-1'), true);
         if (!$tmpSimliarBoats) {
             return;
         }
@@ -708,7 +685,7 @@ class Shiplisting_Api
 
     public function ajax_get_all_filters($fieldtype = false)
     {
-        $tmpBoat = json_decode($this->send_request('boat-data', 'all-filters', ($fieldtype) ? '&fieldtype=search' : ''),
+        $tmpBoat = json_decode($this->send_request('article-data', 'all-filters', ($fieldtype) ? '&fieldtype=search' : ''),
             true);
         if (!$tmpBoat) {
             return;
@@ -728,9 +705,9 @@ class Shiplisting_Api
 
     public function ajax_get_defined_filters($fields)
     {
-        $tmpBoat = json_decode($this->send_request('boat-data', 'search-form', "&trans=1&fields=" . $fields), true);
+        $tmpBoat = json_decode($this->send_request('article-data', 'search-form', "&trans=1&fields=" . $fields), true);
         if (!$tmpBoat) {
-            return;
+            return false;
         }
 
         $string_store = '';
@@ -740,69 +717,73 @@ class Shiplisting_Api
         $numeric_exceptions = [];
         $length_fields = ["lng"];
 
+        if (empty($tmpTranslation['words']) && !empty(Shiplisting_Shortcodes::$api->translation['words'])) {
+            $tmpTranslation['words'] = Shiplisting_Shortcodes::$api->translation['words'];
+        }
+
         // prepare html objects
         foreach ($tmpBoat['selects'] as $key => $value) {
             $is_fromTo_field = false;
             // check if value is workable array
             if (is_array($value)) {
                 // setup translation
-                $i18n_key = ($tmpTranslation['search'][$key]) ? $tmpTranslation['search'][$key] : '';
+                $i18n_key = $tmpTranslation['search'][$key] ?? $tmpTranslation['search'][$key.'f'] ?? '';
                 // check if value is numeric
+                $return_store[$key]['html'] = '';
                 if (is_numeric($value[0]['name']) && !in_array($key, $numeric_exceptions)) {
                     $is_fromTo_field = true;
                     // field is numeric from to
                     // todo double select from to
                     $tmp_select_store = '';
-                    $unit_finder = (in_array($key,
-                        $length_fields)) ? ' (' . $tmpTranslation['words']['m'] . ')' : '';
-                    $price_finder = (in_array($key, $price_fields)) ? ' (€)' : '';
+                    $unit_finder = (in_array($key, $length_fields)) ? ' (' . ($tmpTranslation['words']['m'] ?? 'm') . ')' : '';
+                    $price_finder = (in_array($key, $price_fields)) ?  ' (€)' : '';
                     $return_store[$key]['html'] .= '
-        <div class="shiplisting-filter-column ' . $key . '">
-            <div class="shiplisting-filter-column-label">
-                ' . $i18n_key . $unit_finder . $price_finder . '
-            </div>
-            <div class="shiplisting-filter-column-content double">
-                <div class="first">
-                    <select id="' . $key . 'f" name="' . $key . 'f">
-                        <option value="-1" selected="selected">' . $tmpTranslation['words']['from'] . '</option>';
+                    <div class="shiplisting-filter-column ' . $key . '">
+                        <div class="shiplisting-filter-column-label">
+                            ' . $i18n_key . $unit_finder . $price_finder . '
+                        </div>
+                        <div class="shiplisting-filter-column-content double">
+                            <div class="first">
+                                <select id="' . $key . 'f" name="' . $key . 'f">
+                                    <option value="-1" selected="selected">' . ($tmpTranslation['words']['from'] ?? '*') . '</option>';
 
-                    foreach ($value as $option) {
-                        $return_store[$key]['html'] .= '<option value="' . $option['id'] . '">' . $option['name'] . '</option>';
-                        $tmp_select_store .= '<option value="' . $option['id'] . '">' . $option['name'] . '</option>';
-                    }
+                                    foreach ($value as $option) {
+                                        $return_store[$key]['html'] .= '<option value="' . $option['id'] . '">' . $option['name'] . '</option>';
+                                        $tmp_select_store .= '<option value="' . $option['id'] . '">' . $option['name'] . '</option>';
+                                    }
 
                     $return_store[$key]['html'] .= '
-                    </select>
-                </div>
-                <div class="second">
-                    <select id="' . $key . 't" name="' . $key . 't">
-                        <option value="-1" selected="selected">' . $tmpTranslation['words']['to'] . '</option>
-                        ' . $tmp_select_store . '
-                    </select>
-                </div>
-            </div>
-        </div>
+                                </select>
+                            </div>
+                            <div class="second">
+                                <select id="' . $key . 't" name="' . $key . 't">
+                                    <option value="-1" selected="selected">' . ($tmpTranslation['words']['to'] ?? '*') . '</option>
+                                    ' . $tmp_select_store . '
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     ';
                 } else {
                     // field is not numeric
                     // todo one select with all options
                     $return_store[$key]['html'] .= '
-        <div class="shiplisting-filter-column ' . $key . '">
-            <div class="shiplisting-filter-column-label">
-                ' . $i18n_key . '
-            </div>
-            <div class="shiplisting-filter-column-content">
-                <select id="' . $key . '" name="' . $key . '">
-                    <option value="-1">------------------</option>';
+                    <div class="shiplisting-filter-column ' . $key . '">
+                        <div class="shiplisting-filter-column-label">
+                            ' . $i18n_key . '
+                        </div>
+                        <div class="shiplisting-filter-column-content">
+                            <select id="' . $key . '" name="' . $key . '">
+                                <option value="-1">------------------</option>';
 
-                    foreach ($value as $option) {
-                        $return_store[$key]['html'] .= '<option value="' . $option['id'] . '">' . $option['name'] . '</option>';
-                    }
+                                foreach ($value as $option) {
+                                    $return_store[$key]['html'] .= '<option value="' . $option['id'] . '">' . $option['name'] . '</option>';
+                                }
 
                     $return_store[$key]['html'] .= '
-                </select>
-            </div>
-        </div>';
+                            </select>
+                        </div>
+                    </div>';
                 }
                 $string_store .= $return_store[$key]['html'];
             }
@@ -816,9 +797,11 @@ class Shiplisting_Api
         global $wpdb;
 
         $result = $wpdb->get_results("SELECT * FROM wp_shiplisting_settings ORDER BY id ASC LIMIT 1");
-        if ($result && sizeof($result) > 0) {
+        if ($result && count($result) > 0) {
             return $result[0];
         }
+
+        wp_die(__('No shiplisting plugin settings found'));
     }
 
     public function api_array_to_string($arr)
@@ -894,9 +877,9 @@ class Shiplisting_Api
                     'path' => $current_uri,
                     'adv_filter' => ($result[0]->{'adv_filter'}) ? implode(',',
                         json_decode($result[0]->{'adv_filter'}, true)) : '',
-                    'source' => $tmpVars[sizeof($tmpVars) - 1]['source'],
+                    'source' => $tmpVars[count($tmpVars) - 1]['source'],
                     'linked_detail_view' => Shiplisting_Shortcodes::$api->get_detail_view_link_by_id($result[0]->{'linked_detail_view'}),
-                    'language' => ($result[0]->{'language'}) ? $result[0]->{'language'} : '',
+                    'language' => $result[0]->{'language'} ?: '',
                     'title' => $result[0]->{'title'}
                 ];
 
@@ -919,7 +902,7 @@ class Shiplisting_Api
         $data = '';
         if (!empty($type)) {
             $fields = '&viewtype=' . $type;
-            $data = $this->send_request('info-special', 'plugin-info', $fields);
+            $data = $this->send_request('article-special', 'plugin-info', $fields);
         }
         echo $data;
         exit;
@@ -947,19 +930,19 @@ class Shiplisting_Api
                     return '{' . $result[1] . '}';
                 }, $tmp_title);
 
-                if (sizeof($fields) > 0) {
+                if (count($fields) > 0) {
                     // prepare api endpoint
                     if (!empty(Shiplisting_Shortcodes::$api->currentRoute['source'])) {
                         $this->sourceSwitcher(Shiplisting_Shortcodes::$api->currentRoute['source']);
                     }
 
                     // send request to api
-                    $data = json_decode($this->send_request('info-special', 'get-placeholders',
+                    $data = json_decode($this->send_request('article-special', 'get-placeholders',
                         '&bid=' . $bid . '&fields=' . implode(',', $fields)), true);
                     $data = $data['fields'];
 
                     // check for data
-                    if (sizeof($data) > 0) {
+                    if (!empty($data) && count($data) > 0) {
                         $tmp_title = preg_replace_callback("/\{(.*?)\}/i", function ($result) use ($data) {
                             $placeholder = $result[1];
 
@@ -998,7 +981,7 @@ class Shiplisting_Api
         $source = $_POST['source'];
         $this->sourceSwitcher($source);
 
-        $data = $this->send_request('info-special', 'get-placeholders', '');
+        $data = $this->send_request('article-special', 'get-placeholders', '');
         echo $data;
         exit;
     }
@@ -1165,8 +1148,6 @@ class Shiplisting_Router
                 $varsArr = $vars;
             }
 
-            $tmp_title = $route->{'title'};
-
             $router->add_route($route->{'name'}, array(
                 'path' => $route->{'path'},
                 'query_vars' => (strlen($route->{'vars'}) == 0) ? array() : $varsArr,
@@ -1196,8 +1177,8 @@ class Shiplisting_Router
                 $current_uri = ($current_uri[count($current_uri) - 2]) ? $current_uri[count($current_uri) - 2] : "";
             }
         }
-        if (!$current_uri && empty($current_uri)) {
-            return "couldnt get current uri correctly.";
+        if (empty($current_uri)) {
+            return "Couldnt get current uri correctly: " . print_r($current_uri, true);
         }
 
         Shiplisting_Shortcodes::$api->get_current_route($current_uri);
@@ -1206,10 +1187,10 @@ class Shiplisting_Router
             $boat_id);
     }
 
-    private static function replace_placeholder_boat_details($boat_id, $content, $source)
+    private static function replace_placeholder_boat_details($boat_id, $content, $source = 0)
     {
         if (!$boat_id) {
-            return;
+            return false;
         }
 
         if (!Shiplisting_Shortcodes::$api) {
@@ -1248,17 +1229,17 @@ class Shiplisting_Router
                 $current_uri = ($current_uri[count($current_uri) - 2]) ? $current_uri[count($current_uri) - 2] : "";
             }
         }
-        if (!$current_uri && empty($current_uri)) {
-            return "couldnt get current uri correctly." . print_r($current_uri, true);
+        if (empty($current_uri)) {
+            return "Couldnt get current uri correctly: " . print_r($current_uri, true);
         }
 
         Shiplisting_Shortcodes::$api->get_current_route('^' . $current_uri . '/(.*?)$', 0);
         if (!Shiplisting_Shortcodes::$api->currentRoute) {
-            return "couldnt get current route correctly." . print_r($current_uri, true);
+            return "Couldnt get current route correctly: " . print_r($current_uri, true);
         }
 
         $boat_data = Shiplisting_Shortcodes::$api->ajax_get_boat($boat_id);
-        if (!$boat_data) {
+        if (empty($boat_data)) {
             return 'Boat not found.';
         }
 
@@ -1266,7 +1247,7 @@ class Shiplisting_Router
         $boat_data = $boat_data['data'];
 
         if (!$content) {
-            return;
+            return null;
         }
 
         echo preg_replace_callback("/\{(.*?)\}/i", function ($result) use ($boat_data, $boat_id, $plugin_data) {
@@ -1289,7 +1270,7 @@ class Shiplisting_Router
                     $placeholder = substr($placeholder, 0, strpos($placeholder, '"') - 1);
 
                     $arguments = explode(',', $placeholder);
-                    array_push($arguments, $delimiterTmp);
+                    $arguments[] = $delimiterTmp;
                     $delimiter = $delimiterTmp;
                 }
 
@@ -1514,12 +1495,12 @@ class Shiplisting_Router
                 return $tmpData;
             }
 
-            if ($placeholder == "other_extras_charter") {
-                if ($boat_data['boat_data']['general_data']['flybridge']['val'] == self::$translation['boat']['words']['yes']) {
+            if ($placeholder === "other_extras_charter") {
+                if (!empty($boat_data['boat_data']['general_data']['flybridge']['val']) && $boat_data['boat_data']['general_data']['flybridge']['val'] == self::$translation['boat']['words']['yes']) {
                     return self::$translation['boat']['boat_data']['general_data']['flybridge'];
-                } else {
-                    return "";
                 }
+
+                return "";
             }
 
             $api_path = explode('-', $placeholder);
@@ -1608,13 +1589,13 @@ class Shiplisting_Router
                 $current_uri = ($current_uri[count($current_uri) - 1]) ? $current_uri[count($current_uri) - 1] : "";
             }
         }
-        if (!$current_uri && empty($current_uri)) {
-            return "couldnt get current uri correctly.";
+        if (empty($current_uri)) {
+            return "Couldnt get current uri correctly: " . print_r($current_uri, true);
         }
 
         Shiplisting_Shortcodes::$api->get_current_route($current_uri);
         if (!Shiplisting_Shortcodes::$api->currentRoute) {
-            return "couldnt get current route correctly.";
+            return "Couldnt get current route correctly: " . print_r($current_uri, true);
         }
 
         if (!self::$translation) {
@@ -1642,23 +1623,24 @@ class Shiplisting_Router
 
         $filter .= '&bnr=' . $hitsByPage;
         $page = 1;
-        if ($_GET['page']) {
+        if (!empty($_GET['page'])) {
             $page = $_GET['page'];
-            $filter .= '&pg=' . $page;
         } else {
-            $filter .= '&pg=1';
             $_GET['page'] = "1";
         }
+        $filter .= '&pg=' . $page;
 
         // store in var
         $standard_filter = $filter;
 
         $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $url_components = parse_url($actual_link);
-        parse_str($url_components['query'], $params);
-        foreach ($params as $key => $value) {
-            if ($key != "page") {
-                $filter .= '&' . $key . '=' . $value;
+        if (isset($url_components['query'])) {
+            parse_str($url_components['query'], $params);
+            foreach ($params as $key => $value) {
+                if ($key !== "page") {
+                    $filter .= '&' . $key . '=' . $value;
+                }
             }
         }
 
@@ -1772,7 +1754,7 @@ class Shiplisting_Router
                                 $priceDetails = '';
 
                                 if ($source == "0") {
-                                    if (is_array($boatObj['sale_data']['price']['val']['old_price'])) {
+                                    if (!empty($boatObj['sale_data']['price']['val']['old_price']) && is_array($boatObj['sale_data']['price']['val']['old_price'])) {
                                         $priceDetails = '<span class="shiplisting-old-price">' . $boatObj['sale_data']['price']['attr']['currency_sign'] . ' ' . $boatObj['sale_data']['price']['val']['old_price']['val'] . '</span> ';
                                         $priceDetails .= $boatObj['sale_data']['price']['attr']['currency_sign'] . ' ' . $boatObj['sale_data']['price']['val']['price_amount']['val'];
 
@@ -1819,20 +1801,20 @@ class Shiplisting_Router
                             if ($placeholder == "engine_details") {
                                 $engineDetails = '';
                                 if (!empty($boatObj['engine_data']['engine_manufacturer']['val'])) {
-                                    $engineDetails .= $boatObj['engine_data']['engine_manufacturer']['val'] . ' ' . $boatObj['engine_data']['engine_model']['val'] . ', ';
+                                    $engineDetails .= ($boatObj['engine_data']['engine_manufacturer']['val'] ?? '') . ' ' . ($boatObj['engine_data']['engine_model']['val'] ?? '') . ', ';
                                 }
 
                                 if (!empty($boatObj['engine_data']['horse_power']['val'])) {
                                     if ($boatObj['engine_data']['engine_quantity']['val'] > 1) {
-                                        $engineDetails .= $boatObj['engine_data']['engine_quantity']['val'] . ' x ' . $boatObj['engine_data']['horse_power']['val'];
+                                        $engineDetails .= ($boatObj['engine_data']['engine_quantity']['val'] ?? '') . ' x ' . ($boatObj['engine_data']['horse_power']['val'] ?? '');
                                     } else {
-                                        $engineDetails .= $boatObj['engine_data']['horse_power']['val'];
+                                        $engineDetails .= ($boatObj['engine_data']['horse_power']['val'] ?? '');
                                     }
-                                    $engineDetails .= ' ' . $boatObj['engine_data']['horse_power']['attr']['unit'];
-                                    $engineDetails .= ' (' . $boatObj['engine_data']['kw_power']['val'] . ' ' . $boatObj['engine_data']['kw_power']['attr']['unit'] . ')';
+                                    $engineDetails .= ' ' . ($boatObj['engine_data']['horse_power']['attr']['unit'] ?? '');
+                                    $engineDetails .= ' (' . ($boatObj['engine_data']['kw_power']['val'] ?? '') . ' ' . ($boatObj['engine_data']['kw_power']['attr']['unit'] ?? '') . ')';
                                 }
                                 if (!empty($boatObj['engine_data']['fuel']['val'])) {
-                                    $engineDetails .= ', ' . $boatObj['engine_data']['fuel']['val'];
+                                    $engineDetails .= ', ' . ($boatObj['engine_data']['fuel']['val'] ?? '');
                                 }
 
                                 if (empty($engineDetails)) {
@@ -1861,12 +1843,12 @@ class Shiplisting_Router
                             }
 
                             //todo handle
-                            if ($placeholder == "object_detail_first") {
-                                $boat_type = $boatObj['boat_data']['general_data']['boat_type']['val'];
-                                $boat_category = $boatObj['boat_data']['general_data']['boat_category']['val'];
-                                $manufacturer = $boatObj['boat_data']['general_data']['manufacturer']['val'];
-                                $boat_class = $boatObj['sale_data']['boat_class']['val'];
-                                $hull_material = $boatObj['boat_data']['general_data']['hull_material']['val'];
+                            if ($placeholder === "object_detail_first") {
+                                $boat_type = $boatObj['boat_data']['general_data']['boat_type']['val'] ?? '';
+                                $boat_category = $boatObj['boat_data']['general_data']['boat_category']['val'] ?? '';
+                                $manufacturer = $boatObj['boat_data']['general_data']['manufacturer']['val'] ?? '';
+                                $boat_class = $boatObj['sale_data']['boat_class']['val'] ?? '';
+                                $hull_material = $boatObj['boat_data']['general_data']['hull_material']['val'] ?? '';
 
                                 $tmp = [
                                     'label' => '',
@@ -1895,19 +1877,22 @@ class Shiplisting_Router
                                 return $tmp['label'] . $tmp['value'];
                             }
 
-                            if ($placeholder == "object_detail_second") {
-                                $i18n_loa = self::$translation['boat']['boat_data']['measure']['loa'];
-                                $i18n_beam = self::$translation['boat']['boat_data']['measure']['beam'];
-                                $i18n_year_built_short = self::$translation['boat']['boat_data']['general_data']['year_built_short'];
-                                $i18n_all_cabins = self::$translation['boat']['boat_data']['passengers']['all_cabins'];
+                            if ($placeholder === "object_detail_second") {
+                                $i18n_loa = self::$translation['boat']['boat_data']['measure']['loa'] ?? '';
+                                $i18n_beam = self::$translation['boat']['boat_data']['measure']['beam'] ?? '';
+                                $i18n_year_built_short = self::$translation['boat']['boat_data']['general_data']['year_built_short'] ?? '';
+                                $i18n_all_cabins = self::$translation['boat']['boat_data']['passengers']['all_cabins'] ?? '';
 
-                                $loa = $boatObj['boat_data']['measure']['loa']['val'];
-                                $beam = $boatObj['boat_data']['measure']['beam']['unit']['val'];
-                                $loa_attr = $boatObj['boat_data']['measure']['loa']['attr']['unit'];
-                                $year_built = $boatObj['boat_data']['general_data']['year_built']['val'];
-                                $all_cabins = $boatObj['boat_data']['passengers']['all_cabins']['val'];
+                                $loa = $boatObj['boat_data']['measure']['loa']['val'] ?? '';
+                                $beam = $boatObj['boat_data']['measure']['beam']['unit']['val'] ?? '';
+                                $loa_attr = $boatObj['boat_data']['measure']['loa']['attr']['unit'] ?? '';
+                                $year_built = $boatObj['boat_data']['general_data']['year_built']['val'] ?? '';
+                                $all_cabins = $boatObj['boat_data']['passengers']['all_cabins']['val'] ?? '';
 
-                                $tmp = [];
+                                $tmp = [
+                                    'label' => '',
+                                    'value' => '',
+                                ];
                                 if (!empty($i18n_loa)) {
                                     $tmp['label'] .= $i18n_loa;
                                 }
@@ -1958,25 +1943,24 @@ class Shiplisting_Router
                     $isTranslation = true;
                 }
 
-                if ($placeholder == "boats") {
+                if ($placeholder === "boats") {
                     $boats = '';
                     if ($boat_data) {
                         foreach ($boat_data["boatTemplates"] as $boatObj) {
                             $boats .= $boatObj;
                         }
                     } else {
-                        $boats = '<script type="text/javascript" src="' . plugins_url('shiplisting/public/js/shiplisting-public.js',
-                                'shiplisting') . '"></script>';
+                        $boats = '<script type="text/javascript" src="' . plugins_url('shiplisting/public/js/shiplisting-public.js', 'shiplisting') . '"></script>';
                     }
 
                     return $boats;
                 }
 
-                if ($placeholder == "pagination") {
+                if ($placeholder === "pagination") {
                     return $pagination['html'];
                 }
 
-                if ($placeholder == "filtering_enabled") {
+                if ($placeholder === "filtering_enabled") {
                     if (!empty(Shiplisting_Shortcodes::$api->currentRoute['adv_filter']) && $plugin_data->{'filtering_advanced'} == "1") {
                         return " adv-filtering";
                     } else {
@@ -1984,7 +1968,7 @@ class Shiplisting_Router
                     }
                 }
 
-                if ($placeholder == "filtering" && !empty(Shiplisting_Shortcodes::$api->currentRoute['adv_filter'])) {
+                if ($placeholder === "filtering" && !empty(Shiplisting_Shortcodes::$api->currentRoute['adv_filter'])) {
                     if ($source != "") {
                         $template = "";
                         if ($source == "0") {
@@ -2025,14 +2009,15 @@ class Shiplisting_Router
                 }
 
                 return array_get_value($boat_data, $api_path);
-            }, $content);
+            }, $content
+        );
     }
 
     public static function display_boats($template, $boatTemplate, $filterId, $hitsByPage, $source)
     {
         $template = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/shiplisting/public/js/templates/' . $template);
         if (!$template) {
-            return;
+            return '';
         }
 
         $template = self::replace_placeholder_boats($boatTemplate, $template, $filterId, $hitsByPage, $source);
@@ -2059,12 +2044,12 @@ class Shiplisting_Router
     {
         $currentLink = $_SERVER["REQUEST_URI"];
         if (stripos($currentLink, '?page=') > 0) {
-            $currentLink = str_replace('?page=' . $_GET['page'], '?page=' . $newPageNumber, $currentLink);
+            $currentLink = str_replace('?page=' . ($_GET['page']  ?? '1'), '?page=' . $newPageNumber, $currentLink);
         } else {
             if (substr($currentLink, -1, 1) !== '/') {
                 $currentLink .= '/';
             }
-            $currentLink = $currentLink . '?page=' . $newPageNumber;
+            $currentLink .= '?page=' . $newPageNumber;
         }
 
         return $currentLink;
