@@ -22,6 +22,10 @@ Plugin for detailed listing of your yachtino (yachtall.com, happycharter.com) of
 
 == Changelog ==
 
+= 1.9.1 =
+* Changed display of empty equipment and discount
+* Fixed hardcoded discount texts
+
 = 1.9.0 =
 * Compatibility with Wordpress 6.1
 * Changed Yachtino API Urls to new API

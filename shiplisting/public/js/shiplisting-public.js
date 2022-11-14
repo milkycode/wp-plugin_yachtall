@@ -335,6 +335,13 @@ jQuery(document).ready(function () {
         jQuery(this).parent().find('.shiplisting-equipment-item-text').slideToggle();
     });
 
+    // Hide empty equipment
+    jQuery('.shiplisting-boat-equipment.ajax-toggler .shiplisting-equipment-item-text').each(function (e) {
+        if (this.innerHTML == '') {
+            jQuery(this).parent().hide();
+        }
+    });
+
     (function () {
         // Your base, I'm in it!
         var originalAddClassMethod = jQuery.fn.addClass;

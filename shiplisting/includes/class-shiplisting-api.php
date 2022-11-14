@@ -1492,7 +1492,12 @@ class Shiplisting_Router
                     }
                 }
 
-                return $tmpData;
+                return '<div class="shiplisting-discounts-wrapper">
+                    <h2>' . self::$translation['boat']['charter_data']['Discounts_offers'] . ':</h2>
+                    <div class="shiplisting-discounts-content-wrapper">
+                        ' . $tmpData . '
+                    </div>
+                </div>';
             }
 
             if ($placeholder === "other_extras_charter") {
@@ -1785,7 +1790,7 @@ class Shiplisting_Router
 
                                     if (is_array($boatObj['charter_data']['discounts'])) {
                                         $priceDetails .= '<div class="shiplisting-object-price flex">';
-                                        $priceDetails .= '<div class="left">Rabatt möglich</div>';
+                                        $priceDetails .= '<div class="left">' . self::$translation['boat']['charter_data']['discount_possible'] . '</div>';
                                         $priceDetails .= '<div class="right">' . $tmp_price . '</div>';
                                         $priceDetails .= '</div>';
                                     } else {
