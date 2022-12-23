@@ -1,9 +1,9 @@
 === Yachtino WP Plugin ===
-Contributors: (this should be a list of wordpress.org userid's)
+Contributors: milkycode
 Donate link: https://www.milkycode.com
 Tags: yachtino, yachtall, happycharter, boats, charter, yachts, yachting, yacht-charters, wordpress, wordpress-plugin
 Requires at least: 5.4.0
-Tested up to: 6.1.0
+Tested up to: 6.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,9 @@ Plugin for detailed listing of your yachtino (yachtall.com, happycharter.com) of
 * That's it!
 
 == Changelog ==
+
+= 1.9.2 =
+* Fixed display of engine values
 
 = 1.9.1 =
 * Changed display of empty equipment and discount

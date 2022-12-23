@@ -2,16 +2,16 @@
     "name" : "Yachtino WP Plugin",
     "slug" : "shiplisting",
     "download_url" : "https://update.yachtino.com/wordpress/shiplisting.zip",
-    "version" : "1.9.1",
+    "version" : "1.9.2",
     "requires" : "5.4.0",
-    "tested" : "6.1.0",
-    "last_updated" : "2022-11-14 16:14:00",
+    "tested" : "6.1.1",
+    "last_updated" : "2022-12-23 14:08:00",
     "upgrade_notice" : "Plugin update is available.",
     "author" : "milkycode GmbH",
     "author_homepage" : "https://www.milkycode.com",
     "sections" : {
         "description" : "Plugin for detailed listing of your yachtall and happycharter offers.",
         "installation" : "Upload the plugin to your Wordpress site and activate it. Go to \"Generator\" and create your pages. That's it!",
-        "changelog" : ""
+        "changelog" : "= 1.9.2 =\n* Fixed display of engine values"
     }
 }
